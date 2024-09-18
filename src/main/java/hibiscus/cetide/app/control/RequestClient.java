@@ -2,8 +2,8 @@ package hibiscus.cetide.app.control;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import hibiscus.cetide.app.model.RequestInfo;
-import hibiscus.cetide.app.model.RequestParams;
+import hibiscus.cetide.app.core.model.RequestInfo;
+import hibiscus.cetide.app.core.model.RequestParams;
 import hibiscus.cetide.app.service.HttpRequestStrategy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import static hibiscus.cetide.app.config.StartupEventListener.requestInfos;
+import static hibiscus.cetide.app.core.StartupEventListener.requestInfos;
 
 @RestController
 @RequestMapping("/hibiscus/test")

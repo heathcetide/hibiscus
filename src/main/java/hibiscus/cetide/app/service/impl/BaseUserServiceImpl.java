@@ -1,14 +1,12 @@
 package hibiscus.cetide.app.service.impl;
 
-import hibiscus.cetide.app.model.BaseUser;
-import hibiscus.cetide.app.model.BaseUserQueryParam;
+import hibiscus.cetide.app.core.model.BaseUser;
 import hibiscus.cetide.app.service.BaseUserService;
 import hibiscus.cetide.app.utils.ExpiredLRUCache;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
 @Service
 public class BaseUserServiceImpl implements BaseUserService {

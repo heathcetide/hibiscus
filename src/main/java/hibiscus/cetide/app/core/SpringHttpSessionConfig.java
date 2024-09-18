@@ -1,4 +1,4 @@
-package hibiscus.cetide.app.config;
+package hibiscus.cetide.app.core;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

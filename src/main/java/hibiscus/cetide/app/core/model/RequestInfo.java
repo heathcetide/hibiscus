@@ -1,4 +1,4 @@
-package hibiscus.cetide.app.model;
+package hibiscus.cetide.app.core.model;
 
 import java.util.List;
 import java.util.Map;

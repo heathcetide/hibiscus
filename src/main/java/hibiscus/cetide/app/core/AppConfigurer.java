@@ -1,6 +1,6 @@
-package hibiscus.cetide.app.config;
+package hibiscus.cetide.app.core;
 
-import hibiscus.cetide.app.interceptor.BaseUserInterceptor;
+import hibiscus.cetide.app.listener.BaseUserInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;

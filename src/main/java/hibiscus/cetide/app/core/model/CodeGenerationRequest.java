@@ -1,4 +1,4 @@
-package hibiscus.cetide.app.model;
+package hibiscus.cetide.app.core.model;
 
 public class CodeGenerationRequest {
     private String module;

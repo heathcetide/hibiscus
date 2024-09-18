@@ -1,14 +1,9 @@
 package hibiscus.cetide.app.service.impl;
 
-import hibiscus.cetide.app.config.AppConfigProperties;
+import hibiscus.cetide.app.core.AppConfigProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-
-import org.springframework.stereotype.Service;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;

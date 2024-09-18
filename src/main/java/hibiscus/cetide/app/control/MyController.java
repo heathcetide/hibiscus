@@ -2,8 +2,7 @@ package hibiscus.cetide.app.control;
 
 
 import hibiscus.cetide.app.listener.ListenerAspect;
-import hibiscus.cetide.app.model.MethodMetrics;
-import hibiscus.cetide.app.model.NetworkMetrics;
+import hibiscus.cetide.app.core.model.MethodMetrics;
 import io.micrometer.core.instrument.Counter;
 import io.micrometer.core.instrument.MeterRegistry;
 import io.micrometer.core.instrument.Timer;

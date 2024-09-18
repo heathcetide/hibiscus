@@ -1,9 +1,9 @@
 package hibiscus.cetide.app.listener;
 
 
-import hibiscus.cetide.app.config.AppConfigProperties;
-import hibiscus.cetide.app.model.MethodMetrics;
-import hibiscus.cetide.app.model.NetworkMetrics;
+import hibiscus.cetide.app.core.AppConfigProperties;
+import hibiscus.cetide.app.core.model.MethodMetrics;
+import hibiscus.cetide.app.core.model.NetworkMetrics;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
