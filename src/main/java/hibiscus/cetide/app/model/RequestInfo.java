@@ -9,12 +9,22 @@ public class RequestInfo {
     private List<String> paths;
     private Map<String, Object> parameters;
     private String params;
+    private String requestMethod;
 
-    public RequestInfo(String className, String methodName, List<String> paths, Map<String, Object> parameters) {
+    public RequestInfo(String className, String methodName, List<String> paths, Map<String, Object> parameters, String requestMethod) {
         this.className = className;
         this.methodName = methodName;
         this.paths = paths;
         this.parameters = parameters;
+        this.requestMethod = requestMethod;
+    }
+
+    public String getRequestMethod() {
+        return requestMethod;
+    }
+
+    public void setRequestMethod(String requestMethod) {
+        this.requestMethod = requestMethod;
     }
 
     public String getClassName() {

@@ -27,7 +27,7 @@ public class StartupEventListener implements ApplicationListener<ContextRefreshe
     public static final List<RequestInfo> requestInfos = new ArrayList<>();
 
     @Autowired
-    private static AppConfigProperties appConfigProperties;
+    private AppConfigProperties appConfigProperties;
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
@@ -121,6 +121,18 @@ public class StartupEventListener implements ApplicationListener<ContextRefreshe
 
     private static void handleMapping(Class<?> aClass, Method method, Class<?> mappingType, String[] paths, String classMapping) {
         Map<String, Object> parameters = new HashMap<>();
+        String methodType = ""; // 请求方法类型 (GET, POST, 等)
+
+        // 根据 mappingType 确定请求类型
+        if (mappingType == GetMapping.class) {
+            methodType = "GET";
+        } else if (mappingType == PostMapping.class) {
+            methodType = "POST";
+        } else if (mappingType == PutMapping.class) {
+            methodType = "PUT";
+        } else if (mappingType == DeleteMapping.class) {
+            methodType = "DELETE";
+        }
         for (String path : paths) {
             // 如果类上有@RequestMapping注解，则将路径前缀添加到方法的映射路径前
             String fullPath = (classMapping.isEmpty() ? "" : classMapping) + path;
@@ -128,7 +140,8 @@ public class StartupEventListener implements ApplicationListener<ContextRefreshe
                     aClass.getName(),
                     method.getName(),
                     Arrays.asList(fullPath),
-                    parameters
+                    parameters,
+                    methodType // 添加请求方式
             );
             requestInfos.add(requestInfo);
             System.out.println(mappingType.getSimpleName() + ": " + method.getName() + " - Full Path: " + fullPath);
@@ -175,10 +188,11 @@ public class StartupEventListener implements ApplicationListener<ContextRefreshe
         }
     }
 
-    public static Class<?> findMainClass() {
-        String defaultPackage = "hibiscus.cetide.app";
-        String configuredPackage = "com.youkeda.dewu";
-        String scanBasePackages = configuredPackage.isEmpty() ? defaultPackage : configuredPackage;
+    public  Class<?> findMainClass() {
+//        String defaultPackage = "hibiscus.cetide.app";
+        String configuredPackage = appConfigProperties.getHibiscus();
+//        String scanBasePackages = configuredPackage.isEmpty() ? defaultPackage : configuredPackage;
+        String scanBasePackages= configuredPackage;
         Reflections reflections = new Reflections(scanBasePackages);
         Set<Class<?>> classes = reflections.getTypesAnnotatedWith(SpringBootApplication.class);
         for (Class<?> clazz : classes) {

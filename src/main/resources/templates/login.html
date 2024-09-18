@@ -8,7 +8,6 @@
     <title>豆瓣登录</title>
 </head>
 <body>
-
 <div class="main">
     <div class="title">
         <span>密码登录</span>
@@ -18,7 +17,7 @@
         <span>请输入登录账户和密码</span>
     </div>
 
-    <form class="login-form" action="/app/authenticate" method="post" name="user">
+    <form class="login-form" action="/app/authenticate" method="post" name="user" id="login-form">
         <!--输入框-->
         <div class="input-content">
             <!--autoFocus-->
@@ -44,7 +43,39 @@
         </div>
     </form>
 
-</div>
+    <script>
+        document.getElementById('login-form').addEventListener('submit', function (event) {
+            event.preventDefault();
 
+            const formData = new FormData(event.target);
+            const username = formData.get('name');
+            const password = formData.get('password');
+
+            const params = new URLSearchParams();
+            params.append('name', username);
+            params.append('password', password);
+
+            fetch('/app/authenticate', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: params.toString()
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.result) {
+                        window.location.href = '/app/interface';
+                    } else {
+                        alert(data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('登录请求失败，请稍后再试。');
+                });
+        });
+    </script>
+</div>
 </body>
 </html>

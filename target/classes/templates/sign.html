@@ -8,14 +8,6 @@
     <title>豆瓣注册</title>
 </head>
 <body>
-<ul>
-    <li th:each="requestInfo:${requestInfos}">
-        <h1 th:text="${requestInfo.className}"></h1>
-        <p th:text="${requestInfo.methodName}"></p>
-        <p th:text="${requestInfo.paths}"></p>
-        <p th:text="${requestInfo.params}"></p>
-    </li>
-</ul>
 <div class="main">
     <div class="title">
         <span>新用户注册</span>
@@ -25,7 +17,7 @@
         <span>请输入注册信息</span>
     </div>
 
-    <form class="login-form" action="/app/register" method="post" name="user">
+    <form class="login-form" action="/app/register" method="post" name="user" id="register-form">
         <!--输入框-->
         <div class="input-content">
             <!--autoFocus-->
@@ -45,7 +37,7 @@
             </div>
         </div>
 
-        <!--登入按钮-->
+        <!--注册按钮-->
         <div style="text-align: center">
             <button type="submit" class="enter-btn" >注册</button>
         </div>
@@ -54,6 +46,38 @@
         </div>
     </form>
 </div>
+
+<script>
+    document.getElementById('register-form').addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const formData = new FormData(event.target);
+        const username = formData.get('name');
+        const password = formData.get('password');
+        const mobile = formData.get('mobile');
+
+        fetch('/app/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: `name=${username}&password=${password}&mobile=${mobile}`
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Response:', data);
+                if (data.result) {
+                    window.location.href = '/app/login'; // 跳转到登录页面
+                } else {
+                    alert(data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('注册请求失败，请稍后再试。');
+            });
+    });
+</script>
 
 </body>
 </html>

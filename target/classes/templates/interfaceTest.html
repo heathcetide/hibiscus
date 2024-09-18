@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <!-- 引入Tailwind CSS -->
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <title>Request Information</title>
+    <style>
+        /* 表单输入框的样式 */
+        textarea, input {
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 0.5rem;
+        }
+
+        /* 焦点时，输入框边框颜色变化，并增加阴影效果 */
+        textarea:focus, input:focus {
+            border-color: #63b3ed; /* 使用淡蓝色而不是黑色 */
+            box-shadow: 0 0 10px rgba(66, 153, 225, 0.4); /* 浅蓝色阴影 */
+            outline: none; /* 移除默认的黑色边框 */
+        }
+
+        /* 按钮的样式 */
+        button {
+            transition: all 0.3s ease;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 按钮悬停时的样式 */
+        button:hover {
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+            transform: translateY(-2px);
+        }
+
+        /* 表单容器的阴影效果 */
+        form {
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        a {
+            text-decoration: none;
+            color: #1d4ed8; /* 蓝色 */
+            padding: 0.5rem;
+            border-radius: 0.25rem;
+            transition: all 0.3s ease;
+        }
+
+        a:hover {
+            background-color: #bfdbfe; /* 浅蓝色背景 */
+            color: #1e40af; /* 深蓝色 */
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+<body class="bg-gray-50 font-sans text-gray-900 min-h-screen flex flex-col">
+<nav class="bg-gray-800">
+    <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+        <div class="relative flex h-16 items-center justify-between">
+            <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+                <!-- Mobile menu button-->
+                <button type="button"
+                        class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+                        aria-controls="mobile-menu" aria-expanded="false">
+                    <span class="absolute -inset-0.5"></span>
+                    <span class="sr-only">Open main menu</span>
+                    <!--
+                      Icon when menu is closed.
+
+                      Menu open: "hidden", Menu closed: "block"
+                    -->
+                    <svg class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                         aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                              d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
+                    </svg>
+                    <!--
+                      Icon when menu is open.
+
+                      Menu open: "block", Menu closed: "hidden"
+                    -->
+                    <svg class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                         aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+                <div class="flex flex-shrink-0 items-center">
+                    <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                         alt="Your Company">
+                </div>
+                <div class="hidden sm:ml-6 sm:block">
+                    <div class="flex space-x-4">
+                        <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+                        <a href="#" class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white"
+                           aria-current="page">Dashboard</a>
+                        <a href="/app/interface"
+                           class="rounded-md px-3 py-2 text-xs font-medium text-gray-300 hover:bg-gray-700 hover:text-white">TestInterface</a>
+                        <a href="/code/generate-html"
+                           class="rounded-md px-3 py-2 text-xs font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Code Generator</a>
+                        <a href="/code/interface-analysis"
+                           class="rounded-md px-3 py-2 text-xs font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Data Analysis</a>
+                    </div>
+                </div>
+            </div>
+            <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                <button type="button"
+                        class="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                    <span class="absolute -inset-1.5"></span>
+                    <span class="sr-only">View notifications</span>
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                         aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                              d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"/>
+                    </svg>
+                </button>
+
+                <!-- Profile dropdown -->
+                <div class="relative ml-3">
+                    <div>
+                        <button type="button"
+                                class="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                                id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+                            <span class="absolute -inset-1.5"></span>
+                            <span class="sr-only">Open user menu</span>
+                            <img class="h-8 w-8 rounded-full"
+                                 src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                                 alt="">
+                        </button>
+                    </div>
+
+<!--                    <div class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"-->
+<!--                         role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">-->
+<!--                        &lt;!&ndash; Active: "bg-gray-100", Not Active: "" &ndash;&gt;-->
+<!--                        <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"-->
+<!--                           id="user-menu-item-0">Your Profile</a>-->
+<!--                        <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"-->
+<!--                           id="user-menu-item-1">Settings</a>-->
+<!--                        <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"-->
+<!--                           id="user-menu-item-2">Sign out</a>-->
+<!--                    </div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile menu, show/hide based on menu state. -->
+    <div class="sm:hidden" id="mobile-menu">
+        <div class="space-y-1 px-2 pb-3 pt-2">
+            <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+            <a href="#" class="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white"
+               aria-current="page">Dashboard</a>
+            <a href="#"
+               class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Team</a>
+            <a href="#"
+               class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Projects</a>
+            <a href="#"
+               class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Calendar</a>
+        </div>
+    </div>
+</nav>
+
+<!-- 页面主布局 -->
+<div class="flex-1 container mx-auto p-6 flex flex-col md:flex-row">
+
+    <!-- 左侧类名列表，强制居左并设定固定宽度 -->
+    <div class="w-full md:w-1/4 bg-gray-100 border-r-2 p-4 md:min-h-screen -ml-16 mr-24">
+        <h2 class="text-xl font-bold border-b-2 pb-2 mb-4">Class Name List</h2>
+        <ul class="divide-y divide-gray-300">
+            <li th:each="requestInfo : ${requestInfoSet}" class="p-4 hover:bg-gray-200 cursor-pointer">
+                <a href="#"
+                   th:attr="data-class-name=${requestInfo.className}"
+                   class="block text-left text-blue-600 hover:underline font-semibold transition-all duration-300 ease-in-out hover:bg-blue-100 p-2 rounded-lg">
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- 右侧请求信息展示区，自适应宽度 -->
+    <div class="flex-1 w-full bg-white shadow-lg rounded-lg p-6">
+        <h2 class="text-3xl font-bold mb-4">Request Info</h2>
+        <div id="request-detail">
+            <div class="text-lg text-gray-700">
+                Please Choose A Class And View Request Information
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 页面底部 -->
+<footer class="bg-gray-200 text-center text-sm p-4 mt-auto">
+    © 2024 请求信息文档系统
+</footer>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+    function toggleDebugForm(button) {
+        const form = button.nextElementSibling;
+        if (form.classList.contains('hidden')) {
+            form.classList.remove('hidden');
+        } else {
+            form.classList.add('hidden');
+        }
+    }
+
+    function submitDebugForm(event, path, method) {
+        event.preventDefault();  // 防止表单默认提交行为
+
+        const form = event.target;
+        const params = form.querySelector('#params').value;
+        const url = form.querySelector('#url').value;
+        const requestMethod = method;
+
+        // 构造请求体
+        const requestParams = {
+            url: url,
+            params: params,
+            method: requestMethod
+        };
+
+        // 发送 POST 请求到 /hibiscus/test/interface
+        axios.post('/hibiscus/test/interface', requestParams)
+            .then(response => {
+                // 成功时，显示成功模态框
+                console.log(response);
+                if (response.data.includes("Error")){
+                    showModal('请求失败', '错误信息：' + response.data, 'error');
+                }else {
+                    showModal('请求成功', '返回结果：' + response.data, 'success');
+                }
+            })
+            .catch(error => {
+                // 失败时，显示失败模态框
+                showModal('请求失败', '错误信息：' + error.message, 'error');
+            });
+    }
+    function showModal(title, message, type) {
+        const modalHTML = `
+    <div class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+        <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+            <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+                    <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+                        <div class="sm:flex sm:items-start">
+                            <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full ${type === 'success' ? 'bg-green-100' : 'bg-red-100'} sm:mx-0 sm:h-10 sm:w-10">
+                                <svg class="h-6 w-6 ${type === 'success' ? 'text-green-600' : 'text-red-600'}" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="${type === 'success' ? 'M4.5 12.75l6 6 9-13.5' : 'M6 18L18 6M6 6l12 12'}" />
+                                </svg>
+                            </div>
+                            <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
+                                <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">${title}</h3>
+                                <div class="mt-2">
+                                    <p class="text-sm text-gray-500">${message}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+                        <button type="button" class="inline-flex w-full justify-center rounded-md ${type === 'success' ? 'bg-green-600 hover:bg-green-500' : 'bg-red-600 hover:bg-red-500'} px-3 py-2 text-sm font-semibold text-white shadow-sm sm:ml-3 sm:w-auto" onclick="closeModal()">关闭</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    `;
+        document.body.insertAdjacentHTML('beforeend', modalHTML);
+    }
+    function closeModal() {
+        const modal = document.querySelector('.relative.z-10');
+        if (modal) {
+            modal.remove();
+        }
+    }
+    document.querySelectorAll('a[data-class-name]').forEach(item => {
+        item.addEventListener('click', function (event) {
+            event.preventDefault();
+            const className = this.getAttribute('data-class-name');
+            const url = `/hibiscus/test/request/info/${className}`
+            console.log(url)
+            // 使用 axios 发起请求
+            axios.get(url)
+                .then(response => {
+                    console.log(response)
+                    const dataList = response.data; // data 是 List<RequestInfo>
+                    if (Array.isArray(dataList) && dataList.length > 0) {
+                        // 清空原来的 request-detail 内容
+                        document.getElementById('request-detail').innerHTML = '';
+                        dataList.forEach(data => {
+                            console.log(data.requestMethod)
+                            // 遍历返回的 RequestInfo 列表，逐一添加到页面
+                            const requestDetailHtml = `
+                                <div class="mb-6 p-4 border-b-2">
+    <h3 class="text-2xl font-bold text-gray-800 mb-2">类名: ${data.className}</h3>
+    <div class="mb-4">
+        <span class="text-lg font-semibold text-gray-600">方法名:</span>
+        <span class="text-xl text-gray-900">${data.methodName}</span>
+    </div>
+    <div class="mb-4">
+        <span class="text-lg font-semibold text-gray-600">请求方式:</span>
+        <span class="text-xl text-gray-900">${data.requestMethod}</span>
+    </div>
+    <div class="mb-4">
+        <span class="text-lg font-semibold text-gray-600">路径:</span>
+        <span class="text-xl text-gray-900">${data.paths}</span>
+    </div>
+    <div class="mb-4">
+        <span class="text-lg font-semibold text-gray-600">参数:</span>
+        <pre class="bg-gray-100 p-4 rounded-lg text-sm text-gray-800"><code>${data.params}</code></pre>
+    </div>
+
+    <!-- 调试页面按钮 -->
+    <button onclick="toggleDebugForm(this)" class="bg-blue-500 text-white p-2 rounded-lg mb-4">调试接口</button>
+
+    <!-- 调试表单，默认隐藏 -->
+    <div class="debug-form hidden">
+        <form onsubmit="submitDebugForm(event, '${data.paths}', '${data.requestMethod}')" class="p-4 border rounded-lg bg-gray-50 shadow-md">
+          <div class="mb-4">
+              <label for="params" class="block text-gray-700 font-semibold mb-2">输入参数 (JSON 格式):</label>
+              <textarea id="params" name="params" class="w-full p-3 border border-gray-300 rounded-lg focus:border-blue-400 focus:outline-none focus:shadow-md transition-shadow duration-300" rows="5" placeholder="请输入 JSON 格式的请求参数"></textarea>
+          </div>
+          <input type="hidden" id="method" value="${data.requestMethod}">
+          <input type="hidden" id="url" value="http://localhost:8080${data.paths}">
+          <button type="submit" class="bg-gradient-to-r from-green-400 to-green-500 text-white p-2 rounded-lg shadow hover:from-green-500 hover:to-green-600 transition-all duration-300 ease-in-out">发送请求</button>
+        </form>
+    </div>
+</div>
+`;
+                            document.getElementById('request-detail').innerHTML += requestDetailHtml;
+                        });
+                    } else {
+                        document.getElementById('request-detail').innerHTML = `
+                            <h3 class="text-2xl font-bold text-red-600 mb-2">未找到任何符合条件的数据</h3>`;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching data:', error);
+                    document.getElementById('request-detail').innerHTML = `
+                        <h3 class="text-2xl font-bold text-red-600 mb-2">获取数据时发生错误</h3>`;
+                });
+        });
+    });
+    document.addEventListener('DOMContentLoaded', function () {
+        var links = document.querySelectorAll('[data-class-name]');
+        links.forEach(function (link) {
+            var className = link.getAttribute('data-class-name');
+            var lastPart = className.split('.').pop();
+            link.textContent = lastPart;
+        });
+    });
+</script>
+</html>

@@ -53,4 +53,12 @@ public class BaseUser {
   public void setMobile(String mobile) {
     this.mobile = mobile;
   }
+
+  public BaseUser() {}
+  public BaseUser(String id, String loginName, String password, String mobile) {
+    this.id = id;
+    this.loginName = loginName;
+    this.password = password;
+    this.mobile = mobile;
+  }
 }

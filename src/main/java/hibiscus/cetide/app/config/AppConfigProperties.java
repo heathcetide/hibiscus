@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Configuration
 @ComponentScan
 public class AppConfigProperties {
-    private String hibiscus;
+    private String hibiscus = "hibiscus.cetide.app";
 
     public String getHibiscus() {
         return hibiscus;
@@ -18,4 +18,5 @@ public class AppConfigProperties {
     public void setHibiscus(String hibiscus) {
         this.hibiscus = hibiscus;
     }
+
 }

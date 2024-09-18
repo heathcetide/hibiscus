@@ -17,7 +17,7 @@ public class AppConfigurer implements WebMvcConfigurer {
             .excludePathPatterns("/app/login")        // 登录页面不需要登录
             .excludePathPatterns("/app/sign")        // 登录页面不需要登录
             .excludePathPatterns("/app/register")        // 登录页面不需要登录
-            .excludePathPatterns("/css/**")           // 静态资源为文件不需要登录
+            .excludePathPatterns("/css/**","/js/**","/font/**","/images/**")           // 静态资源为文件不需要登录
             .excludePathPatterns("/error");            // 系统错误页面不需要登录
     }
 }
