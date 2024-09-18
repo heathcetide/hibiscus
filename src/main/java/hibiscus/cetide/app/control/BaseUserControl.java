@@ -115,24 +115,11 @@ public class BaseUserControl {
   public String codeGeneratorPage(Model model) {
     return "codeGenerator";
   }
-  @GetMapping("/dataAnalysis")
-  public String dataAnalysisPage(Model model) {
-    return "dataAnalysis";
-  }
   @PostMapping("/register")
   @ResponseBody
   public Map registerAction(@RequestParam String name, @RequestParam String password, @RequestParam String mobile,
                             HttpServletRequest request, HttpServletResponse response) {
     Map returnData = new HashMap();
-
-//    // 判断登录名是否已存在
-//    User regedUser = getUserByLoginName(name);
-//    if (regedUser != null) {
-//      returnData.put("result", false);
-//      returnData.put("message", "login name already exist");
-//      return returnData;
-//    }
-
     BaseUser user = new BaseUser();
     user.setLoginName(name);
     user.setPassword(password);
