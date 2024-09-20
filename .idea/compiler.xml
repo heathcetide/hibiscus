@@ -14,7 +14,6 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="app" options="-parameters" />
       <module name="cetide-search-demo" options="-parameters -parameters" />
     </option>
   </component>

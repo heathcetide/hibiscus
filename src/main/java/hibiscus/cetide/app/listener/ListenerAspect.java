@@ -1,6 +1,5 @@
 package hibiscus.cetide.app.listener;
 
-
 import hibiscus.cetide.app.core.AppConfigProperties;
 import hibiscus.cetide.app.core.model.MethodMetrics;
 import hibiscus.cetide.app.core.model.NetworkMetrics;
@@ -9,7 +8,6 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -28,7 +26,6 @@ public class ListenerAspect {
     private AppConfigProperties appConfigProperties;
 
     //    @Around("execution(* hibiscus..*.*.*(..))")
-
 //    @Around("execution(* hibiscus.cetide.app.control.*.*(..))")
 //    @Around("execution(* com..*.*.*(..))")
     @Around("execution(* com..*.*(..)) && @within(org.springframework.web.bind.annotation.RestController) || execution(* com..*.*(..)) && @within(org.springframework.stereotype.Controller)")
@@ -62,8 +59,6 @@ public class ListenerAspect {
     public List<MethodMetrics> getMethodMetrics() {
         return new ArrayList<>(methodMetricsMap.values());
     }
-
-    //    execution(* ...*.*.*(..))
     private void collectMethodMetrics(ProceedingJoinPoint joinPoint, Object result, MethodMetrics metrics) {
         // 假设输入参数中有InputStream类型的参数
         for (Object arg : joinPoint.getArgs()) {
@@ -95,5 +90,4 @@ public class ListenerAspect {
         }
         return bytes;
     }
-
 }
