@@ -1,8 +1,8 @@
 package hibiscus.cetide.app.control;
 
 import hibiscus.cetide.app.listener.ListenerAspect;
-import hibiscus.cetide.app.core.model.CodeGenerationResponse;
-import hibiscus.cetide.app.core.model.MethodMetrics;
+import hibiscus.cetide.app.model.CodeGenerationResponse;
+import hibiscus.cetide.app.model.MethodMetrics;
 import hibiscus.cetide.app.service.impl.CodeGeneratorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

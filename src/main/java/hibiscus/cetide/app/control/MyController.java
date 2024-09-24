@@ -2,7 +2,7 @@ package hibiscus.cetide.app.control;
 
 
 import hibiscus.cetide.app.listener.ListenerAspect;
-import hibiscus.cetide.app.core.model.MethodMetrics;
+import hibiscus.cetide.app.model.MethodMetrics;
 import io.micrometer.core.instrument.Counter;
 import io.micrometer.core.instrument.MeterRegistry;
 import io.micrometer.core.instrument.Timer;
@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
 @RestController
 @RequestMapping("/api")
@@ -34,16 +32,16 @@ public class MyController {
         responseTimeTimer = registry.timer("response_time");
     }
 
-    @GetMapping("/metrics")
-    public Map<String, Double> getMetrics() {
-        double count = responseTimeTimer.count();
-        double total = responseTimeTimer.totalTime(TimeUnit.SECONDS);
-
-        return Map.of(
-                "response_time_seconds_count", count,
-                "response_time_seconds_sum", total
-        );
-    }
+//    @GetMapping("/metrics")
+//    public Map<String, Double> getMetrics() {
+//        double count = responseTimeTimer.count();
+//        double total = responseTimeTimer.totalTime(TimeUnit.SECONDS);
+//
+//        return Map.of(
+//                "response_time_seconds_count", count,
+//                "response_time_seconds_sum", total
+//        );
+//    }
 
     @GetMapping("/hello")
     public String hello() {

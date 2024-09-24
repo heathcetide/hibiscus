@@ -1,6 +1,6 @@
 package hibiscus.cetide.app.service;
 
-import hibiscus.cetide.app.core.model.BaseUser;
+import hibiscus.cetide.app.model.BaseUser;
 
 public interface BaseUserService {
 

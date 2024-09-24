@@ -1,6 +1,6 @@
 package hibiscus.cetide.app.service.impl;
 
-import hibiscus.cetide.app.core.AppConfigProperties;
+import hibiscus.cetide.app.config.AppConfigProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

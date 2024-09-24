@@ -1,6 +1,6 @@
 package hibiscus.cetide.app.service.impl;
 
-import hibiscus.cetide.app.core.model.BaseUser;
+import hibiscus.cetide.app.model.BaseUser;
 import hibiscus.cetide.app.service.BaseUserService;
 import hibiscus.cetide.app.utils.ExpiredLRUCache;
 import org.slf4j.Logger;

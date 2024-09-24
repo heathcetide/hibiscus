@@ -1,15 +1,16 @@
 package hibiscus.cetide.app.control;
 
 import com.google.gson.Gson;
-import hibiscus.cetide.app.core.model.BaseUser;
-import hibiscus.cetide.app.core.model.BaseUserLoginInfo;
+import hibiscus.cetide.app.config.AppConfigProperties;
+import hibiscus.cetide.app.model.BaseUser;
+import hibiscus.cetide.app.model.BaseUserLoginInfo;
 
 import java.util.*;
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import hibiscus.cetide.app.core.model.RequestInfo;
+import hibiscus.cetide.app.model.RequestInfo;
 import hibiscus.cetide.app.service.BaseUserService;
 import hibiscus.cetide.app.utils.ExpiredLRUCache;
 import org.slf4j.Logger;
@@ -23,7 +24,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import static hibiscus.cetide.app.core.StartupEventListener.requestInfos;
+import static hibiscus.cetide.app.core.MappingHandler.requestInfos;
+
 
 @Controller
 @RequestMapping(path = "/app")
@@ -33,6 +35,9 @@ public class BaseUserControl {
 
   @Autowired
   private BaseUserService userService;
+
+  @Autowired
+  private AppConfigProperties appConfigProperties;
 
   @Autowired
   private ExpiredLRUCache<String, Object> cache;
@@ -51,7 +56,20 @@ public class BaseUserControl {
   public Map login(@RequestParam String name, @RequestParam String password, HttpServletRequest request,
                    HttpServletResponse response) {
     Map returnData = new HashMap();
-    // 根据登录名查询用户
+
+    if(appConfigProperties.getUsername().equals(name)&&appConfigProperties.getPassword().equals(password)){
+      BaseUserLoginInfo userLoginInfo = new BaseUserLoginInfo();
+      userLoginInfo.setUserId("123456789abcd");
+      userLoginInfo.setUserName(name);
+      // 取得 HttpSession 对象
+      HttpSession session = request.getSession();
+      // 写入登录信息
+      session.setAttribute("userLoginInfo", userLoginInfo);
+      returnData.put("result", true);
+      returnData.put("message", "login successfule");
+      return returnData;
+    }
+    // 在内存中根据登录名查询用户
     BaseUser user = (BaseUser) cache.get(name);
     // 找不到此登录用户
     if (user == null) {
