@@ -1,19 +1,15 @@
 package hibiscus.cetide.app.core;
 
-import hibiscus.cetide.app.config.AppConfigProperties;
-import hibiscus.cetide.app.log.core.LogLevel;
-import hibiscus.cetide.app.log.core.Logger;
-import hibiscus.cetide.app.log.handler.LogHandler;
-import hibiscus.cetide.app.log.handler.impl.ConsoleLogHandler;
-import hibiscus.cetide.app.log.handler.impl.FileLogHandler;
+import hibiscus.cetide.app.basic.log.core.LogLevel;
+import hibiscus.cetide.app.basic.log.core.Logger;
+import hibiscus.cetide.app.basic.log.handler.LogHandler;
+import hibiscus.cetide.app.basic.log.handler.impl.ConsoleLogHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
-
-import java.io.File;
 
 /**
  * 监听启动事件

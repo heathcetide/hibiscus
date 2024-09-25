@@ -1,6 +1,6 @@
 package hibiscus.cetide.app.core;
 
-import hibiscus.cetide.app.config.AppConfigProperties;
+import hibiscus.cetide.app.common.AppConfigProperties;
 import org.reflections.Reflections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

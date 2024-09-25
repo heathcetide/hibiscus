@@ -1,6 +1,6 @@
 package hibiscus.cetide.app.core;
 
-import hibiscus.cetide.app.model.RequestInfo;
+import hibiscus.cetide.app.common.model.RequestInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
