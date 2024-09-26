@@ -1,31 +1,33 @@
 package hibiscus.cetide.app.basic.log.core;
-import hibiscus.cetide.app.basic.log.handler.LogHandler;
 
-import java.util.ArrayList;
+import hibiscus.cetide.app.basic.log.handler.LogHandler;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+@Component
 public class Logger {
-    private LogLevel level = LogLevel.INFO;
-    private List<LogHandler> handlers = new ArrayList<>();
-    private Map<String, String> context = new HashMap<>();
-    private ExecutorService executorService;
 
-    public Logger() {
-        executorService = Executors.newFixedThreadPool(1); // 单线程池
+    private LogLevel level = LogLevel.INFO;
+    private List<LogHandler> handlers;
+    private final Map<String, String> context = new HashMap<>();
+    private static final ExecutorService executorService = Executors.newSingleThreadExecutor();
+
+    @Autowired
+    public Logger(List<LogHandler> handlers) {
+        this.handlers = handlers;
     }
 
     public void setLevel(LogLevel level) {
         this.level = level;
     }
 
-    public void addContext(String key, String value) {
-        context.put(key, value);
-    }
-
+    @Deprecated
     public void addHandler(LogHandler handler) {
         handlers.add(handler);
     }

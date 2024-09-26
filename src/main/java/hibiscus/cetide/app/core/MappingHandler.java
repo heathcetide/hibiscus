@@ -1,9 +1,14 @@
 package hibiscus.cetide.app.core;
 
+import hibiscus.cetide.app.basic.log.core.LogLevel;
+import hibiscus.cetide.app.basic.log.core.Logger;
 import hibiscus.cetide.app.common.model.RequestInfo;
+import org.apache.ibatis.annotations.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 import java.lang.reflect.Field;
@@ -13,6 +18,9 @@ import java.util.*;
 
 @Component
 public class MappingHandler {
+
+    @Autowired
+    private Logger logger;
 
     public static final List<RequestInfo> requestInfos = new ArrayList<>();
 
@@ -30,12 +38,25 @@ public class MappingHandler {
             classMapping = "";
         }
         if (clazz.isAnnotationPresent(RestController.class)) {
-            System.out.println("RestController: " + clazz.getName());
+//            System.out.println("RestController: " + clazz.getName());
+            logger.log(LogLevel.INFO, "RestController: " + clazz.getName());
         }
 
         if (clazz.isAnnotationPresent(Controller.class)) {
-            System.out.println("Controller: " + clazz.getName());
+//            System.out.println("Controller: " + clazz.getName());
+            logger.log(LogLevel.INFO, "Controller: " + clazz.getName());
         }
+
+        if (clazz.isAnnotationPresent(Service.class)){
+//            System.out.println("Service: " + clazz.getName());
+            logger.log(LogLevel.INFO, "Service: " + clazz.getName());
+        }
+//        if (clazz.isAnnotationPresent(Repository.class)){
+//            System.out.println("Repository: " + clazz.getName());
+//        }
+//        if (clazz.isAnnotationPresent(Mapper.class)){
+//            System.out.println("Mapper: " + clazz.getName());
+//        }
         // 扫描方法
         Arrays.stream(clazz.getDeclaredMethods()).forEach(method -> {
             if (method.isAnnotationPresent(GetMapping.class)) {
@@ -73,7 +94,7 @@ public class MappingHandler {
                     methodType // 添加请求方式
             );
             requestInfos.add(requestInfo);
-            System.out.println(mappingType.getSimpleName() + ": " + method.getName() + " - Full Path: " + fullPath);
+//            System.out.println(mappingType.getSimpleName() + ": " + method.getName() + " - Full Path: " + fullPath);
 
             // 处理方法参数
             Parameter[] methodParameters = method.getParameters();
@@ -90,7 +111,7 @@ public class MappingHandler {
                     parameters.put(paramName, paramType.getSimpleName());
                     parameters.put(paramName + "_defaultValue", requestParam.defaultValue());
                     parameters.put(paramName + "_required", requestParam.required());
-                    System.out.println("@RequestParam detected, using param name: " + paramName);
+//                    System.out.println("@RequestParam detected, using param name: " + paramName);
                 }
 
                 // 处理 @PathVariable
@@ -102,7 +123,7 @@ public class MappingHandler {
                     parameters.put(paramName, paramType.getSimpleName());
                     parameters.put(paramName + "_defaultValue", pathVariable.value());
                     parameters.put(paramName + "_required", pathVariable.required());
-                    System.out.println("@PathVariable detected, using param name: " + paramName);
+//                    System.out.println("@PathVariable detected, using param name: " + paramName);
                 }
 
                 // 处理 @CookieValue
@@ -112,7 +133,7 @@ public class MappingHandler {
                     parameters.put(paramName, paramType.getSimpleName());
                     parameters.put(paramName + "_defaultValue", cookieValue.defaultValue());
                     parameters.put(paramName + "_required", cookieValue.required());
-                    System.out.println("@CookieValue detected, using param name: " + paramName);
+//                    System.out.println("@CookieValue detected, using param name: " + paramName);
                 }
 
                 // 处理 @SessionAttribute
@@ -120,7 +141,7 @@ public class MappingHandler {
                     SessionAttribute sessionAttribute = parameter.getAnnotation(SessionAttribute.class);
                     paramName = sessionAttribute.value();
                     parameters.put(paramName, paramType.getSimpleName());
-                    System.out.println("@SessionAttribute detected, using param name: " + paramName);
+//                    System.out.println("@SessionAttribute detected, using param name: " + paramName);
                 }
 
                 // 处理 @ModelAttribute
@@ -130,14 +151,14 @@ public class MappingHandler {
                     parameters.put(paramName, paramType.getSimpleName());
                     parameters.put(paramName + "_defaultValue", modelAttribute.value());
                     parameters.put(paramName + "_required", modelAttribute.binding());
-                    System.out.println("@ModelAttribute detected, using param name: " + paramName);
+//                    System.out.println("@ModelAttribute detected, using param name: " + paramName);
                 }
 
                 // 处理 @RequestBody
                 if (parameter.isAnnotationPresent(RequestBody.class)) {
                     // 处理请求体
                     handleRequestBody(paramType, parameters);
-                    System.out.println("@RequestBody detected, class: " + paramType.getName());
+//                    System.out.println("@RequestBody detected, class: " + paramType.getName());
                 }
             }
         }
@@ -149,7 +170,7 @@ public class MappingHandler {
             field.setAccessible(true); // 允许访问私有字段
             String fieldName = field.getName();
             parameters.put(fieldName, field.getType().getSimpleName());
-            System.out.println("Field: " + fieldName + " - Type: " + field.getType().getName());
+//            System.out.println("Field: " + fieldName + " - Type: " + field.getType().getName());
         }
     }
 }

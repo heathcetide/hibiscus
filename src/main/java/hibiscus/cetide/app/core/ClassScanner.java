@@ -1,5 +1,6 @@
 package hibiscus.cetide.app.core;
 
+import hibiscus.cetide.app.basic.log.core.Logger;
 import hibiscus.cetide.app.common.AppConfigProperties;
 import org.reflections.Reflections;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -21,19 +21,20 @@ public class StartupEventListener implements ApplicationListener<ContextRefreshe
 
     @Autowired
     private ClassScanner classScanner;
-    Logger logger = new Logger();
+
+    @Autowired
+    private Logger logger;
+
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
-        logger.setLevel(LogLevel.INFO);
         LogHandler consoleHandler = new ConsoleLogHandler();
         logger.addHandler(consoleHandler);
-
         Class<?> mainClass = classScanner.findMainClass();
         if (mainClass != null) {
-            logger.log(LogLevel.INFO, "Found main class: " + mainClass.getName());
+            logger.log(LogLevel.START, "Found Main Class: " + mainClass.getName());
             classScanner.scanApplication(mainClass);
         } else {
-            logger.log(LogLevel.INFO, "No main class found.");
+            logger.log(LogLevel.ERROR, "No Main Class Found.");
         }
     }
 }

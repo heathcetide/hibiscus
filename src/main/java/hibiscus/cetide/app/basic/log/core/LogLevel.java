@@ -5,7 +5,8 @@ public enum LogLevel {
     WARNING("\u001B[33m"), // Yellow
     ERROR("\u001B[31m"), // Red
     DEBUG("\u001B[32m"), // Blue
-    CRITICAL("\u001B[35m");
+    CRITICAL("\u001B[35m"),
+    START("\u001B[36m");
     private final String colorCode;
 
     LogLevel(String colorCode) {
