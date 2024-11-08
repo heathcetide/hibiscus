@@ -1,32 +1,112 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="zh-CN">
 <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-    <!-- 引入Tailwind CSS -->
-    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
-    <link rel="stylesheet" href="/css/index.css"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HIBISCUS API</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <title>Request Information</title>
     <style>
-        body{
+        /* 悬浮球样式 */
+        #floating-ball {
+            position: fixed;
+            right: -30px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 60px;
+            height: 60px;
+            background-color: #4cacaf;
+            border-radius: 50%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            z-index: 1000;
+        }
+
+        #floating-ball:hover {
+            right: 10px;
+        }
+
+        /* 导出弹窗样式 */
+        #export-modal {
+            position: fixed;
+            right: 80px;
+            top: 40%;
+            width: 250px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            padding: 16px;
+            display: none;
+            z-index: 1001;
+        }
+
+        #export-modal a {
+            display: block;
+            margin-bottom: 10px;
+            text-decoration: none;
+            color: #4cacaf;
+            font-weight: bold;
+            transition: color 0.2s;
+        }
+
+        #export-modal a:hover {
+            color: #349e9e;
+        }
+
+        #export-modal .close-btn {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            color: #aaa;
+        }
+
+        #export-modal .close-btn:hover {
+            color: #555;
+        }
+        body {
             background: rgba(54, 103, 255, 0.1);
+            /*overflow-y: hidden;*/
         }
-        /* 表单输入框的样式 */
-        textarea, input {
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-            border-radius: 0.5rem;
-        }
-
-        /* 焦点时，输入框边框颜色变化，并增加阴影效果 */
         textarea:focus, input:focus {
-            border-color: #63b3ed; /* 使用淡蓝色而不是黑色 */
-            box-shadow: 0 0 10px rgba(66, 153, 225, 0.4); /* 浅蓝色阴影 */
-            outline: none; /* 移除默认的黑色边框 */
+            border-color: #63b3ed;
+            box-shadow: 0 0 10px rgba(66, 153, 225, 0.4);
+            outline: none;
+        }
+        #api-sidebar {
+            max-height: 85vh;  /* 限制最大高度 */
+            overflow-y: auto;  /* 当内容超出时显示滚动条 */
         }
 
-        /* 按钮的样式 */
+        /* 自定义滚动条的样式 */
+        #api-sidebar::-webkit-scrollbar {
+            width: 8px;  /* 设置滚动条的宽度 */
+        }
+
+        /* 滚动条轨道的样式 */
+        #api-sidebar::-webkit-scrollbar-track {
+            background: #f1f1f1;  /* 轨道的背景颜色 */
+            border-radius: 10px;  /* 轨道的圆角 */
+        }
+
+        /* 滚动条滑块的样式 */
+        #api-sidebar::-webkit-scrollbar-thumb {
+            background: #4cacaf;  /* 滑块的颜色 */
+            border-radius: 10px;  /* 滑块的圆角 */
+            border: 2px solid #f1f1f1;  /* 滑块的边框 */
+        }
+
+        /* 滚动条滑块悬停时的样式 */
+        #api-sidebar::-webkit-scrollbar-thumb:hover {
+            background: #4cacaf;  /* 悬停时的滑块颜色 */
+        }
+
         button {
             transition: all 0.3s ease;
             padding: 0.75rem 1.5rem;
@@ -34,328 +114,570 @@
             border-radius: 0.5rem;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-
-        /* 按钮悬停时的样式 */
         button:hover {
             box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
             transform: translateY(-2px);
         }
-
-        /* 表单容器的阴影效果 */
-        form {
-            border-radius: 0.75rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        .tab-button {
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            margin-right: 1rem;
+            font-weight: bold;
+            border-radius: 0.375rem;
         }
-        a {
-            text-decoration: none;
-            color: #1d4ed8; /* 蓝色 */
-            padding: 0.5rem;
-            border-radius: 0.25rem;
+        .tab-button.active {
+            background-color: #63b3ed;
+            color: white;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .tag {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            font-weight: bold;
+            color: white;
+            background-color: #48bb78; /* 荧光绿 */
+            border-radius: 0.375rem;
+        }
+        .cursor-pointer {
             transition: all 0.3s ease;
         }
-
-        a:hover {
-            background-color: #bfdbfe; /* 浅蓝色背景 */
-            color: #1e40af; /* 深蓝色 */
-            text-decoration: underline;
+        .cursor-pointer:hover {
+            transform: scale(1.05);
         }
-
+        .method-list {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease, opacity 0.5s ease;
+            opacity: 0;
+        }
+        .method-list.open {
+            max-height: 500px; /* 根据需要调整 */
+            opacity: 1;
+        }
+        .group-open .method-list {
+            max-height: 500px; /* 足够大的值以容纳内容 */
+            opacity: 1;
+        }
+        .method-list.open {
+            max-height: 500px; /* Adjust to your list size */
+            opacity: 1;
+        }
+        /* Monaco Editor Containers */
+        .editor-container {
+            height: 200px;
+            border: 1px solid #d1d5db;
+            border-radius: 0.375rem;
+        }
+        .response-editor-container {
+            height: 300px;
+        }
     </style>
 </head>
+
 <body class="bg-gray-50 font-sans text-gray-900 min-h-screen flex flex-col">
-<nav class="bg-gray-800">
-    <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-        <div class="relative flex h-16 items-center justify-between">
-            <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
-                <!-- Mobile menu button-->
-                <button type="button"
-                        class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
-                        aria-controls="mobile-menu" aria-expanded="false">
-                    <span class="absolute -inset-0.5"></span>
-                    <span class="sr-only">Open main menu</span>
-                    <!--
-                      Icon when menu is closed.
-
-                      Menu open: "hidden", Menu closed: "block"
-                    -->
-                    <svg class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                         aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                              d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
-                    </svg>
-                    <!--
-                      Icon when menu is open.
-
-                      Menu open: "block", Menu closed: "hidden"
-                    -->
-                    <svg class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                         aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
-                    </svg>
-                </button>
+<!-- 优化后的顶部导航栏 -->
+<nav class="bg-white shadow-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- 主导航容器，添加 items-center 确保垂直居中 -->
+        <div class="flex justify-between items-center h-16">
+            <!-- 左侧品牌标志 -->
+            <div class="flex-shrink-0 flex items-center">
+                <a href="#home" class="text-2xl font-bold text-indigo-600">HIBISCUS API</a>
             </div>
-            <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-                <div class="flex flex-shrink-0 items-center">
-                    <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                         alt="Your Company">
+            <!-- 中间菜单项（隐藏在移动设备） -->
+            <div class="hidden md:flex md:space-x-8">
+                <!-- Data Analysis 菜单项 -->
+                <div class="relative group">
+                    <button class="inline-flex items-center px-3 py-2 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none">
+                        Data Analysis
+                        <svg class="ml-1 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <!-- Data Analysis 下拉菜单 -->
+                    <div class="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+                        <a href="#data-analysis-overview" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Overview</a>
+                        <a href="#data-analysis-details" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Details</a>
+                    </div>
                 </div>
-                <div class="hidden sm:ml-6 sm:block">
-                    <div class="flex space-x-4">
-                        <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                        <a href="#" class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white"
-                           aria-current="page">Dashboard</a>
-                        <a href="/app/interface"
-                           class="rounded-md px-3 py-2 text-xs font-medium text-gray-300 hover:bg-gray-700 hover:text-white">TestInterface</a>
-                        <a href="/code/generate-html"
-                           class="rounded-md px-3 py-2 text-xs font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Code Generator</a>
-                        <a href="/code/interface-analysis"
-                           class="rounded-md px-3 py-2 text-xs font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Data Analysis</a>
+                <!-- Interface Test 菜单项 -->
+                <div class="relative group">
+                    <button class="inline-flex items-center px-3 py-2 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none">
+                        Interface Test
+                        <svg class="ml-1 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <!-- Interface Test 下拉菜单 -->
+                    <div class="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+                        <a href="#interface-test-overview" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Overview</a>
+                        <a href="#interface-test-details" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Details</a>
+                    </div>
+                </div>
+                <!-- Code Generate 菜单项 -->
+                <div class="relative group">
+                    <button class="inline-flex items-center px-3 py-2 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none">
+                        Code Generate
+                        <svg class="ml-1 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <!-- Code Generate 下拉菜单 -->
+                    <div class="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+                        <a href="#code-generate-overview" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Overview</a>
+                        <a href="#code-generate-details" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Details</a>
+                    </div>
+                </div>
+                <!-- User Centre 菜单项 -->
+                <div class="relative group">
+                    <button class="inline-flex items-center px-3 py-2 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none">
+                        User Centre
+                        <svg class="ml-1 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <!-- User Centre 下拉菜单 -->
+                    <div class="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+                        <a href="#user-centre-profile" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
+                        <a href="#user-centre-settings" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</a>
+                        <a href="#user-centre-logout" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
                     </div>
                 </div>
             </div>
-            <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                <button type="button"
-                        class="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-                    <span class="absolute -inset-1.5"></span>
-                    <span class="sr-only">View notifications</span>
-                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                         aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                              d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"/>
+            <!-- 移动设备菜单按钮 -->
+            <div class="md:hidden flex items-center">
+                <button type="button" class="text-gray-500 hover:text-gray-700 focus:outline-none focus:text-gray-700" aria-label="菜单" onclick="toggleMobileMenu()">
+                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
                 </button>
-
-                <!-- Profile dropdown -->
-                <div class="relative ml-3">
-                    <div>
-                        <button type="button"
-                                class="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-                                id="user-menu-button" aria-expanded="false" aria-haspopup="true">
-                            <span class="absolute -inset-1.5"></span>
-                            <span class="sr-only">Open user menu</span>
-                            <img class="h-8 w-8 rounded-full"
-                                 src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                 alt="">
-                        </button>
-                    </div>
-
-<!--                    <div class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"-->
-<!--                         role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">-->
-<!--                        &lt;!&ndash; Active: "bg-gray-100", Not Active: "" &ndash;&gt;-->
-<!--                        <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"-->
-<!--                           id="user-menu-item-0">Your Profile</a>-->
-<!--                        <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"-->
-<!--                           id="user-menu-item-1">Settings</a>-->
-<!--                        <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"-->
-<!--                           id="user-menu-item-2">Sign out</a>-->
-<!--                    </div>-->
-                </div>
             </div>
         </div>
     </div>
-
-    <!-- Mobile menu, show/hide based on menu state. -->
-    <div class="sm:hidden" id="mobile-menu">
-        <div class="space-y-1 px-2 pb-3 pt-2">
-            <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-            <a href="#" class="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white"
-               aria-current="page">Dashboard</a>
-            <a href="#"
-               class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Team</a>
-            <a href="#"
-               class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Projects</a>
-            <a href="#"
-               class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Calendar</a>
+    <!-- 移动设备下拉菜单 -->
+    <div id="mobile-menu" class="md:hidden hidden">
+        <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+            <a href="#data-analysis-overview" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100">Data Analysis</a>
+            <a href="#interface-test-overview" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100">Interface Test</a>
+            <a href="#code-generate-overview" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100">Code Generate</a>
+            <a href="#user-centre-profile" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100">User Centre</a>
+            <a href="#logout" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100">退出</a>
         </div>
     </div>
 </nav>
-
-<!-- 页面主布局 -->
-<div class="flex-1 container mx-auto p-6 flex flex-col md:flex-row">
-
-    <!-- 左侧类名列表，强制居左并设定固定宽度 -->
-    <div class="w-full md:w-1/4 bg-gray-100 border-r-2 p-4 md:min-h-screen -ml-16 mr-24">
-        <h2 class="text-xl font-bold border-b-2 pb-2 mb-4">Class Name List</h2>
-        <ul class="divide-y divide-gray-300">
-            <li th:each="requestInfo : ${requestInfoSet}" class="p-4 hover:bg-gray-200 cursor-pointer">
-                <a href="#"
-                   th:attr="data-class-name=${requestInfo.className}"
-                   class="block text-left text-blue-600 hover:underline font-semibold transition-all duration-300 ease-in-out hover:bg-blue-100 p-2 rounded-lg">
-                </a>
-            </li>
+<div class="flex flex-col md:flex-row flex-1 container mx-auto p-6">
+    <!-- Sidebar with API class list -->
+    <aside id="api-sidebar" class="w-full md:w-1/4 bg-gray-700 text-white p-6 rounded-md mb-6 md:mb-0">
+        <h2 class="text-xl font-bold border-b-2 pb-2 mb-4">接口列表</h2>
+        <ul id="api-class-list" class="space-y-2">
+            <!-- 动态加载接口列表 -->
         </ul>
-    </div>
+    </aside>
+    <!-- Right side - Request and Response Section -->
+    <main class="flex-1 bg-white shadow-lg rounded-lg p-6">
+        <section id="request-info" class="mb-6">
+            <h3 class="text-2xl font-bold mb-4">请求信息</h3>
 
-    <!-- 右侧请求信息展示区，自适应宽度 -->
-    <div class="flex-1 w-full bg-white shadow-lg rounded-lg p-6">
-        <h2 class="text-3xl font-bold mb-4">Request Info</h2>
-        <div id="request-detail">
-            <div class="text-lg text-gray-700">
-                Please Choose A Class And View Request Information
+            <div class="flex items-center mb-4">
+                <span id="request-method" class="tag mr-4">POST</span>
+                <input disabled type="text" id="request-url" class="w-full p-2 border rounded" placeholder="输入请求的 URL">
             </div>
-        </div>
-    </div>
-</div>
-<!-- 页面底部 -->
-<footer class="bg-gray-200 text-center text-sm p-4 mt-auto">
-    © 2024 请求信息文档系统
-</footer>
-</body>
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script>
-    function toggleDebugForm(button) {
-        const form = button.nextElementSibling;
-        if (form.classList.contains('hidden')) {
-            form.classList.remove('hidden');
-        } else {
-            form.classList.add('hidden');
-        }
-    }
 
-    function submitDebugForm(event, path, method) {
-        event.preventDefault();  // 防止表单默认提交行为
+            <!-- Tabs for different parameters -->
+            <div class="tabs mb-4">
+                <button class="tab-button active" data-target="params-tab">Query Params</button>
+                <button class="tab-button" data-target="headers-tab">Headers</button>
+                <button class="tab-button" data-target="body-tab">Body</button>
+                <button class="tab-button" data-target="auth-tab">Authorization</button>
+            </div>
 
-        const form = event.target;
-        const params = form.querySelector('#params').value;
-        const url = form.querySelector('#url').value;
-        const requestMethod = method;
-
-        // 构造请求体
-        const requestParams = {
-            url: url,
-            params: params,
-            method: requestMethod
-        };
-
-        // 发送 POST 请求到 /hibiscus/test/interface
-        axios.post('/hibiscus/test/interface', requestParams)
-            .then(response => {
-                // 成功时，显示成功模态框
-                console.log(response);
-                if (response.data.includes("Error")){
-                    showModal('请求失败', '错误信息：' + response.data, 'error');
-                }else {
-                    showModal('请求成功', '返回结果：' + response.data, 'success');
-                }
-            })
-            .catch(error => {
-                // 失败时，显示失败模态框
-                showModal('请求失败', '错误信息：' + error.message, 'error');
-            });
-    }
-    function showModal(title, message, type) {
-        const modalHTML = `
-    <div class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-        <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
-        <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
-            <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-                <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
-                    <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
-                        <div class="sm:flex sm:items-start">
-                            <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full ${type === 'success' ? 'bg-green-100' : 'bg-red-100'} sm:mx-0 sm:h-10 sm:w-10">
-                                <svg class="h-6 w-6 ${type === 'success' ? 'text-green-600' : 'text-red-600'}" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="${type === 'success' ? 'M4.5 12.75l6 6 9-13.5' : 'M6 18L18 6M6 6l12 12'}" />
-                                </svg>
-                            </div>
-                            <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
-                                <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">${title}</h3>
-                                <div class="mt-2">
-                                    <p class="text-sm text-gray-500">${message}</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-                        <button type="button" class="inline-flex w-full justify-center rounded-md ${type === 'success' ? 'bg-green-600 hover:bg-green-500' : 'bg-red-600 hover:bg-red-500'} px-3 py-2 text-sm font-semibold text-white shadow-sm sm:ml-3 sm:w-auto" onclick="closeModal()">关闭</button>
+            <!-- Content for each tab -->
+            <div id="params-tab" class="tab-content active">
+                <h4 class="font-bold mb-2">Query Params</h4>
+                <div id="query-params" class="space-y-2">
+                    <div class="flex">
+                        <input type="text" placeholder="Key" class="w-1/2 p-2 border rounded mr-2">
+                        <input type="text" placeholder="Value" class="w-1/2 p-2 border rounded">
                     </div>
                 </div>
+                <button onclick="addParam('query-params')" class="mt-2 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">添加参数</button>
             </div>
+
+            <div id="headers-tab" class="tab-content">
+                <h4 class="font-bold mb-2">Headers</h4>
+                <div id="headers-params" class="space-y-2">
+                    <div class="flex">
+                        <input type="text" placeholder="Key" class="w-1/2 p-2 border rounded mr-2">
+                        <input type="text" placeholder="Value" class="w-1/2 p-2 border rounded">
+                    </div>
+                </div>
+                <button onclick="addParam('headers-params')" class="mt-2 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">添加 Header</button>
+            </div>
+
+            <div id="body-tab" class="tab-content">
+                <h4 class="font-bold mb-2">Body</h4>
+                <div class="mb-4">
+                    <label>
+                        <input type="radio" name="body-type" value="form-data" checked onchange="switchBodyType(this)"> form-data
+                    </label>
+                    <label class="ml-4">
+                        <input type="radio" name="body-type" value="x-www-form-urlencoded" onchange="switchBodyType(this)"> x-www-form-urlencoded
+                    </label>
+                    <label class="ml-4">
+                        <input type="radio" name="body-type" value="raw" onchange="switchBodyType(this)"> raw
+                    </label>
+                    <label class="ml-4">
+                        <input type="radio" name="body-type" value="binary" onchange="switchBodyType(this)"> binary
+                    </label>
+                </div>
+
+                <!-- Form data fields -->
+                <div id="form-data-fields" class="space-y-2">
+                    <div class="flex">
+                        <input type="text" placeholder="Key" class="w-1/4 p-2 border rounded mr-2">
+                        <input type="text" class="w-1/2 p-2 border rounded" placeholder="Value">
+                    </div>
+                </div>
+                <button onclick="addParam('form-data-fields')" class="mt-2 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded" id="form-data-button">添加 form-data 参数</button>
+
+                <!-- x-www-form-urlencoded fields -->
+                <div id="urlencoded-fields" class="space-y-2 hidden">
+                    <div class="flex">
+                        <input type="text" placeholder="Key" class="w-1/2 p-2 border rounded mr-2">
+                        <input type="text" placeholder="Value" class="w-1/2 p-2 border rounded">
+                    </div>
+                </div>
+                <button onclick="addParam('urlencoded-fields')" class="hidden mt-2 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded" id="urlencoded-button">添加 x-www-form-urlencoded 参数</button>
+
+                <!-- Raw body content -->
+                <div id="raw-body-content" class="hidden mt-4">
+                    <div class="mb-2">
+                        <label for="raw-format" class="font-semibold">选择格式：</label>
+                        <select id="raw-format" class="p-2 border rounded">
+                            <option value="plaintext">Text</option>
+                            <option value="json">JSON</option>
+                            <option value="html">HTML</option>
+                            <option value="xml">XML</option>
+                        </select>
+                    </div>
+                    <div id="raw-editor" class="editor-container"></div>
+                </div>
+
+                <!-- Binary file upload -->
+                <div id="binary-content" class="hidden mt-4">
+                    <input type="file" class="w-full p-2 border rounded">
+                </div>
+            </div>
+
+            <div id="auth-tab" class="tab-content">
+                <h4 class="font-bold mb-2">Authorization</h4>
+                <input type="text" id="auth-token" class="w-full p-2 border rounded" placeholder="输入 Bearer Token">
+            </div>
+
+            <button onclick="sendRequest()" class="mt-4 bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded">发送请求</button>
+        </section>
+
+        <section class="response-box">
+            <h3 class="text-xl font-semibold mb-2">响应内容</h3>
+            <div id="response-editor" class="editor-container response-editor-container"></div>
+        </section>
+        <div id="floating-ball">导出</div>
+
+        <!-- 导出选项弹窗 -->
+        <div id="export-modal">
+            <span class="close-btn" onclick="toggleExportModal()">×</span>
+            <h3>导出选项</h3>
+            <a href="#" onclick="exportFile('markdown')">导出为 Markdown (.md)</a>
+            <a href="#" onclick="exportFile('pdf')">导出为 PDF (.pdf)</a>
+            <a href="#" onclick="exportFile('html')">导出为 HTML (.html)</a>
+            <a href="#" onclick="exportFile('word')">导出为 Word (.docx)</a>
         </div>
-    </div>
-    `;
-        document.body.insertAdjacentHTML('beforeend', modalHTML);
-    }
-    function closeModal() {
-        const modal = document.querySelector('.relative.z-10');
-        if (modal) {
-            modal.remove();
-        }
-    }
-    document.querySelectorAll('a[data-class-name]').forEach(item => {
-        item.addEventListener('click', function (event) {
-            event.preventDefault();
-            const className = this.getAttribute('data-class-name');
-            const url = `/hibiscus/test/request/info/${className}`
-            console.log(url)
-            // 使用 axios 发起请求
-            axios.get(url)
-                .then(response => {
-                    console.log(response)
-                    const dataList = response.data; // data 是 List<RequestInfo>
-                    if (Array.isArray(dataList) && dataList.length > 0) {
-                        // 清空原来的 request-detail 内容
-                        document.getElementById('request-detail').innerHTML = '';
-                        dataList.forEach(data => {
-                            console.log(data.requestMethod)
-                            // 遍历返回的 RequestInfo 列表，逐一添加到页面
-                            const requestDetailHtml = `
-                                <div class="mb-6 p-4 border-b-2">
-    <h3 class="text-2xl font-bold text-gray-800 mb-2">类名: ${data.className}</h3>
-    <div class="mb-4">
-        <span class="text-lg font-semibold text-gray-600">方法名:</span>
-        <span class="text-xl text-gray-900">${data.methodName}</span>
-    </div>
-    <div class="mb-4">
-        <span class="text-lg font-semibold text-gray-600">请求方式:</span>
-        <span class="text-xl text-gray-900">${data.requestMethod}</span>
-    </div>
-    <div class="mb-4">
-        <span class="text-lg font-semibold text-gray-600">路径:</span>
-        <span class="text-xl text-gray-900">${data.paths}</span>
-    </div>
-    <div class="mb-4">
-        <span class="text-lg font-semibold text-gray-600">参数:</span>
-        <pre class="bg-gray-100 p-4 rounded-lg text-sm text-gray-800"><code>${data.params}</code></pre>
-    </div>
-
-    <!-- 调试页面按钮 -->
-    <button onclick="toggleDebugForm(this)" class="bg-blue-500 text-white p-2 rounded-lg mb-4">调试接口</button>
-
-    <!-- 调试表单，默认隐藏 -->
-    <div class="debug-form hidden">
-        <form onsubmit="submitDebugForm(event, '${data.paths}', '${data.requestMethod}')" class="p-4 border rounded-lg bg-gray-50 shadow-md">
-          <div class="mb-4">
-              <label for="params" class="block text-gray-700 font-semibold mb-2">输入参数 (JSON 格式):</label>
-              <textarea id="params" name="params" class="w-full p-3 border border-gray-300 rounded-lg focus:border-blue-400 focus:outline-none focus:shadow-md transition-shadow duration-300" rows="5" placeholder="请输入 JSON 格式的请求参数"></textarea>
-          </div>
-          <input type="hidden" id="method" value="${data.requestMethod}">
-          <input type="hidden" id="url" value="http://localhost:8080${data.paths}">
-          <button type="submit" class="bg-gradient-to-r from-green-400 to-green-500 text-white p-2 rounded-lg shadow hover:from-green-500 hover:to-green-600 transition-all duration-300 ease-in-out">发送请求</button>
-        </form>
-    </div>
+    </main>
 </div>
-`;
-                            document.getElementById('request-detail').innerHTML += requestDetailHtml;
-                        });
-                    } else {
-                        document.getElementById('request-detail').innerHTML = `
-                            <h3 class="text-2xl font-bold text-red-600 mb-2">未找到任何符合条件的数据</h3>`;
-                    }
-                })
-                .catch(error => {
-                    console.error('Error fetching data:', error);
-                    document.getElementById('request-detail').innerHTML = `
-                        <h3 class="text-2xl font-bold text-red-600 mb-2">获取数据时发生错误</h3>`;
-                });
+
+
+<script>
+    // 切换导出弹窗的显示状态
+    function toggleExportModal() {
+        const modal = document.getElementById('export-modal');
+        modal.style.display = modal.style.display === 'none' || modal.style.display === '' ? 'block' : 'none';
+    }
+
+    // 悬浮球点击事件
+    document.getElementById('floating-ball').addEventListener('click', () => {
+        toggleExportModal();
+    });
+
+    // 导出文件的函数
+    function exportFile(type) {
+        // 请求后端导出接口
+        const url = `http://localhost:8080/export?type=${type}`;
+        window.open(url, '_blank');
+    }
+
+    // 点击弹窗外部关闭弹窗
+    window.addEventListener('click', (event) => {
+        const modal = document.getElementById('export-modal');
+        if (event.target !== modal && event.target !== document.getElementById('floating-ball') && !modal.contains(event.target)) {
+            modal.style.display = 'none';
+        }
+    });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<!-- Monaco Editor Loader -->
+<script src="https://unpkg.com/monaco-editor@0.33.0/min/vs/loader.js"></script>
+
+<script>
+    const baseURL = 'http://localhost:8080';
+
+    // Monaco Editor Instances
+    let requestEditor;
+    let responseEditor;
+
+    // Configure Monaco Editor
+    require.config({ paths: { 'vs': 'https://unpkg.com/monaco-editor@0.33.0/min/vs' }});
+    require(['vs/editor/editor.main'], function() {
+        // Initialize Request Editor
+        requestEditor = monaco.editor.create(document.getElementById('raw-editor'), {
+            value: '{\n\t\n}',
+            language: 'json',
+            theme: 'vs-light',
+            automaticLayout: true
+        });
+
+        // Initialize Response Editor (Read-only)
+        responseEditor = monaco.editor.create(document.getElementById('response-editor'), {
+            value: '等待请求结果...',
+            language: 'json',
+            theme: 'vs-light',
+            readOnly: true,
+            automaticLayout: true
         });
     });
-    document.addEventListener('DOMContentLoaded', function () {
-        var links = document.querySelectorAll('[data-class-name]');
-        links.forEach(function (link) {
-            var className = link.getAttribute('data-class-name');
-            var lastPart = className.split('.').pop();
-            link.textContent = lastPart;
+
+    // 获取接口列表并显示在左侧
+    const loadApiList = async () => {
+        try {
+            const response = await axios.get(`${baseURL}/hibiscus/test/interface-list`);
+            const apiList = response.data;
+            const apiClassListElement = document.getElementById('api-class-list');
+            apiClassListElement.innerHTML = '';
+
+            apiList.forEach(api => {
+                const apiItem = document.createElement('li');
+                apiItem.innerHTML = `
+                <div class="flex items-center justify-between cursor-pointer">
+                    <span class="text-lg font-medium text-white hover:text-green-400">${api.className}</span>
+                    <!-- 旋转箭头图标 -->
+                    <svg class="h-5 w-5 text-gray-300 transform transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </div>
+                <ul class="method-list mt-2 space-y-2 pl-4">
+                    ${api.methods.map(method => `
+                        <li>
+                            <a href="#" class="block px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:bg-green-500 hover:text-white transition-colors duration-200"
+                               onclick="populateRequest('${method.methodName}', '${method.requestMethod}', '${method.paths}')">
+                                ${method.methodName}
+                            </a>
+                        </li>
+                    `).join('')}
+                </ul>
+            `;
+
+                // 添加类到 apiItem
+                apiItem.classList.add('bg-gray-700', 'rounded-md', 'mb-2', 'shadow-sm');
+
+                // 获取点击区域和方法列表
+                const clickableArea = apiItem.querySelector('.flex');
+                const methodList = apiItem.querySelector('.method-list');
+                const arrow = apiItem.querySelector('svg');
+
+                // 初始状态隐藏方法列表
+                methodList.classList.remove('open');
+
+                // 添加点击事件监听器
+                clickableArea.addEventListener('click', () => {
+                    const openLists = apiClassListElement.querySelectorAll('.method-list.open');
+                    if (openLists.length >= 2 && !methodList.classList.contains('open')) {
+                        // 如果已经有两个展开的列表且当前列表未展开，则关闭最早的展开列表
+                        openLists[0].classList.remove('open');
+                        openLists[0].parentElement.querySelector('svg').classList.remove('rotate-180');
+                    }
+
+                    methodList.classList.toggle('open');
+                    arrow.classList.toggle('rotate-180');
+                });
+
+                apiClassListElement.appendChild(apiItem);
+            });
+        } catch (error) {
+            console.error('Error loading API list:', error);
+        }
+    };
+
+
+    // Populate request fields with selected method information
+    window.populateRequest = (methodName, requestMethod, path) => {
+        document.getElementById('request-method').textContent = requestMethod;
+        document.getElementById('request-url').value = `${baseURL}${path}`;
+    };
+
+    // Add a new parameter row
+    window.addParam = (containerId) => {
+        const container = document.getElementById(containerId);
+        const paramRow = document.createElement('div');
+        paramRow.className = 'flex';
+        paramRow.innerHTML = `
+            <input type="text" placeholder="Key" class="w-1/2 p-2 border rounded mr-2">
+            <input type="text" placeholder="Value" class="w-1/2 p-2 border rounded">
+        `;
+        container.appendChild(paramRow);
+    };
+
+    // 切换 Body 类型
+    function switchBodyType(radio) {
+        const type = radio.value;
+        document.getElementById('form-data-fields').classList.add('hidden');
+        document.getElementById('raw-body-content').classList.add('hidden');
+        document.getElementById('binary-content').classList.add('hidden');
+        document.getElementById('urlencoded-fields').classList.add('hidden');
+        document.getElementById('form-data-button').classList.add('hidden');
+        document.getElementById('urlencoded-button').classList.add('hidden');
+
+        if (type === 'form-data') {
+            document.getElementById('form-data-fields').classList.remove('hidden');
+            document.getElementById('form-data-button').classList.remove('hidden');
+        } else if (type === 'x-www-form-urlencoded') {
+            document.getElementById('urlencoded-fields').classList.remove('hidden');
+            document.getElementById('urlencoded-button').classList.remove('hidden');
+        } else if (type === 'raw') {
+            document.getElementById('raw-body-content').classList.remove('hidden');
+            // Ensure the editor layout is updated
+            if (requestEditor) {
+                requestEditor.layout();
+            }
+        } else if (type === 'binary') {
+            document.getElementById('binary-content').classList.remove('hidden');
+        }
+    }
+
+    window.sendRequest = async () => {
+        const requestMethod = document.getElementById('request-method').textContent;
+        const requestUrl = document.getElementById('request-url').value;
+
+        const queryParams = getParamsFromContainer('query-params');
+        const headers = getParamsFromContainer('headers-params');
+        let body;
+
+        const bodyType = document.querySelector('input[name="body-type"]:checked').value;
+        if (bodyType === 'form-data') {
+            body = {};
+            document.querySelectorAll('#form-data-fields .flex').forEach(field => {
+                const inputs = field.querySelectorAll('input[type="text"]');
+                const key = inputs[0].value;
+                const value = inputs[1].value;
+                if (key) body[key] = value;
+            });
+        } else if (bodyType === 'x-www-form-urlencoded') {
+            body = {};
+            document.querySelectorAll('#urlencoded-fields .flex').forEach(field => {
+                const inputs = field.querySelectorAll('input[type="text"]');
+                const key = inputs[0].value;
+                const value = inputs[1].value;
+                if (key) body[key] = value;
+            });
+        } else if (bodyType === 'raw') {
+            if (requestEditor) {
+                body = requestEditor.getValue();
+            } else {
+                body = '';
+            }
+        } else if (bodyType === 'binary') {
+            const fileInput = document.querySelector('#binary-content input[type="file"]');
+            if (fileInput.files.length > 0) {
+                body = fileInput.files[0]; // Binary 文件传输需要处理为 File 类型
+            }
+        }
+
+        const authToken = document.getElementById('auth-token').value;
+
+        // 构建 FullRequestParams 对象，将 body 转换为 JSON 字符串（如果不是 binary 类型）
+        const requestParams = {
+            method: requestMethod,
+            url: requestUrl,
+            queryParams: queryParams,
+            headers: headers,
+            body: (typeof body === 'object' && body !== null && !(body instanceof File)) ? JSON.stringify(body) : body,
+            authToken: authToken
+        };
+
+        try {
+            // 显示加载中
+            if (responseEditor) {
+                responseEditor.setValue('加载中...');
+            }
+
+            // 将请求参数发送到后端的 /send-request 端点
+            const response = await axios.post(`${baseURL}/hibiscus/test/send-request`, requestParams, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            // 设置响应内容到 Monaco Editor
+            if (responseEditor) {
+                const responseData = JSON.stringify(response.data, null, 2);
+                responseEditor.setValue(responseData);
+                // Optionally, set language based on response content type
+                responseEditor.setModel(monaco.editor.createModel(responseData, 'json'));
+            }
+        } catch (error) {
+            const errorMsg = `请求失败: ${error.message}`;
+            if (responseEditor) {
+                responseEditor.setValue(errorMsg);
+                responseEditor.setModel(monaco.editor.createModel(errorMsg, 'plaintext'));
+            }
+        }
+    };
+
+    // Extract params from container
+    const getParamsFromContainer = (containerId) => {
+        const container = document.getElementById(containerId);
+        const inputs = container.querySelectorAll('input');
+        const params = {};
+        for (let i = 0; i < inputs.length; i += 2) {
+            const key = inputs[i].value;
+            const value = inputs[i + 1].value;
+            if (key) params[key] = value;
+        }
+        return params;
+    };
+
+    loadApiList();
+
+    // Handle tab switching
+    document.querySelectorAll('.tab-button').forEach(tabButton => {
+        tabButton.addEventListener('click', () => {
+            document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+
+            tabButton.classList.add('active');
+            document.getElementById(tabButton.getAttribute('data-target')).classList.add('active');
+
+            // If switching to raw tab, layout the editor
+            if (tabButton.getAttribute('data-target') === 'body-tab' && document.querySelector('input[name="body-type"]:checked').value === 'raw') {
+                if (requestEditor) {
+                    requestEditor.layout();
+                }
+            }
         });
     });
 </script>
+</body>
 </html>

@@ -1,12 +1,19 @@
 package hibiscus.cetide.app.common.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.google.gson.annotations.Expose;
+
 import java.util.List;
 import java.util.Map;
 
 public class RequestInfo {
+    @Expose
     private String className;
+    @Expose
     private String methodName;
+    @Expose
     private List<String> paths;
+    @JsonIgnore
     private Map<String, Object> parameters;
     private String params;
     private String requestMethod;
@@ -39,6 +46,7 @@ public class RequestInfo {
         return paths;
     }
 
+    @JsonIgnore
     public Map<String, Object> getParameters() {
         return parameters;
     }
