@@ -2176,3 +2176,25 @@
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [STOP] Hibiscus Stopping - {message=Service has been stopped.}
+[START] Hibiscus Starting - {message=Service has been started.}
+[INFO] Found Main Class: hibiscus.cetide.app.AppApplication - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.CodeGeneratorControl - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
+[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Service: hibiscus.cetide.app.module.service.impl.ApiMonitorServiceImpl - {}
+[INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
+[INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
+[STOP] Hibiscus Stopping - {message=Service has been stopped.}
+[START] Hibiscus Starting - {message=Service has been started.}
+[INFO] Found Main Class: hibiscus.cetide.app.AppApplication - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.CodeGeneratorControl - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
+[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Service: hibiscus.cetide.app.module.service.impl.ApiMonitorServiceImpl - {}
+[INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
+[INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
+[STOP] Hibiscus Stopping - {message=Service has been stopped.}
