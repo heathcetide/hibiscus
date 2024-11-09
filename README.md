@@ -1,6 +1,6 @@
 # Hibiscus
 <p align="center">
-    <img src="images/LOGO1.jpg" alt="Hibiscus Logo" width="150" height="150">
+    <img src=".README-images/LOGO1.jpg" alt="Hibiscus Logo" width="150" height="150">
     <br>      
     <br>      
     <p align="center">
@@ -45,13 +45,13 @@ Hibiscus旨在解决现代软件开发中的复杂问题。通过将关键工具
 ### 核心目标
 
 - **接口测试**：减少设置时间和配置麻烦。
-  ![功能图片](images/img.png) <!-- 替换为实际的功能图片路径 -->
+  ![功能图片](.README-images/img.png) <!-- 替换为实际的功能图片路径 -->
 - **增强测试**：提供强大的接口和API测试工具。
-  ![功能图片](images/function_1.png) <!-- 替换为实际的功能图片路径 -->
+  ![功能图片](.README-images/function_1.png) <!-- 替换为实际的功能图片路径 -->
 - **自动化代码生成**：生成样板代码以加速开发。
-  ![功能图片](images/function_2.png) <!-- 替换为实际的功能图片路径 -->
+  ![功能图片](.README-images/function_2.png) <!-- 替换为实际的功能图片路径 -->
 - **改进项目检测**：轻松分析和检测项目结构和依赖关系。
-  ![功能图片](images/function_3.png) <!-- 替换为实际的功能图片路径 -->
+  ![功能图片](.README-images/function_3.png) <!-- 替换为实际的功能图片路径 -->
 
 ## 功能
 
