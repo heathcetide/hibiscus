@@ -33,7 +33,7 @@ public class Signals {
                     case 0: // evTypeAdd
                         sigs.add(event.getSigHandler());
                         break;
-                    case 1: // evEypeDel
+                    case 1:
                         sigs.removeIf(sh -> sh.getId() == event.getSigHandler().getId());
                         break;
                 }

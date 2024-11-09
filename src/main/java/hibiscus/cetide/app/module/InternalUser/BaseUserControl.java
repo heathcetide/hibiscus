@@ -1,6 +1,8 @@
 package hibiscus.cetide.app.module.InternalUser;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import hibiscus.cetide.app.common.AppConfigProperties;
 import hibiscus.cetide.app.common.model.BaseUser;
 import hibiscus.cetide.app.common.model.BaseUserLoginInfo;
@@ -24,11 +26,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import static hibiscus.cetide.app.core.MappingHandler.requestInfos;
+import static hibiscus.cetide.app.core.scan.MappingHandler.requestInfos;
 
 
 @Controller
-@RequestMapping(path = "/app")
+@RequestMapping("/app")
+@SuppressWarnings("unchecked")
 public class BaseUserControl {
 
   private static final Logger LOG = LoggerFactory.getLogger(BaseUserControl.class);
@@ -53,9 +56,11 @@ public class BaseUserControl {
 
   @PostMapping("/authenticate")
   @ResponseBody
-  public Map login(@RequestParam String name, @RequestParam String password, HttpServletRequest request,
-                   HttpServletResponse response) {
-    Map returnData = new HashMap();
+  public Map<String, Object> login(@RequestParam(value = "name") String name,
+                                   @RequestParam(value = "password") String password,
+                                   HttpServletRequest request) {
+    System.out.println("Received login request"+ name+" "+password);
+   Map returnData = new HashMap();
 
     if(appConfigProperties.getUsername().equals(name)&&appConfigProperties.getPassword().equals(password)){
       BaseUserLoginInfo userLoginInfo = new BaseUserLoginInfo();
@@ -98,22 +103,44 @@ public class BaseUserControl {
   public String InterfacePage(Model model) {
     // 使用 Map 来过滤掉相同的 className
     Map<String, RequestInfo> uniqueRequestInfoMap = new HashMap<>();
-
-// 遍历 requestInfos 列表
+// 假设 RequestInfo 类和 uniqueRequestInfoMap 已经定义好
     for (RequestInfo requestInfo : requestInfos) {
       System.out.println("Class Name: " + requestInfo.getClassName());
       System.out.println("Method Name: " + requestInfo.getMethodName());
       System.out.println("Paths: " + requestInfo.getPaths());
-      System.out.println("Parameters: " + requestInfo.getParameters());
+//      System.out.println("Parameters: " + requestInfo.getParameters());
 
-      // 将参数转换为 JSON 字符串
-      Gson gson = new Gson();
-      String jsonString = gson.toJson(requestInfo.getParameters());
-      requestInfo.setParams(jsonString);
+      // 创建 ObjectMapper 实例
+//      ObjectMapper objectMapper = new ObjectMapper();
 
-      // 如果 className 不在 Map 中，就加入，已经存在的 className 会被后来的覆盖
-      uniqueRequestInfoMap.put(requestInfo.getClassName(), requestInfo);
+      try {
+//        // 将参数转换为 JSON 字符串
+//        String jsonString = objectMapper.writeValueAsString(requestInfo.getParameters());
+//        requestInfo.setParams(jsonString);
+
+        // 如果 className 不在 Map 中，就加入，已经存在的 className 会被后来的覆盖
+        uniqueRequestInfoMap.put(requestInfo.getClassName(), requestInfo);
+      } catch (Exception e) {
+        // 处理转换异常
+        e.printStackTrace();
+      }
     }
+// 遍历 requestInfos 列表
+//    for (RequestInfo requestInfo : requestInfos) {
+//      System.out.println("Class Name: " + requestInfo.getClassName());
+//      System.out.println("Method Name: " + requestInfo.getMethodName());
+//      System.out.println("Paths: " + requestInfo.getPaths());
+//      System.out.println("Parameters: " + requestInfo.getParameters());
+//
+//
+//      // 将参数转换为 JSON 字符串
+//      Gson gson = new Gson();
+//      String jsonString = gson.toJson(requestInfo.getParameters());
+//      requestInfo.setParams(jsonString);
+//
+//      // 如果 className 不在 Map 中，就加入，已经存在的 className 会被后来的覆盖
+//      uniqueRequestInfoMap.put(requestInfo.getClassName(), requestInfo);
+//    }
 
 // 将 Map 的值转换为 Set，确保没有重复的 className
     Set<RequestInfo> requestInfoSet = new HashSet<>(uniqueRequestInfoMap.values());

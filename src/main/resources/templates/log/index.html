@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Log Management Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .terminal {
+            background-color: #1e1e1e;
+            color: #d4d4d4;
+            font-family: 'Courier New', Courier, monospace;
+            border-radius: 0.5rem;
+        }
+        .terminal-header {
+            background-color: #333;
+            padding: 0.5rem;
+            border-top-left-radius: 0.5rem;
+            border-top-right-radius: 0.5rem;
+        }
+        .terminal-content {
+            background-color: #1e1e1e;
+            color: #d4d4d4;
+            padding: 1rem;
+            height: 400px;
+            overflow-y: auto;
+        }
+        .log-entry {
+            white-space: pre-wrap;
+        }
+        .info-log { color: #61afef; } /* INFO Blue */
+        .error-log { color: #e06c75; } /* ERROR Red */
+        .debug-log { color: #c678dd; } /* DEBUG Purple */
+        .warn-log { color: #e5c07b; } /* WARN Yellow */
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-900">
+<div class="container mx-auto p-6">
+    <h1 class="text-3xl font-bold text-center mb-6">Log Management Dashboard</h1>
+
+    <!-- Filter and Operations Section -->
+    <div class="flex items-center justify-between bg-white p-4 rounded-lg shadow-md mb-4">
+        <div class="flex items-center space-x-4">
+            <label class="block">
+                <span class="text-gray-700">Filter by Level:</span>
+                <select id="logLevel" class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
+                    <option value="">All</option>
+                    <option value="INFO">INFO</option>
+                    <option value="DEBUG">DEBUG</option>
+                    <option value="ERROR">ERROR</option>
+                    <option value="WARN">WARN</option>
+                </select>
+            </label>
+
+            <label class="block">
+                <span class="text-gray-700">Keyword:</span>
+                <input type="text" id="keyword" class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
+            </label>
+        </div>
+
+        <div class="flex items-center space-x-2">
+            <button id="fetchLogsBtn" class="bg-blue-500 text-white px-4 py-2 rounded-md">Search</button>
+            <button id="archiveLogsBtn" class="bg-gray-700 text-white px-4 py-2 rounded-md">Archive</button>
+            <button id="compressLogsBtn" class="bg-yellow-500 text-white px-4 py-2 rounded-md">Compress</button>
+            <button id="exportLogsBtn" class="bg-green-500 text-white px-4 py-2 rounded-md">Export</button>
+        </div>
+    </div>
+
+    <!-- Terminal Style Log Display -->
+    <div class="terminal shadow-lg rounded-lg mb-6">
+        <div class="terminal-header text-white">
+            <div class="flex items-center space-x-2">
+                <span class="bg-red-500 w-3 h-3 rounded-full inline-block"></span>
+                <span class="bg-yellow-500 w-3 h-3 rounded-full inline-block"></span>
+                <span class="bg-green-500 w-3 h-3 rounded-full inline-block"></span>
+                <span class="ml-auto">Terminal - Log Output</span>
+            </div>
+        </div>
+        <div class="terminal-content" id="logContainer"></div>
+    </div>
+
+    <!-- Operation Log Section -->
+    <div class="bg-white p-6 rounded-lg shadow-md">
+        <h2 class="text-xl font-bold mb-4">Operation Logs</h2>
+        <div class="overflow-y-auto max-h-48" id="operationLogContainer"></div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const logs = [];
+        const operationLogs = [];
+
+        const logContainer = document.getElementById('logContainer');
+        const operationLogContainer = document.getElementById('operationLogContainer');
+        const logLevel = document.getElementById('logLevel');
+        const keyword = document.getElementById('keyword');
+
+        document.getElementById('fetchLogsBtn').addEventListener('click', fetchLogs);
+        document.getElementById('archiveLogsBtn').addEventListener('click', archiveLogs);
+        document.getElementById('compressLogsBtn').addEventListener('click', compressLogs);
+        document.getElementById('exportLogsBtn').addEventListener('click', exportLogs);
+
+        function addOperationLog(message) {
+            const timestamp = new Date().toISOString();
+            operationLogs.push({ timestamp, message });
+            renderOperationLogs();
+        }
+
+        function renderOperationLogs() {
+            operationLogContainer.innerHTML = operationLogs.map(opLog => `
+                <div class="p-2 border-b border-gray-200">
+                    <strong>${opLog.timestamp}</strong> - <span class="font-semibold">${opLog.message}</span>
+                </div>
+            `).join('');
+        }
+
+        function renderLogs() {
+            const selectedLevel = logLevel.value;
+            const keywordFilter = keyword.value.toLowerCase();
+
+            const filteredLogs = logs.filter(log => {
+                const matchesLevel = !selectedLevel || log.level === selectedLevel;
+                const matchesKeyword = !keywordFilter || log.message.toLowerCase().includes(keywordFilter);
+                return matchesLevel && matchesKeyword;
+            });
+
+            logContainer.innerHTML = filteredLogs.map(log => `
+                <div class="log-entry ${log.level.toLowerCase()}-log">
+                    <strong>${log.timestamp}</strong> - <span class="font-bold">${log.level}</span>: ${log.message}
+                </div>
+            `).join('');
+        }
+
+        function fetchLogs() {
+            // Simulate an API call
+            logs.length = 0; // Clear logs
+            fetch('/api/logs')
+                .then(response => response.json())
+                .then(data => {
+                    data.forEach(log => logs.push(log));
+                    renderLogs();
+                    addOperationLog("Fetched logs successfully.");
+                })
+                .catch(error => {
+                    console.error('Error fetching logs:', error);
+                    addOperationLog("Failed to fetch logs.");
+                });
+        }
+
+        function archiveLogs() {
+            fetch('/api/logs/archive', { method: 'POST' })
+                .then(response => {
+                    if (response.ok) {
+                        addOperationLog("Logs have been archived.");
+                    } else {
+                        throw new Error('Failed to archive logs');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error archiving logs:', error);
+                    addOperationLog("Failed to archive logs.");
+                });
+        }
+
+        function compressLogs() {
+            fetch('/api/logs/compress', { method: 'POST' })
+                .then(response => {
+                    if (response.ok) {
+                        addOperationLog("Logs have been compressed.");
+                    } else {
+                        throw new Error('Failed to compress logs');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error compressing logs:', error);
+                    addOperationLog("Failed to compress logs.");
+                });
+        }
+
+        function exportLogs() {
+            fetch('/api/logs/export', { method: 'POST' })
+                .then(response => {
+                    if (response.ok) {
+                        addOperationLog("Logs have been exported.");
+                    } else {
+                        throw new Error('Failed to export logs');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error exporting logs:', error);
+                    addOperationLog("Failed to export logs.");
+                });
+        }
+    });
+</script>
+</body>
+</html>
