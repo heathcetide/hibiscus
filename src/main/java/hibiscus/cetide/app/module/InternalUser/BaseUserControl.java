@@ -3,6 +3,7 @@ package hibiscus.cetide.app.module.InternalUser;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import hibiscus.cetide.app.common.ApiUrlUtil;
 import hibiscus.cetide.app.common.AppConfigProperties;
 import hibiscus.cetide.app.common.model.BaseUser;
 import hibiscus.cetide.app.common.model.BaseUserLoginInfo;
@@ -18,6 +19,7 @@ import hibiscus.cetide.app.common.ExpiredLRUCache;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -44,8 +46,15 @@ public class BaseUserControl {
 
   @Autowired
   private ExpiredLRUCache<String, Object> cache;
+
+  @Autowired
+  private ApiUrlUtil apiUrlUtil;
+
   @PostConstruct
   public void init() {
+
+
+
     LOG.info("UserControl 启动啦");
     LOG.info("userService 注入啦");
   }
@@ -147,7 +156,7 @@ public class BaseUserControl {
 
     model.addAttribute("requestInfoSet", requestInfoSet);
     model.addAttribute("requestInfos", requestInfos);
-
+    model.addAttribute("baseURL", apiUrlUtil.getServerUrl());
 // 返回模板名称
     return "interfaceTest";
   }

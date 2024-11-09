@@ -39,6 +39,7 @@ public class StartupEventListener implements ApplicationListener<ContextRefreshe
     @PostConstruct
     public void initListener() {
         logger.log(LogLevel.START,"Hibiscus Starting","Service has been started.");
+
     }
 
     @PreDestroy

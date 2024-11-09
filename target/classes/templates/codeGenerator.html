@@ -200,7 +200,8 @@
 
 </div>
 
-<script>
+<script th:inline="javascript">
+    const baseURL = /*[[${baseURL}]]*/ 'http://localhost:8080';
     // 动态字段容器
     var dynamicFieldsContainer = document.getElementById('dynamicFields');
     var fieldsInput = document.getElementById('fields');

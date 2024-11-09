@@ -69,6 +69,7 @@
             color: #f8fafc;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             display: none;
+            margin-left: 160px;
         }
 
         /* 上左角 */
@@ -148,6 +149,17 @@
             height: 10px;
             border-bottom: 2px solid #02a6b5;
             border-right: 2px solid #02a6b5;
+        }
+        /* 新增样式：增大监控部分的宽度 */
+        .panel.line1 {
+            width: 680px; /* 设置为100%以占满父容器宽度 */
+            height: 58%;
+            margin-top: 40px;
+        }
+
+        /* 调整监控表格的样式以适应新宽度 */
+        #api-monitoring table {
+            min-width: 660px; /* 根据需要调整最小宽度 */
         }
     </style>
 </head>
@@ -244,16 +256,43 @@
 </nav>
 
 <div class="container mx-auto p-6">
+    <!-- API Monitoring Section -->
     <div class="panels">
         <div class="panel bar1" style="height: 45%; max-width: 800px;">
             <h2>接口使用量占比</h2>
             <div class="chart" id="barChartContainer" style="width: 100%; height: 310px;"></div>
             <div class="panel-footer"></div>
         </div>
-        <div class="panel line1" style="height: 58%; margin-top: 40px;">
-            <h2>折线图-播放量</h2>
-            <div class="chart" id="lineChartContainer" style="width: 100%; height: 400px;"></div>
-            <div class="panel-footer"></div>
+        <div class="panel line1" style="height: 58%; margin-top: 40px; margin-right: 20vh">
+            <!-- 新增 API 监控信息部分 -->
+            <section id="api-monitoring" class="mb-8">
+                <h2 class="text-2xl font-bold mb-4 text-indigo-600">API 监控信息</h2>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full shadow-md rounded-lg">
+                        <thead class="text-white">
+                        <tr>
+                            <th class="py-2 px-4 border-b">URL</th>
+                            <th class="py-2 px-4 border-b">状态</th>
+                            <th class="py-2 px-4 border-b">响应时间 (ms)</th>
+                            <th class="py-2 px-4 border-b">监控时间</th>
+<!--                            <th class="py-2 px-4 border-b">错误描述</th>-->
+<!--                            <th class="py-2 px-4 border-b">失败数</th>-->
+<!--                            <th class="py-2 px-4 border-b">错误率 (%)</th>-->
+                            <th class="py-2 px-4 border-b">平均响应时间 (ms)</th>
+                            <th class="py-2 px-4 border-b">最大响应时间 (ms)</th>
+                            <th class="py-2 px-4 border-b">最小响应时间 (ms)</th>
+<!--                            <th class="py-2 px-4 border-b">响应状态码</th>-->
+                        </tr>
+                        </thead>
+                        <tbody id="monitoring-data">
+                        <!-- 监控数据将动态加载到这里 -->
+                        <tr id="monitoring-placeholder">
+                            <td colspan="12" class="text-center text-gray-500">正在加载监控数据...</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
         </div>
     </div>
     <div class="table-container ">
@@ -283,6 +322,10 @@
     </div>
 </div>
 </body>
+<script th:inline="javascript">
+    const baseURL = /*[[${baseURL}]]*/ 'http://localhost:8080';
+    console.log(baseURL);
+</script>
 <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
 <script>
     // 每次数据更新后绑定事件
@@ -663,5 +706,53 @@
             lineChart.resize();
         });
     })();
+
+    // 新增函数：获取并展示 API 监控信息
+    const loadApiMonitoring = async () => {
+        try {
+            const response = await axios.get(`${baseURL}/hibiscus/test/monitor/all`);
+            const monitoringData = response.data.apiList || []; // 确保 apiList 存在
+
+            const monitoringContainer = document.getElementById('monitoring-data');
+            monitoringContainer.innerHTML = ''; // 清空之前的数据
+
+            if (monitoringData.length === 0) {
+                monitoringContainer.innerHTML = '<tr><td colspan="12" class="text-center text-gray-500">暂无监控数据。</td></tr>';
+                return;
+            }
+
+            monitoringData.forEach(api => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                <td class="py-2 px-4 border-b">${api.url || 'N/A'}</td>
+                <td class="py-2 px-4 border-b">${api.status || 'N/A'}</td>
+                <td class="py-2 px-4 border-b">${api.responseTime !== undefined ? api.responseTime : 'N/A'}</td>
+                <td class="py-2 px-4 border-b">${api.monitoringTime ? new Date(api.monitoringTime).toLocaleString() : 'N/A'}</td>
+                <td class="py-2 px-4 border-b">${api.errorDescription || '无'}</td>
+                <td class="py-2 px-4 border-b">${api.totalRequests !== undefined ? api.totalRequests : '0'}</td>
+                <td class="py-2 px-4 border-b">${api.failureCount !== undefined ? api.failureCount : '0'}</td>
+                <td class="py-2 px-4 border-b">${api.errorRate !== undefined ? (api.errorRate * 100).toFixed(2) : '0.00'}</td>
+                <td class="py-2 px-4 border-b">${api.averageResponseTime !== undefined ? api.averageResponseTime : '0'}</td>
+                <td class="py-2 px-4 border-b">${api.maxResponseTime !== undefined ? api.maxResponseTime : '0'}</td>
+                <td class="py-2 px-4 border-b">${api.minResponseTime !== undefined ? api.minResponseTime : '0'}</td>
+                <td class="py-2 px-4 border-b">${api.responseStatusCode || 'N/A'}</td>
+            `;
+                monitoringContainer.appendChild(row);
+            });
+        } catch (error) {
+            console.error('获取 API 监控信息失败:', error);
+            const monitoringContainer = document.getElementById('monitoring-data');
+            monitoringContainer.innerHTML = '<tr><td colspan="12" class="text-red-500 text-center">无法加载监控信息。</td></tr>';
+        }
+    };
+
+    // 页面加载时调用监控函数
+    document.addEventListener('DOMContentLoaded', () => {
+        fetchMethodMetrics();
+        loadApiMonitoring(); // 调用监控函数
+        // 每隔60秒刷新监控数据
+        setInterval(loadApiMonitoring, 60000);
+    });
+
 </script>
 </html>

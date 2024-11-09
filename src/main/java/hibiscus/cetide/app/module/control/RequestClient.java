@@ -2,9 +2,12 @@ package hibiscus.cetide.app.module.control;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import hibiscus.cetide.app.common.ApiMonitoring;
 import hibiscus.cetide.app.common.model.FullRequestParams;
 import hibiscus.cetide.app.common.model.RequestInfo;
+import hibiscus.cetide.app.module.service.ApiMonitorService;
 import hibiscus.cetide.app.module.service.HttpRequestStrategy;
+import hibiscus.cetide.app.module.service.impl.ApiMonitorServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +25,18 @@ import static hibiscus.cetide.app.core.scan.MappingHandler.requestInfos;
 public class RequestClient {
     @Autowired
     HttpRequestStrategyFactory factory;
+
+
+    @Autowired
+    private ApiMonitorService apiMonitorService;
+
+    /**
+     * 获取所有的 API 监控信息
+     */
+    @GetMapping("/monitor/all")
+    public ApiMonitoring getAllApiMonitoringData() {
+        return apiMonitorService.getAllApiStatus();
+    }
 
     /**
      * 获取指定类的请求信息

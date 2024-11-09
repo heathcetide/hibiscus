@@ -7,11 +7,8 @@ import java.util.List;
 import java.util.Map;
 
 public class RequestInfo {
-    @Expose
     private String className;
-    @Expose
     private String methodName;
-    @Expose
     private List<String> paths;
     @JsonIgnore
     private Map<String, Object> parameters;

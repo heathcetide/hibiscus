@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -432,9 +432,9 @@
 <!-- Monaco Editor Loader -->
 <script src="https://unpkg.com/monaco-editor@0.33.0/min/vs/loader.js"></script>
 
-<script>
-    const baseURL = 'http://localhost:8080';
-
+<script  th:inline="javascript">
+    const baseURL = /*[[${baseURL}]]*/ 'http://localhost:8080';
+    console.log(baseURL);
     // Monaco Editor Instances
     let requestEditor;
     let responseEditor;
@@ -520,6 +520,8 @@
             console.error('Error loading API list:', error);
         }
     };
+
+
 
 
     // Populate request fields with selected method information
