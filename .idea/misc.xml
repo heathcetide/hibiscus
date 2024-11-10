@@ -6,11 +6,15 @@
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/../../mini-springtests/pom.xml" />
+        <option value="$PROJECT_DIR$/../../project/zhuyin_backend/pom.xml" />
+        <option value="$PROJECT_DIR$/../hibiscus-common/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/../../mini-springtests/pom.xml" />
+        <option value="$PROJECT_DIR$/../../project/zhuyin_backend/pom.xml" />
+        <option value="$PROJECT_DIR$/../hibiscus-common/pom.xml" />
       </set>
     </option>
   </component>

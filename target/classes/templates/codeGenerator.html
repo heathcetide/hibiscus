@@ -352,129 +352,220 @@
 <!--</body>-->
 <!--</html>-->
 
+
+
 <!DOCTYPE html>
 <html lang="zh">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hibiscus Code-Generator - 代码生成器</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.1/dist/tailwind.min.css" rel="stylesheet">
-    <style>
-        .hidden {
-            display: none;
-        }
-    </style>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"></script>
-    <script>
-        var require = {
-            paths: {
-                'vs': 'https://unpkg.com/monaco-editor@0.33.0/min/vs'
-            }
-        };
-    </script>
-    <script src="https://unpkg.com/monaco-editor@0.33.0/min/vs/loader.js"></script>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Hibiscus Code-Generator - 代码生成器</title>
+     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.1/dist/tailwind.min.css" rel="stylesheet">
+     <style>
+     .hidden {
+         display: none;
+     }
+     </style>
 </head>
 
 <body class="bg-gray-100 flex flex-col h-screen">
 <!-- 顶部标题栏 -->
 <nav class="bg-white shadow-md">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- 主导航容器，添加 items-center 确保垂直居中 -->
         <div class="flex justify-between items-center h-16">
+            <!-- 左侧品牌标志 -->
             <div class="flex-shrink-0 flex items-center">
                 <a href="#home" class="text-2xl font-bold text-indigo-600">HIBISCUS CODE-GENERATE</a>
             </div>
+            <!-- 中间菜单项（隐藏在移动设备） -->
             <div class="md:flex md:space-x-8">
+                <!-- Data Analysis 菜单项 -->
+                <div class="relative group">
+                    <button class="inline-flex items-center px-3 py-2 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none">
+                        Data Analysis
+                        <svg class="ml-1 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <!-- Data Analysis 下拉菜单 -->
+                    <div class="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+                        <a href="/code/interface-analysis" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Overview</a>
+                        <a href="#data-analysis-details" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Details</a>
+                    </div>
+                </div>
+                <!-- Interface Test 菜单项 -->
+                <div class="relative group">
+                    <button class="inline-flex items-center px-3 py-2 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none">
+                        Interface Test
+                        <svg class="ml-1 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <!-- Interface Test 下拉菜单 -->
+                    <div class="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+                        <a href="/app/interface" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Overview</a>
+                        <a href="#interface-test-details" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Details</a>
+                    </div>
+                </div>
                 <!-- Code Generate 菜单项 -->
                 <div class="relative group">
                     <button class="inline-flex items-center px-3 py-2 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none">
                         Code Generate
+                        <svg class="ml-1 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
                     </button>
+                    <!-- Code Generate 下拉菜单 -->
+                    <div class="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+                        <a href="/code/generate-html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Overview</a>
+                        <a href="#code-generate-details" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Details</a>
+                    </div>
+                </div>
+                <!-- User Centre 菜单项 -->
+                <div class="relative group">
+                    <button class="inline-flex items-center px-3 py-2 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none">
+                        User Centre
+                        <svg class="ml-1 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <!-- User Centre 下拉菜单 -->
+                    <div class="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+                        <a href="#user-centre-profile" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
+                        <a href="#user-centre-settings" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</a>
+                        <a href="#user-centre-logout" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
+                    </div>
                 </div>
             </div>
+            <!-- 移动设备菜单按钮 -->
+            <div class="md:hidden flex items-center">
+                <button type="button" class="text-gray-500 hover:text-gray-700 focus:outline-none focus:text-gray-700" aria-label="菜单" onclick="toggleMobileMenu()">
+                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- 移动设备下拉菜单 -->
+    <div id="mobile-menu" class="md:hidden hidden">
+        <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+            <a href="#data-analysis-overview" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100">Data Analysis</a>
+            <a href="#interface-test-overview" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100">Interface Test</a>
+            <a href="#code-generate-overview" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100">Code Generate</a>
+            <a href="#user-centre-profile" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100">User Centre</a>
+            <a href="#logout" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100">退出</a>
         </div>
     </div>
 </nav>
 
-<div class="flex flex-1">
-    <!-- 左侧导航栏 -->
-    <nav class="w-1/5 sidebar bg-gray-800 text-white shadow-lg h-full p-4 rounded-lg" style="height: 100vh; margin: 20px 10px 20px 30px;">
-        <h2 class="text-lg font-bold mb-6">代码生成器</h2>
-        <ul>
-            <li class="mb-4"><a href="/code/generate-html" class="text-blue-400">代码生成</a></li>
-            <li class="mb-4"><a href="/code/data-manager" class="text-gray-300">数据源管理</a></li>
-            <li class="mb-4"><a href="/code/import-module" class="text-gray-300">模块导入</a></li>
-        </ul>
-    </nav>
 
-    <!-- 主内容区域 -->
-    <main class="w-4/5 p-6">
-        <!-- 顶部工具栏 -->
-        <div class="flex justify-between mb-4">
-            <h2 class="text-2xl font-bold">代码生成器</h2>
-        </div>
+ <div class="flex flex-1">
+     <!-- 左侧导航栏 -->
+     <nav class="w-1/5 sidebar bg-gray-800 text-white shadow-lg h-full p-4 rounded-lg" style="height: 100vh; margin: 20px 10px 20px 30px;">
+     <h2 class="text-lg font-bold mb-6">代码生成器</h2>
+     <ul>
+        <!-- 代码生成链接指向当前页面 -->
+        <li class="mb-4"><a href="/code/generate-html" class="text-blue-400">代码生成</a></li>
+        <!-- 数据源管理链接跳转到数据源管理页面 -->
+        <li class="mb-4"><a href="/code/data-manager" class="text-gray-300">数据源管理</a></li>
+        <!-- 模块导入链接跳转到模块导入页面 -->
+        <li class="mb-4"><a href="/code/import-module" class="text-gray-300">模块导入</a></li>
+     </ul>
+     </nav>
 
-        <!-- 代码生成表单 -->
-        <form id="codeForm" action="/code/generate" method="post" class="bg-white p-6 shadow-md rounded-lg mb-6">
-            <div class="mb-4">
-                <label class="block text-sm font-medium text-gray-700">类名：</label>
-                <input type="text" name="className" required class="mt-1 p-2 border border-gray-300 rounded-md w-full">
-            </div>
-            <div class="mb-4">
-                <label class="block text-sm font-medium text-gray-700">包名：</label>
-                <input type="text" name="packageName" required class="mt-1 p-2 border border-gray-300 rounded-md w-full">
-            </div>
-            <div id="dynamicFields"></div>
-            <input type="hidden" name="fields" id="fields">
-            <div class="flex justify-start mb-4">
-                <button type="button" id="addField" class="bg-green-500 text-white px-4 py-2 rounded-md focus:outline-none">添加字段</button>
-            </div>
-            <div class="flex justify-end">
-                <button type="button" onclick="generateCode()" class="bg-blue-500 text-white px-4 py-2 rounded-md">生成代码</button>
-            </div>
-        </form>
+     <!-- 主内容区域 -->
+     <main class="w-4/5 p-6">
+     <!-- 顶部工具栏 -->
+     <div class="flex justify-between mb-4">
+     <h2 class="text-2xl font-bold">代码生成器</h2>
+     </div>
 
-        <!-- 生成的代码展示区域 -->
-        <div id="generatedCodeSection" class="hidden bg-gray-100 p-6 shadow-md rounded-lg">
-            <h2 class="text-xl font-bold">生成的代码：</h2>
-            <div id="editor" style="height: 400px;"></div>
-            <div class="flex items-center mt-4">
-                <button onclick="downloadCode()" class="bg-green-500 text-white px-4 py-2 rounded-md ml-4">下载代码</button>
-            </div>
-        </div>
-    </main>
-</div>
+     <!-- 代码生成表单 -->
+     <form id="codeForm" action="/code/generate" method="post" class="bg-white p-6 shadow-md rounded-lg mb-6">
+     <div class="mb-4">
+     <label class="block text-sm font-medium text-gray-700">类名：</label>
+     <input type="text" name="className" required class="mt-1 p-2 border border-gray-300 rounded-md w-full">
+     </div>
+     <div class="mb-4">
+     <label class="block text-sm font-medium text-gray-700">包名：</label>
+     <input type="text" name="packageName" required class="mt-1 p-2 border border-gray-300 rounded-md w-full">
+     </div>
+     <div id="dynamicFields"></div>
+    <input type="hidden" name="fields" id="fields">
+     <div class="flex justify-start mb-4">
+     <button type="button" id="addField" class="bg-green-500 text-white px-4 py-2 rounded-md focus:outline-none">添加字段</button>
+     </div>
+     <div class="flex justify-end">
+     <button type="button" onclick="generateCode()" class="bg-blue-500 text-white px-4 py-2 rounded-md">生成代码</button>
+     </div>
+     </form>
 
-<!-- 合并的 JavaScript 代码 -->
-<script>
-    // 使用 Monaco Editor 替换代码展示区域
-    require(['vs/editor/editor.main'], function () {
-        window.editor = monaco.editor.create(document.getElementById('editor'), {
-            value: '',
-            language: 'java',
-            theme: 'vs-light'
+     <!-- 生成的代码展示区域 -->
+     <div id="generatedCodeSection" class="hidden bg-gray-100 p-6 shadow-md rounded-lg">
+     <h2 class="text-xl font-bold">生成的代码：</h2>
+     <pre id="generatedCodeContent" class="bg-white p-4 border border-gray-300 rounded-md"></pre>
+     <div class="flex items-center mt-4">
+     <button id="copyButton" onclick="copyToClipboard()"
+                       class="bg-blue-500 text-white px-4 py-2 rounded-md">复制代码</button>
+     <span id="copyMessage" class="ml-4 text-green-500 hidden">代码已复制到剪贴板！</span>
+     <button onclick="downloadCode()" class="bg-green-500 text-white px-4 py-2 rounded-md ml-4">下载代码</button>
+     </div>
+     </div>
+     </main>
+     </div>
+
+ <!-- 合并的 JavaScript 代码 -->
+ <script>
+    // 复制代码到剪贴板
+    function copyToClipboard() {
+        const codeContent = document.getElementById("generatedCodeContent").textContent;
+        navigator.clipboard.writeText(codeContent).then(() => {
+            document.getElementById("copyMessage").classList.remove("hidden");
+            setTimeout(() => {
+                document.getElementById("copyMessage").classList.add("hidden");
+            }, 2000);
         });
-    });
+    }
+
+    // 显示生成的代码
+    function showGeneratedCode() {
+        document.getElementById("generatedCodeSection").classList.remove("hidden");
+    }
+
+    // 下载生成的代码
+    function downloadCode() {
+        const codeContent = document.getElementById("generatedCodeContent").textContent;
+        const blob = new Blob([codeContent], { type: "text/plain" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "generated_code.txt";
+        link.click();
+        URL.revokeObjectURL(url);
+    }
 
     // 动态添加字段
     document.getElementById('addField').addEventListener('click', function () {
         const dynamicFields = document.getElementById('dynamicFields');
         const fieldCount = dynamicFields.children.length + 1;
         const newFieldHtml = `
-            <div class="mb-4 flex items-center" id="field-${fieldCount}">
-                <input type="text" name="fieldName${fieldCount}" class="mt-1 p-2 border border-gray-300 rounded-md w-1/4" placeholder="字段名" required />
-                <select name="fieldType${fieldCount}" class="mt-1 p-2 border border-gray-300 rounded-md w-1/4 ml-4">
-                    <option value="String" selected>String</option>
-                    <option value="int">int</option>
-                    <option value="double">double</option>
-                    <option value="boolean">boolean</option>
-                    <option value="float">float</option>
-                    <option value="long">long</option>
-                    <option value="Date">Date</option>
-                </select>
-                <button type="button" class="ml-4 text-red-500" onclick="removeField(${fieldCount})">删除</button>
-            </div>
-            `;
+ <div class="mb-4 flex items-center" id="field-${fieldCount}">
+ <input type="text" name="fieldName${fieldCount}" class="mt-1 p-2 border border-gray-300 rounded-md w-1/4" placeholder="字段名" required />
+ <select name="fieldType${fieldCount}" class="mt-1 p-2 border border-gray-300 rounded-md w-1/4 ml-4">
+ <option value="String" selected>String</option>
+ <option value="int">int</option>
+ <option value="double">double</option>
+ <option value="boolean">boolean</option>
+ <option value="float">float</option>
+ <option value="long">long</option>
+ <option value="Date">Date</option>
+ </select>
+ <button type="button" class="ml-4 text-red-500" onclick="removeField(${fieldCount})">删除</button>
+ </div>
+ `;
         dynamicFields.insertAdjacentHTML('beforeend', newFieldHtml);
     });
 
@@ -492,28 +583,15 @@
         for (let [name, value] of formData.entries()) {
             if (name.startsWith('fieldName')) {
                 const fieldType = formData.get(name.replace('Name', 'Type'));
-                fields.push(`    private ${fieldType} ${value};`);
+                fields.push(`private ${fieldType} ${value};`);
             }
         }
         if (fields.length) {
             code += fields.join('\n') + '\n';
         }
         code += '}\n';
-
-        window.editor.setValue(code);
-        document.getElementById("generatedCodeSection").classList.remove("hidden");
-    }
-
-    // 下载生成的代码
-    function downloadCode() {
-        const codeContent = window.editor.getValue();
-        const blob = new Blob([codeContent], { type: "text/plain" });
-        const url = URL.createObjectURL(blob);
-        const link = document.createElement("a");
-        link.href = url;
-        link.download = "generated_code.java";
-        link.click();
-        URL.revokeObjectURL(url);
+        document.getElementById('generatedCodeContent').textContent = code;
+        showGeneratedCode();
     }
 </script>
 </body>
