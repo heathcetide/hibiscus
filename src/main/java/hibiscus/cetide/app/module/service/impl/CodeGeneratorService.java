@@ -4,7 +4,7 @@ import cn.hutool.core.io.FileUtil;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
-import hibiscus.cetide.app.common.AppConfigProperties;
+import hibiscus.cetide.app.common.utils.AppConfigProperties;
 import hibiscus.cetide.app.module.control.CodeGeneratorControl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +19,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 @Service
 public class CodeGeneratorService {

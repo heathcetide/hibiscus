@@ -1,7 +1,7 @@
 package hibiscus.cetide.app.module.control;
 
-import hibiscus.cetide.app.common.ApiUrlUtil;
-import hibiscus.cetide.app.common.AppConfigProperties;
+import hibiscus.cetide.app.common.utils.ApiUrlUtil;
+import hibiscus.cetide.app.common.utils.AppConfigProperties;
 import hibiscus.cetide.app.module.listener.ListenerAspect;
 import hibiscus.cetide.app.common.model.CodeGenerationResponse;
 import hibiscus.cetide.app.common.model.MethodMetrics;
@@ -12,14 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.sql.DataSource;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DatabaseMetaData;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -42,6 +34,16 @@ public class CodeGeneratorControl {
         model.addAttribute("baseURL", apiUrlUtil.getServerUrl());
 
         return "codeGenerator";
+    }
+
+    @GetMapping("/data-manager")
+    public String dataManager() {
+        return "dataManager";
+    }
+
+    @GetMapping("/import-module")
+    public String importModule() {
+        return "importModule";
     }
 
     @PostMapping({"/generate"})

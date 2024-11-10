@@ -3,7 +3,7 @@
 [INFO] Controller: hibiscus.cetide.app.module.control.CodeGeneratorControl - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [INFO] Custom Application Runner is running... - {}
@@ -22,7 +22,7 @@
 [INFO] Controller: hibiscus.cetide.app.module.control.CodeGeneratorControl - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [INFO] Custom Application Runner is running... - {}
@@ -40,26 +40,7 @@
 [INFO] Controller: hibiscus.cetide.app.module.control.CodeGeneratorControl - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
-[INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
-[INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
-[INFO] Custom Application Runner is running... - {}
-[INFO] Audit table 'schema_audit' checked/created. - {}
-[INFO] Schema change logged: {} - {message=Index 'idx_user_account' already exists on table 'user'.}
-[INFO] Schema change logged: {} - {message=Created table 'user'.}
-[INFO] User table already contains data. Skipping default user insertion. - {}
-[INFO] Database tables 'user' and 'admin' created successfully. - {}
-[INFO] Database initialization completed successfully. - {}
-[INFO] Table: {} - {message=user}
-[INFO] Table: {} - {}
-[INFO] Table: {} - {}
-[STOP] Hibiscus Stopping - {message=Service has been stopped.}
-[START] Hibiscus Starting - {message=Service has been started.}
-[INFO] Found Main Class: hibiscus.cetide.app.AppApplication - {}
-[INFO] Controller: hibiscus.cetide.app.module.control.CodeGeneratorControl - {}
-[INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
-[INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [INFO] Custom Application Runner is running... - {}
@@ -78,7 +59,7 @@
 [INFO] Controller: hibiscus.cetide.app.module.control.CodeGeneratorControl - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [INFO] Custom Application Runner is running... - {}
@@ -97,7 +78,26 @@
 [INFO] Controller: hibiscus.cetide.app.module.control.CodeGeneratorControl - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
+[INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
+[INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
+[INFO] Custom Application Runner is running... - {}
+[INFO] Audit table 'schema_audit' checked/created. - {}
+[INFO] Schema change logged: {} - {message=Index 'idx_user_account' already exists on table 'user'.}
+[INFO] Schema change logged: {} - {message=Created table 'user'.}
+[INFO] User table already contains data. Skipping default user insertion. - {}
+[INFO] Database tables 'user' and 'admin' created successfully. - {}
+[INFO] Database initialization completed successfully. - {}
+[INFO] Table: {} - {message=user}
+[INFO] Table: {} - {}
+[INFO] Table: {} - {}
+[STOP] Hibiscus Stopping - {message=Service has been stopped.}
+[START] Hibiscus Starting - {message=Service has been started.}
+[INFO] Found Main Class: hibiscus.cetide.app.AppApplication - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.CodeGeneratorControl - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [INFO] Custom Application Runner is running... - {}
@@ -116,7 +116,7 @@
 [INFO] Controller: hibiscus.cetide.app.module.control.CodeGeneratorControl - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [INFO] Custom Application Runner is running... - {}
@@ -135,7 +135,7 @@
 [INFO] Controller: hibiscus.cetide.app.module.control.CodeGeneratorControl - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [INFO] Custom Application Runner is running... - {}
@@ -154,7 +154,7 @@
 [INFO] Controller: hibiscus.cetide.app.module.control.CodeGeneratorControl - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [INFO] Custom Application Runner is running... - {}
@@ -173,7 +173,7 @@
 [INFO] Controller: hibiscus.cetide.app.module.control.CodeGeneratorControl - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [INFO] Custom Application Runner is running... - {}
@@ -192,7 +192,7 @@
 [INFO] Controller: hibiscus.cetide.app.module.control.CodeGeneratorControl - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [INFO] Custom Application Runner is running... - {}
@@ -211,7 +211,7 @@
 [INFO] Controller: hibiscus.cetide.app.module.control.CodeGeneratorControl - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [INFO] Custom Application Runner is running... - {}
@@ -230,7 +230,7 @@
 [INFO] Controller: hibiscus.cetide.app.module.control.CodeGeneratorControl - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [INFO] Custom Application Runner is running... - {}
@@ -249,7 +249,7 @@
 [INFO] Controller: hibiscus.cetide.app.module.control.CodeGeneratorControl - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [INFO] Custom Application Runner is running... - {}
@@ -268,7 +268,7 @@
 [INFO] Controller: hibiscus.cetide.app.module.control.CodeGeneratorControl - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [INFO] Custom Application Runner is running... - {}
@@ -288,7 +288,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [INFO] Custom Application Runner is running... - {}
@@ -308,7 +308,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [INFO] Custom Application Runner is running... - {}
@@ -328,7 +328,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [INFO] Custom Application Runner is running... - {}
@@ -348,7 +348,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [INFO] Custom Application Runner is running... - {}
@@ -368,7 +368,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [INFO] Custom Application Runner is running... - {}
@@ -388,7 +388,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [INFO] Custom Application Runner is running... - {}
@@ -408,7 +408,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [INFO] Custom Application Runner is running... - {}
@@ -428,7 +428,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [INFO] Custom Application Runner is running... - {}
@@ -448,7 +448,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [INFO] Custom Application Runner is running... - {}
@@ -468,7 +468,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [INFO] Custom Application Runner is running... - {}
@@ -488,7 +488,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [INFO] Custom Application Runner is running... - {}
@@ -508,7 +508,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [INFO] Custom Application Runner is running... - {}
@@ -528,7 +528,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [INFO] Custom Application Runner is running... - {}
@@ -548,7 +548,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [INFO] Custom Application Runner is running... - {}
@@ -568,7 +568,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [INFO] Custom Application Runner is running... - {}
@@ -588,7 +588,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [INFO] Custom Application Runner is running... - {}
@@ -608,7 +608,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [INFO] Custom Application Runner is running... - {}
@@ -628,7 +628,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [INFO] Custom Application Runner is running... - {}
@@ -648,7 +648,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [INFO] Custom Application Runner is running... - {}
@@ -668,7 +668,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [INFO] Custom Application Runner is running... - {}
@@ -688,7 +688,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [INFO] Custom Application Runner is running... - {}
@@ -708,7 +708,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [INFO] Custom Application Runner is running... - {}
@@ -728,7 +728,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [INFO] Custom Application Runner is running... - {}
@@ -748,7 +748,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [INFO] Custom Application Runner is running... - {}
@@ -768,7 +768,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [INFO] Custom Application Runner is running... - {}
@@ -788,7 +788,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [INFO] Custom Application Runner is running... - {}
@@ -808,7 +808,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [INFO] Custom Application Runner is running... - {}
@@ -828,7 +828,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [INFO] Custom Application Runner is running... - {}
@@ -848,7 +848,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [INFO] Custom Application Runner is running... - {}
@@ -868,7 +868,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [INFO] Custom Application Runner is running... - {}
@@ -888,7 +888,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [INFO] Custom Application Runner is running... - {}
@@ -908,7 +908,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [INFO] Custom Application Runner is running... - {}
@@ -928,7 +928,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [INFO] Custom Application Runner is running... - {}
@@ -948,7 +948,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [INFO] Custom Application Runner is running... - {}
@@ -968,7 +968,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [INFO] Custom Application Runner is running... - {}
@@ -988,7 +988,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [INFO] Custom Application Runner is running... - {}
@@ -1008,7 +1008,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [INFO] Custom Application Runner is running... - {}
@@ -1028,7 +1028,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [INFO] Custom Application Runner is running... - {}
@@ -1048,7 +1048,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [INFO] Custom Application Runner is running... - {}
@@ -1068,7 +1068,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [INFO] Custom Application Runner is running... - {}
@@ -1088,27 +1088,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
-[INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
-[INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
-[INFO] Custom Application Runner is running... - {}
-[INFO] Audit table 'schema_audit' checked/created. - {}
-[INFO] Schema change logged: {} - {message=Index 'idx_user_account' already exists on table 'user'.}
-[INFO] Schema change logged: {} - {message=Created table 'user'.}
-[INFO] User table already contains data. Skipping default user insertion. - {}
-[INFO] Database tables 'user' and 'admin' created successfully. - {}
-[INFO] Database initialization completed successfully. - {}
-[INFO] Table: {} - {message=user}
-[INFO] Table: {} - {}
-[INFO] Table: {} - {}
-[STOP] Hibiscus Stopping - {message=Service has been stopped.}
-[START] Hibiscus Starting - {message=Service has been started.}
-[INFO] Found Main Class: hibiscus.cetide.app.AppApplication - {}
-[INFO] Controller: hibiscus.cetide.app.module.control.CodeGeneratorControl - {}
-[INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
-[INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
-[INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [INFO] Custom Application Runner is running... - {}
@@ -1128,7 +1108,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [INFO] Custom Application Runner is running... - {}
@@ -1148,7 +1128,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [INFO] Custom Application Runner is running... - {}
@@ -1168,7 +1148,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [INFO] Custom Application Runner is running... - {}
@@ -1188,7 +1168,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [INFO] Custom Application Runner is running... - {}
@@ -1208,7 +1188,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [INFO] Custom Application Runner is running... - {}
@@ -1228,7 +1208,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [INFO] Custom Application Runner is running... - {}
@@ -1248,7 +1228,27 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
+[INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
+[INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
+[INFO] Custom Application Runner is running... - {}
+[INFO] Audit table 'schema_audit' checked/created. - {}
+[INFO] Schema change logged: {} - {message=Index 'idx_user_account' already exists on table 'user'.}
+[INFO] Schema change logged: {} - {message=Created table 'user'.}
+[INFO] User table already contains data. Skipping default user insertion. - {}
+[INFO] Database tables 'user' and 'admin' created successfully. - {}
+[INFO] Database initialization completed successfully. - {}
+[INFO] Table: {} - {message=user}
+[INFO] Table: {} - {}
+[INFO] Table: {} - {}
+[STOP] Hibiscus Stopping - {message=Service has been stopped.}
+[START] Hibiscus Starting - {message=Service has been started.}
+[INFO] Found Main Class: hibiscus.cetide.app.AppApplication - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.CodeGeneratorControl - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [INFO] Custom Application Runner is running... - {}
@@ -1268,7 +1268,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [INFO] Custom Application Runner is running... - {}
@@ -1288,7 +1288,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [STOP] Hibiscus Stopping - {message=Service has been stopped.}
@@ -1300,7 +1300,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [STOP] Hibiscus Stopping - {message=Service has been stopped.}
@@ -1310,7 +1310,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [STOP] Hibiscus Stopping - {message=Service has been stopped.}
@@ -1320,7 +1320,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [START] Hibiscus Starting - {message=Service has been started.}
@@ -1329,17 +1329,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
-[INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
-[INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
-[STOP] Hibiscus Stopping - {message=Service has been stopped.}
-[START] Hibiscus Starting - {message=Service has been started.}
-[INFO] Found Main Class: hibiscus.cetide.app.AppApplication - {}
-[INFO] Controller: hibiscus.cetide.app.module.control.CodeGeneratorControl - {}
-[INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
-[INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
-[INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [STOP] Hibiscus Stopping - {message=Service has been stopped.}
@@ -1349,7 +1339,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [STOP] Hibiscus Stopping - {message=Service has been stopped.}
@@ -1359,7 +1349,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [STOP] Hibiscus Stopping - {message=Service has been stopped.}
@@ -1369,7 +1359,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [STOP] Hibiscus Stopping - {message=Service has been stopped.}
@@ -1379,7 +1369,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [STOP] Hibiscus Stopping - {message=Service has been stopped.}
@@ -1389,7 +1379,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [STOP] Hibiscus Stopping - {message=Service has been stopped.}
@@ -1399,7 +1389,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [STOP] Hibiscus Stopping - {message=Service has been stopped.}
@@ -1409,7 +1399,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [STOP] Hibiscus Stopping - {message=Service has been stopped.}
@@ -1419,7 +1409,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [STOP] Hibiscus Stopping - {message=Service has been stopped.}
@@ -1429,7 +1419,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [STOP] Hibiscus Stopping - {message=Service has been stopped.}
@@ -1439,7 +1429,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [STOP] Hibiscus Stopping - {message=Service has been stopped.}
@@ -1449,7 +1439,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [STOP] Hibiscus Stopping - {message=Service has been stopped.}
@@ -1459,7 +1449,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [STOP] Hibiscus Stopping - {message=Service has been stopped.}
@@ -1469,7 +1459,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [STOP] Hibiscus Stopping - {message=Service has been stopped.}
@@ -1479,7 +1469,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [STOP] Hibiscus Stopping - {message=Service has been stopped.}
@@ -1489,7 +1479,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [STOP] Hibiscus Stopping - {message=Service has been stopped.}
@@ -1499,19 +1489,9 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
-[INFO] Custom Application Runner is running... - {}
-[INFO] Audit table 'schema_audit' checked/created. - {}
-[INFO] Schema change logged: {} - {message=Index 'idx_user_account' already exists on table 'user'.}
-[INFO] Schema change logged: {} - {message=Created table 'user'.}
-[INFO] User table already contains data. Skipping default user insertion. - {}
-[INFO] Database tables 'user' and 'admin' created successfully. - {}
-[INFO] Database initialization completed successfully. - {}
-[INFO] Table: {} - {message=user}
-[INFO] Table: {} - {}
-[INFO] Table: {} - {}
 [STOP] Hibiscus Stopping - {message=Service has been stopped.}
 [START] Hibiscus Starting - {message=Service has been started.}
 [INFO] Found Main Class: hibiscus.cetide.app.AppApplication - {}
@@ -1519,27 +1499,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
-[INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
-[INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
-[INFO] Custom Application Runner is running... - {}
-[INFO] Audit table 'schema_audit' checked/created. - {}
-[INFO] Schema change logged: {} - {message=Index 'idx_user_account' already exists on table 'user'.}
-[INFO] Schema change logged: {} - {message=Created table 'user'.}
-[INFO] User table already contains data. Skipping default user insertion. - {}
-[INFO] Database tables 'user' and 'admin' created successfully. - {}
-[INFO] Database initialization completed successfully. - {message=user}
-[INFO] Table: {} - {}
-[INFO] Table: {} - {}
-[INFO] Table: {} - {}
-[STOP] Hibiscus Stopping - {message=Service has been stopped.}
-[START] Hibiscus Starting - {message=Service has been started.}
-[INFO] Found Main Class: hibiscus.cetide.app.AppApplication - {}
-[INFO] Controller: hibiscus.cetide.app.module.control.CodeGeneratorControl - {}
-[INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
-[INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
-[INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [INFO] Custom Application Runner is running... - {}
@@ -1559,7 +1519,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [INFO] Custom Application Runner is running... - {}
@@ -1579,7 +1539,47 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
+[INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
+[INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
+[INFO] Custom Application Runner is running... - {}
+[INFO] Audit table 'schema_audit' checked/created. - {}
+[INFO] Schema change logged: {} - {message=Index 'idx_user_account' already exists on table 'user'.}
+[INFO] Schema change logged: {} - {message=Created table 'user'.}
+[INFO] User table already contains data. Skipping default user insertion. - {}
+[INFO] Database tables 'user' and 'admin' created successfully. - {}
+[INFO] Database initialization completed successfully. - {}
+[INFO] Table: {} - {message=user}
+[INFO] Table: {} - {}
+[INFO] Table: {} - {}
+[STOP] Hibiscus Stopping - {message=Service has been stopped.}
+[START] Hibiscus Starting - {message=Service has been started.}
+[INFO] Found Main Class: hibiscus.cetide.app.AppApplication - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.CodeGeneratorControl - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
+[INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
+[INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
+[INFO] Custom Application Runner is running... - {}
+[INFO] Audit table 'schema_audit' checked/created. - {}
+[INFO] Schema change logged: {} - {message=Index 'idx_user_account' already exists on table 'user'.}
+[INFO] Schema change logged: {} - {message=Created table 'user'.}
+[INFO] User table already contains data. Skipping default user insertion. - {}
+[INFO] Database tables 'user' and 'admin' created successfully. - {}
+[INFO] Database initialization completed successfully. - {message=user}
+[INFO] Table: {} - {}
+[INFO] Table: {} - {}
+[INFO] Table: {} - {}
+[STOP] Hibiscus Stopping - {message=Service has been stopped.}
+[START] Hibiscus Starting - {message=Service has been started.}
+[INFO] Found Main Class: hibiscus.cetide.app.AppApplication - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.CodeGeneratorControl - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [STOP] Hibiscus Stopping - {message=Service has been stopped.}
@@ -1589,7 +1589,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [STOP] Hibiscus Stopping - {message=Service has been stopped.}
@@ -1599,7 +1599,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
 [STOP] Hibiscus Stopping - {message=Service has been stopped.}
@@ -1609,7 +1609,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.ApiMonitorServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
@@ -1620,7 +1620,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.ApiMonitorServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
@@ -1631,7 +1631,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.ApiMonitorServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
@@ -1642,7 +1642,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.ApiMonitorServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
@@ -1653,7 +1653,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.ApiMonitorServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
@@ -1664,7 +1664,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.ApiMonitorServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
@@ -1675,7 +1675,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.ApiMonitorServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
@@ -1686,7 +1686,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.ApiMonitorServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
@@ -1697,7 +1697,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.ApiMonitorServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
@@ -1708,7 +1708,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.ApiMonitorServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
@@ -1726,7 +1726,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.ApiMonitorServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
@@ -1740,7 +1740,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.ApiMonitorServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
@@ -1751,7 +1751,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.ApiMonitorServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
@@ -1762,7 +1762,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.ApiMonitorServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
@@ -1773,7 +1773,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.ApiMonitorServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
@@ -1784,7 +1784,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.ApiMonitorServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
@@ -1795,7 +1795,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.ApiMonitorServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
@@ -1806,7 +1806,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.ApiMonitorServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
@@ -1817,7 +1817,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.ApiMonitorServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
@@ -1828,7 +1828,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.ApiMonitorServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
@@ -1839,7 +1839,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.ApiMonitorServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
@@ -1850,7 +1850,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.ApiMonitorServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
@@ -1861,7 +1861,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.ApiMonitorServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
@@ -1872,7 +1872,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.ApiMonitorServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
@@ -1883,7 +1883,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.ApiMonitorServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
@@ -1894,7 +1894,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.ApiMonitorServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
@@ -1905,7 +1905,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.ApiMonitorServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
@@ -1916,7 +1916,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.ApiMonitorServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
@@ -1927,7 +1927,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.ApiMonitorServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
@@ -1938,7 +1938,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.ApiMonitorServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
@@ -1949,7 +1949,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.ApiMonitorServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
@@ -1960,7 +1960,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.ApiMonitorServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
@@ -1971,7 +1971,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.ApiMonitorServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
@@ -1984,7 +1984,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.ApiMonitorServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
@@ -1995,7 +1995,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.ApiMonitorServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
@@ -2006,7 +2006,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.ApiMonitorServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
@@ -2017,7 +2017,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.ApiMonitorServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
@@ -2028,7 +2028,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.ApiMonitorServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
@@ -2039,7 +2039,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.ApiMonitorServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
@@ -2050,7 +2050,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.ApiMonitorServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
@@ -2061,7 +2061,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.ApiMonitorServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
@@ -2072,7 +2072,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.ApiMonitorServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
@@ -2083,7 +2083,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.ApiMonitorServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
@@ -2094,7 +2094,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.ApiMonitorServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
@@ -2105,7 +2105,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.ApiMonitorServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
@@ -2116,7 +2116,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.ApiMonitorServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
@@ -2127,7 +2127,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.ApiMonitorServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
@@ -2138,7 +2138,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.ApiMonitorServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
@@ -2149,7 +2149,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.ApiMonitorServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
@@ -2160,7 +2160,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.ApiMonitorServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
@@ -2171,7 +2171,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.ApiMonitorServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
@@ -2182,7 +2182,7 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.ApiMonitorServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
@@ -2193,7 +2193,131 @@
 [INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
 [INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
-[INFO] Controller: hibiscus.cetide.app.module.InternalUser.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
+[INFO] Service: hibiscus.cetide.app.module.service.impl.ApiMonitorServiceImpl - {}
+[INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
+[INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
+[STOP] Hibiscus Stopping - {message=Service has been stopped.}
+[START] Hibiscus Starting - {message=Service has been started.}
+[INFO] Found Main Class: hibiscus.cetide.app.AppApplication - {}
+[STOP] Hibiscus Stopping - {message=Service has been stopped.}
+[START] Hibiscus Starting - {message=Service has been started.}
+[INFO] Found Main Class: hibiscus.cetide.app.AppApplication - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.CodeGeneratorControl - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
+[INFO] Service: hibiscus.cetide.app.module.service.impl.ApiMonitorServiceImpl - {}
+[INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
+[INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
+[STOP] Hibiscus Stopping - {message=Service has been stopped.}
+[START] Hibiscus Starting - {message=Service has been started.}
+[INFO] Found Main Class: hibiscus.cetide.app.AppApplication - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.CodeGeneratorControl - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
+[INFO] Service: hibiscus.cetide.app.module.service.impl.ApiMonitorServiceImpl - {}
+[INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
+[INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
+[STOP] Hibiscus Stopping - {message=Service has been stopped.}
+[START] Hibiscus Starting - {message=Service has been started.}
+[INFO] Found Main Class: hibiscus.cetide.app.AppApplication - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.CodeGeneratorControl - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
+[INFO] Service: hibiscus.cetide.app.module.service.impl.ApiMonitorServiceImpl - {}
+[INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
+[INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
+[STOP] Hibiscus Stopping - {message=Service has been stopped.}
+[START] Hibiscus Starting - {message=Service has been started.}
+[INFO] Found Main Class: hibiscus.cetide.app.AppApplication - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.CodeGeneratorControl - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
+[INFO] Service: hibiscus.cetide.app.module.service.impl.ApiMonitorServiceImpl - {}
+[INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
+[INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
+[STOP] Hibiscus Stopping - {message=Service has been stopped.}
+[START] Hibiscus Starting - {message=Service has been started.}
+[INFO] Found Main Class: hibiscus.cetide.app.AppApplication - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.CodeGeneratorControl - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
+[INFO] Service: hibiscus.cetide.app.module.service.impl.ApiMonitorServiceImpl - {}
+[INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
+[INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
+[STOP] Hibiscus Stopping - {message=Service has been stopped.}
+[START] Hibiscus Starting - {message=Service has been started.}
+[INFO] Found Main Class: hibiscus.cetide.app.AppApplication - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.CodeGeneratorControl - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
+[INFO] Service: hibiscus.cetide.app.module.service.impl.ApiMonitorServiceImpl - {}
+[INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
+[INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
+[STOP] Hibiscus Stopping - {message=Service has been stopped.}
+[START] Hibiscus Starting - {message=Service has been started.}
+[INFO] Found Main Class: hibiscus.cetide.app.AppApplication - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.CodeGeneratorControl - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
+[INFO] Service: hibiscus.cetide.app.module.service.impl.ApiMonitorServiceImpl - {}
+[INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
+[INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
+[STOP] Hibiscus Stopping - {message=Service has been stopped.}
+[START] Hibiscus Starting - {message=Service has been started.}
+[INFO] Found Main Class: hibiscus.cetide.app.AppApplication - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.CodeGeneratorControl - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
+[INFO] Service: hibiscus.cetide.app.module.service.impl.ApiMonitorServiceImpl - {}
+[INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
+[INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
+[STOP] Hibiscus Stopping - {message=Service has been stopped.}
+[START] Hibiscus Starting - {message=Service has been started.}
+[INFO] Found Main Class: hibiscus.cetide.app.AppApplication - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.CodeGeneratorControl - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
+[INFO] Service: hibiscus.cetide.app.module.service.impl.ApiMonitorServiceImpl - {}
+[INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
+[INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
+[STOP] Hibiscus Stopping - {message=Service has been stopped.}
+[START] Hibiscus Starting - {message=Service has been started.}
+[INFO] Found Main Class: hibiscus.cetide.app.AppApplication - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.CodeGeneratorControl - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
+[INFO] Service: hibiscus.cetide.app.module.service.impl.ApiMonitorServiceImpl - {}
+[INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
+[INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
+[STOP] Hibiscus Stopping - {message=Service has been stopped.}
+[START] Hibiscus Starting - {message=Service has been started.}
+[INFO] Found Main Class: hibiscus.cetide.app.AppApplication - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.CodeGeneratorControl - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.ApiMonitorServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
 [INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}

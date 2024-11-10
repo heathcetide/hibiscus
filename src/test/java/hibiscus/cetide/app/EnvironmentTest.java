@@ -1,7 +1,6 @@
 package hibiscus.cetide.app;
 
-import hibiscus.cetide.app.common.ApiUrlUtil;
-import hibiscus.cetide.app.module.service.ApiMonitorService;
+import hibiscus.cetide.app.common.utils.ApiUrlUtil;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
