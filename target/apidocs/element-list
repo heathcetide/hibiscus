@@ -17,12 +17,11 @@ hibiscus.cetide.app.basic.log.query
 hibiscus.cetide.app.basic.log.restore
 hibiscus.cetide.app.basic.log.secure
 hibiscus.cetide.app.basic.signal
-hibiscus.cetide.app.common
 hibiscus.cetide.app.common.model
+hibiscus.cetide.app.common.utils
 hibiscus.cetide.app.core.initialization
 hibiscus.cetide.app.core.scan
 hibiscus.cetide.app.module.control
-hibiscus.cetide.app.module.InternalUser
 hibiscus.cetide.app.module.listener
 hibiscus.cetide.app.module.proxy
 hibiscus.cetide.app.module.service

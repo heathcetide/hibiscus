@@ -9,45 +9,97 @@ import hibiscus.cetide.app.module.control.CodeGeneratorControl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.Writer;
+import java.io.*;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
 public class CodeGeneratorService {
 
     @Autowired
+    private Configuration freemarkerConfig;
+
+    @Autowired
     private AppConfigProperties appConfigProperties;
 
     public String generateCode(String className, String packageName, String fields) {
-        String BASE_PATH = "src/main/java/" + appConfigProperties.getHibiscus().replace("/", ".") + "/generate/";
-        // 生成实体类
-        String modelCode = generateModelCode(className, packageName, fields);
-        String controllerCode = generateControllerCode(className, packageName);
-        String serviceCode = generateServiceCode(className, packageName);
-        String mapperCode = generateMapperCode(className, packageName);
+        Map<String, Object> dataModel = new HashMap<>();
+        dataModel.put("className", className);
+        dataModel.put("packageName", packageName);
 
-        // 写入代码文件
+        List<Map<String, String>> fieldList = new ArrayList<>();
+        String[] fieldArray = fields.split(",");
+        for (String field : fieldArray) {
+            String[] parts = field.trim().split(" ");
+            if (parts.length == 2) {
+                Map<String, String> fieldData = new HashMap<>();
+                fieldData.put("type", parts[0]);
+                fieldData.put("name", parts[1]);
+                fieldList.add(fieldData);
+            }
+        }
+        dataModel.put("fields", fieldList);
+
         try {
-            writeFile(BASE_PATH + "model/", className, modelCode);
-            writeFile(BASE_PATH + "controller/", className + "Controller", controllerCode);
-            writeFile(BASE_PATH + "service/", className + "Service", serviceCode);
-            writeFile(BASE_PATH + "mapper/", className + "Mapper", mapperCode);
-        } catch (IOException e) {
+            // 生成并写入文件
+            generateAndWriteFile("model.ftl", dataModel, "model", className);
+            generateAndWriteFile("controller.ftl", dataModel, "controller", className + "Controller");
+            generateAndWriteFile("service.ftl", dataModel, "service", className + "Service");
+            generateAndWriteFile("mapper.ftl", dataModel, "mapper", className + "Mapper");
+            generateAndWriteFile("serviceImpl.ftl", dataModel, "service/impl", className + "ServiceImpl");
+        } catch (IOException | TemplateException e) {
             e.printStackTrace();
             return "代码生成失败: " + e.getMessage();
         }
-
         return "代码生成成功";
     }
 
+    private void generateAndWriteFile(String templateName, Map<String, Object> dataModel, String subPackage, String fileName) throws IOException, TemplateException {
+        Configuration cfg = new Configuration(Configuration.VERSION_2_3_30);
+        cfg.setClassLoaderForTemplateLoading(getClass().getClassLoader(), "templates/baseModules");
+        cfg.setDefaultEncoding("UTF-8");
+        Template template = cfg.getTemplate(templateName);
+        String packagePath = dataModel.get("packageName").toString().replace(".", "/");
+        String directoryPath = "src/main/java/" + packagePath + "/generate/" + subPackage + "/";
+        File directory = new File(directoryPath);
+        if (!directory.exists()) {
+            directory.mkdirs();
+        }
+
+        try (Writer fileWriter = new FileWriter(new File(directory, fileName + ".java"))) {
+            template.process(dataModel, fileWriter);
+        }
+    }
+
+//    public String generateCode(String className, String packageName, String fields) {
+//        String BASE_PATH = "src/main/java/" + appConfigProperties.getHibiscus().replace("/", ".") + "/generate/";
+//        // 生成实体类
+//        String modelCode = generateModelCode(className, packageName, fields);
+//        String controllerCode = generateControllerCode(className, packageName);
+//        String serviceCode = generateServiceCode(className, packageName);
+//        String mapperCode = generateMapperCode(className, packageName);
+//
+//        // 写入代码文件
+//        try {
+//            writeFile(BASE_PATH + "model/", className, modelCode);
+//            writeFile(BASE_PATH + "controller/", className + "Controller", controllerCode);
+//            writeFile(BASE_PATH + "service/", className + "Service", serviceCode);
+//            writeFile(BASE_PATH + "mapper/", className + "Mapper", mapperCode);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//            return "代码生成失败: " + e.getMessage();
+//        }
+//
+//        return "代码生成成功";
+//    }
+//
     // 生成实体类代码
     private String generateModelCode(String className, String packageName, String fields) {
         StringBuilder code = new StringBuilder();
@@ -124,91 +176,91 @@ public class CodeGeneratorService {
         code.append("}\n");
         return code.toString();
     }
-
-    // 生成 Controller 代码
-    private String generateControllerCode(String className, String packageName) {
-        StringBuilder code = new StringBuilder();
-        code.append("package ").append(packageName).append(".generate").append(".controller;\n\n");
-        code.append("import org.springframework.beans.factory.annotation.Autowired;\n");
-        code.append("import org.springframework.web.bind.annotation.*;\n");
-        code.append("import ").append(packageName).append(".generate").append(".service.").append(className).append("Service;\n");
-        code.append("import ").append(packageName).append(".generate").append(".model.").append(className).append(";\n\n");
-        code.append("@RestController\n");
-        code.append("@RequestMapping(\"/").append(className.toLowerCase()).append("\")\n");
-        code.append("public class ").append(className).append("Controller {\n\n");
-        code.append("    @Autowired\n");
-        code.append("    private ").append(className).append("Service ").append(decapitalize(className)).append("Service;\n\n");
-
-        // 增加CRUD方法
-        code.append("    @PostMapping\n");
-        code.append("    public void add(@RequestBody ").append(className).append(" ").append(decapitalize(className)).append(") {\n");
-        code.append("        ").append(decapitalize(className)).append("Service.save(").append(decapitalize(className)).append(");\n");
-        code.append("    }\n\n");
-
-        code.append("    @DeleteMapping(\"/{id}\")\n");
-        code.append("    public void delete(@PathVariable Long id) {\n");
-        code.append("        ").append(decapitalize(className)).append("Service.removeById(id);\n");
-        code.append("    }\n\n");
-
-        code.append("    @PutMapping\n");
-        code.append("    public void update(@RequestBody ").append(className).append(" ").append(decapitalize(className)).append(") {\n");
-        code.append("        ").append(decapitalize(className)).append("Service.updateById(").append(decapitalize(className)).append(");\n");
-        code.append("    }\n\n");
-
-        code.append("    @GetMapping(\"/{id}\")\n");
-        code.append("    public ").append(className).append(" get(@PathVariable Long id) {\n");
-        code.append("        return ").append(decapitalize(className)).append("Service.getById(id);\n");
-        code.append("    }\n");
-
-        code.append("}\n");
-        return code.toString();
-    }
-
-    // 生成 Service 代码
-    private String generateServiceCode(String className, String packageName) {
-        StringBuilder code = new StringBuilder();
-        code.append("package ").append(packageName).append(".generate").append(".service;\n\n");
-        code.append("import com.baomidou.mybatisplus.extension.service.IService;\n");
-        code.append("import ").append(packageName).append(".generate").append(".model.").append(className).append(";\n\n");
-        code.append("public interface ").append(className).append("Service extends IService<").append(className).append("> {\n");
-        code.append("}\n");
-        return code.toString();
-    }
-
-    // 生成 Mapper 代码
-    private String generateMapperCode(String className, String packageName) {
-        StringBuilder code = new StringBuilder();
-        code.append("package ").append(packageName).append(".generate").append(".mapper;\n\n");
-        code.append("import com.baomidou.mybatisplus.core.mapper.BaseMapper;\n");
-        code.append("import ").append(packageName).append(".generate").append(".model.").append(className).append(";\n\n");
-        code.append("public interface ").append(className).append("Mapper extends BaseMapper<").append(className).append("> {\n");
-        code.append("}\n");
-        return code.toString();
-    }
-
-    // 写入文件方法
-    private void writeFile(String directoryPath, String className, String codeContent) throws IOException {
-        File directory = new File(directoryPath);
-        if (!directory.exists()) {
-            directory.mkdirs();  // 创建目录
-        }
-
-        File file = new File(directory, className + ".java");
-        try (FileWriter writer = new FileWriter(file)) {
-            writer.write(codeContent);
-        }
-    }
-
+//
+//    // 生成 Controller 代码
+//    private String generateControllerCode(String className, String packageName) {
+//        StringBuilder code = new StringBuilder();
+//        code.append("package ").append(packageName).append(".generate").append(".controller;\n\n");
+//        code.append("import org.springframework.beans.factory.annotation.Autowired;\n");
+//        code.append("import org.springframework.web.bind.annotation.*;\n");
+//        code.append("import ").append(packageName).append(".generate").append(".service.").append(className).append("Service;\n");
+//        code.append("import ").append(packageName).append(".generate").append(".model.").append(className).append(";\n\n");
+//        code.append("@RestController\n");
+//        code.append("@RequestMapping(\"/").append(className.toLowerCase()).append("\")\n");
+//        code.append("public class ").append(className).append("Controller {\n\n");
+//        code.append("    @Autowired\n");
+//        code.append("    private ").append(className).append("Service ").append(decapitalize(className)).append("Service;\n\n");
+//
+//        // 增加CRUD方法
+//        code.append("    @PostMapping\n");
+//        code.append("    public void add(@RequestBody ").append(className).append(" ").append(decapitalize(className)).append(") {\n");
+//        code.append("        ").append(decapitalize(className)).append("Service.save(").append(decapitalize(className)).append(");\n");
+//        code.append("    }\n\n");
+//
+//        code.append("    @DeleteMapping(\"/{id}\")\n");
+//        code.append("    public void delete(@PathVariable Long id) {\n");
+//        code.append("        ").append(decapitalize(className)).append("Service.removeById(id);\n");
+//        code.append("    }\n\n");
+//
+//        code.append("    @PutMapping\n");
+//        code.append("    public void update(@RequestBody ").append(className).append(" ").append(decapitalize(className)).append(") {\n");
+//        code.append("        ").append(decapitalize(className)).append("Service.updateById(").append(decapitalize(className)).append(");\n");
+//        code.append("    }\n\n");
+//
+//        code.append("    @GetMapping(\"/{id}\")\n");
+//        code.append("    public ").append(className).append(" get(@PathVariable Long id) {\n");
+//        code.append("        return ").append(decapitalize(className)).append("Service.getById(id);\n");
+//        code.append("    }\n");
+//
+//        code.append("}\n");
+//        return code.toString();
+//    }
+//
+//    // 生成 Service 代码
+//    private String generateServiceCode(String className, String packageName) {
+//        StringBuilder code = new StringBuilder();
+//        code.append("package ").append(packageName).append(".generate").append(".service;\n\n");
+//        code.append("import com.baomidou.mybatisplus.extension.service.IService;\n");
+//        code.append("import ").append(packageName).append(".generate").append(".model.").append(className).append(";\n\n");
+//        code.append("public interface ").append(className).append("Service extends IService<").append(className).append("> {\n");
+//        code.append("}\n");
+//        return code.toString();
+//    }
+//
+//    // 生成 Mapper 代码
+//    private String generateMapperCode(String className, String packageName) {
+//        StringBuilder code = new StringBuilder();
+//        code.append("package ").append(packageName).append(".generate").append(".mapper;\n\n");
+//        code.append("import com.baomidou.mybatisplus.core.mapper.BaseMapper;\n");
+//        code.append("import ").append(packageName).append(".generate").append(".model.").append(className).append(";\n\n");
+//        code.append("public interface ").append(className).append("Mapper extends BaseMapper<").append(className).append("> {\n");
+//        code.append("}\n");
+//        return code.toString();
+//    }
+//
+//    // 写入文件方法
+//    private void writeFile(String directoryPath, String className, String codeContent) throws IOException {
+//        File directory = new File(directoryPath);
+//        if (!directory.exists()) {
+//            directory.mkdirs();  // 创建目录
+//        }
+//
+//        File file = new File(directory, className + ".java");
+//        try (FileWriter writer = new FileWriter(file)) {
+//            writer.write(codeContent);
+//        }
+//    }
+//
     // 首字母大写
     private String capitalize(String str) {
         return str.substring(0, 1).toUpperCase() + str.substring(1);
     }
 
-    // 首字母小写
-    private String decapitalize(String str) {
-        return str.substring(0, 1).toLowerCase() + str.substring(1);
-    }
-
+//    // 首字母小写
+//    private String decapitalize(String str) {
+//        return str.substring(0, 1).toLowerCase() + str.substring(1);
+//    }
+//
     public String generateModel(String module) {
         switch (module.toLowerCase()) {
             case "user":
@@ -221,7 +273,7 @@ public class CodeGeneratorService {
                 return "未知模块，无法生成代码。";
         }
     }
-
+//
     private String generateUserModuleCode() {
         // 生成实体类 User
         StringBuilder modelBuilder = new StringBuilder();
@@ -331,7 +383,7 @@ public class CodeGeneratorService {
         for (int i = 0; i < builders.length; i++) {
             result.append(builders[i]);
             if (i < builders.length - 1) {
-                result.append("\n\n\n"); // 插入三个换行符
+                result.append("\n\n\n");
             }
         }
 
@@ -375,55 +427,74 @@ public class CodeGeneratorService {
         // 生成路径默认值
         String projectPath = System.getProperty("user.dir");
 
-        // 参考路径，可以自己调整下面的 outputPath
-        String inputPath = projectPath + File.separator + "src/main/resources/templates/模板名称.java.ftl";
-        String outputPath = String.format("%s/generator/包名/%s类后缀.java", projectPath, upperDataKey);
+        // 使用类加载器中的模板文件路径
+        String inputPath;
+        String outputPath;
 
         try {
             // 1、生成 Controller
-            // 指定生成路径
-            inputPath = projectPath + File.separator + "src/main/resources/templates/TemplateController.java.ftl";
-            outputPath = String.format("%s/generator/controller/%sController.java", projectPath + "/src/main/java/" + appConfigProperties.getHibiscus().replace(".", "/"), upperDataKey);
-            // 生成
+            inputPath = "modules/TemplateController.java.ftl";
+            outputPath = String.format("%s/src/main/java/%s/generator/controller/%sController.java",
+                    projectPath, appConfigProperties.getHibiscus().replace(".", "/"), upperDataKey);
             doGenerate(inputPath, outputPath, dataModel);
             System.out.println("生成 Controller 成功，文件路径：" + outputPath);
 
             // 2、生成 Service 接口和实现类
             // 生成 Service 接口
-            inputPath = projectPath + File.separator + "src/main/resources/templates/TemplateService.java.ftl";
-            outputPath = String.format("%s/generator/service/%sService.java", projectPath + "/src/main/java/" + appConfigProperties.getHibiscus().replace(".", "/"), upperDataKey);
+            inputPath = "modules/TemplateService.java.ftl";
+            outputPath = String.format("%s/src/main/java/%s/generator/service/%sService.java",
+                    projectPath, appConfigProperties.getHibiscus().replace(".", "/"), upperDataKey);
             doGenerate(inputPath, outputPath, dataModel);
             System.out.println("生成 Service 接口成功，文件路径：" + outputPath);
+
             // 生成 Service 实现类
-            inputPath = projectPath + File.separator + "src/main/resources/templates/TemplateServiceImpl.java.ftl";
-            outputPath = String.format("%s/generator/service/impl/%sServiceImpl.java", projectPath + "/src/main/java/" + appConfigProperties.getHibiscus().replace(".", "/"), upperDataKey);
+            inputPath = "modules/TemplateServiceImpl.java.ftl";
+            outputPath = String.format("%s/src/main/java/%s/generator/service/impl/%sServiceImpl.java",
+                    projectPath, appConfigProperties.getHibiscus().replace(".", "/"), upperDataKey);
             doGenerate(inputPath, outputPath, dataModel);
             System.out.println("生成 Service 实现类成功，文件路径：" + outputPath);
 
+            // 生成 Mapper 接口
+            inputPath = "modules/TemplateMapper.java.ftl";
+            outputPath = String.format("%s/src/main/java/%s/generator/mapper/%sMapper.java",
+                    projectPath, appConfigProperties.getHibiscus().replace(".", "/"), upperDataKey);
+            doGenerate(inputPath, outputPath, dataModel);
+            System.out.println("生成 Mapper 接口成功，文件路径：" + outputPath);
+
             // 3、生成数据模型封装类（包括 DTO 和 VO）
             // 生成 DTO
-            inputPath = projectPath + File.separator + "src/main/resources/templates/model/TemplateAddRequest.java.ftl";
-            outputPath = String.format("%s/generator/model/dto/%sAddRequest.java", projectPath + "/src/main/java/" + appConfigProperties.getHibiscus().replace(".", "/"), upperDataKey);
+            inputPath = "modules/TemplateAddRequest.java.ftl";
+            outputPath = String.format("%s/src/main/java/%s/generator/model/dto/%sAddRequest.java",
+                    projectPath, appConfigProperties.getHibiscus().replace(".", "/"), upperDataKey);
             doGenerate(inputPath, outputPath, dataModel);
-            inputPath = projectPath + File.separator + "src/main/resources/templates/model/TemplateQueryRequest.java.ftl";
-            outputPath = String.format("%s/generator/model/dto/%sQueryRequest.java", projectPath + "/src/main/java/" + appConfigProperties.getHibiscus().replace(".", "/"), upperDataKey);
+
+            inputPath = "modules/TemplateQueryRequest.java.ftl";
+            outputPath = String.format("%s/src/main/java/%s/generator/model/dto/%sQueryRequest.java",
+                    projectPath, appConfigProperties.getHibiscus().replace(".", "/"), upperDataKey);
             doGenerate(inputPath, outputPath, dataModel);
-            inputPath = projectPath + File.separator + "src/main/resources/templates/model/TemplateEditRequest.java.ftl";
-            outputPath = String.format("%s/generator/model/dto/%sEditRequest.java", projectPath + "/src/main/java/" + appConfigProperties.getHibiscus().replace(".", "/"), upperDataKey);
+
+            inputPath = "modules/TemplateEditRequest.java.ftl";
+            outputPath = String.format("%s/src/main/java/%s/generator/model/dto/%sEditRequest.java",
+                    projectPath, appConfigProperties.getHibiscus().replace(".", "/"), upperDataKey);
             doGenerate(inputPath, outputPath, dataModel);
-            inputPath = projectPath + File.separator + "src/main/resources/templates/model/TemplateUpdateRequest.java.ftl";
-            outputPath = String.format("%s/generator/model/dto/%sUpdateRequest.java", projectPath + "/src/main/java/" + appConfigProperties.getHibiscus().replace(".", "/"), upperDataKey);
+
+            inputPath = "modules/TemplateUpdateRequest.java.ftl";
+            outputPath = String.format("%s/src/main/java/%s/generator/model/dto/%sUpdateRequest.java",
+                    projectPath, appConfigProperties.getHibiscus().replace(".", "/"), upperDataKey);
             doGenerate(inputPath, outputPath, dataModel);
             System.out.println("生成 DTO 成功，文件路径：" + outputPath);
+
             // 生成 VO
-            inputPath = projectPath + File.separator + "src/main/resources/templates/model/TemplateVO.java.ftl";
-            outputPath = String.format("%s/generator/model/vo/%sVO.java", projectPath + "/src/main/java/" + appConfigProperties.getHibiscus().replace(".", "/"), upperDataKey);
+            inputPath = "modules/TemplateVO.java.ftl";
+            outputPath = String.format("%s/src/main/java/%s/generator/model/vo/%sVO.java",
+                    projectPath, appConfigProperties.getHibiscus().replace(".", "/"), upperDataKey);
             doGenerate(inputPath, outputPath, dataModel);
             System.out.println("生成 VO 成功，文件路径：" + outputPath);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
 
     /**
      * 生成文件
@@ -435,12 +506,11 @@ public class CodeGeneratorService {
      * @throws TemplateException
      */
     public static void doGenerate(String inputPath, String outputPath, Object model) throws IOException, TemplateException {
-        // new 出 Configuration 对象，参数为 FreeMarker 版本号
+        // 创建 Configuration 对象，指定 FreeMarker 版本号
         Configuration configuration = new Configuration(Configuration.VERSION_2_3_29);
 
-        // 指定模板文件所在的路径
-        File templateDir = new File(inputPath).getParentFile();
-        configuration.setDirectoryForTemplateLoading(templateDir);
+        // 设置模板加载路径使用类加载器
+        configuration.setClassLoaderForTemplateLoading(CodeGeneratorControl.class.getClassLoader(), "/templates/modules");
 
         // 设置模板文件使用的字符集
         configuration.setDefaultEncoding("utf-8");
@@ -455,12 +525,12 @@ public class CodeGeneratorService {
         }
 
         // 生成
-        Writer out = new FileWriter(outputPath);
-        template.process(model, out);
-
-        // 生成文件后别忘了关闭哦
-        out.close();
+        try (Writer out = new FileWriter(outputPath)) {
+            template.process(model, out);
+            System.out.println("File generated successfully to: " + outputPath);
+        }
     }
+
 
 
     public void copyFileFromResources(String fileName) {
@@ -478,19 +548,23 @@ public class CodeGeneratorService {
             System.err.println("Failed to create directories: " + e.getMessage());
             return;
         }
-        try {
-            // 源文件路径
-            Path sourcePath = Paths.get(CodeGeneratorControl.class.getResource("/templates/utils/" + fileName).toURI());
+
+        // 使用类加载器获取资源文件
+        try (InputStream inputStream = CodeGeneratorControl.class.getResourceAsStream("/templates/utils/" + fileName)) {
+            if (inputStream == null) {
+                System.err.println("Resource file not found: " + fileName);
+                return;
+            }
 
             // 目标文件路径
             Path destPath = targetPath.resolve(fileName);
-            // 复制文件
-            Files.copy(sourcePath, destPath);
+
+            // 将输入流写入目标文件
+            Files.copy(inputStream, destPath, StandardCopyOption.REPLACE_EXISTING);
             System.out.println("File copied successfully to: " + destPath);
         } catch (IOException e) {
             System.err.println("Failed to copy file: " + e.getMessage());
-        } catch (URISyntaxException e) {
-            throw new RuntimeException(e);
         }
     }
+
 }

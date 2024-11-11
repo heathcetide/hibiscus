@@ -26,10 +26,10 @@ public class ListenerAspect {
     private AppConfigProperties appConfigProperties;
 
 //    @Around("execution(* hibiscus..*.*.*(..))")
-//    @Around("execution(* hibiscus.cetide.app.control.*.*(..))")
+    @Around("execution(* hibiscus.cetide.app.module.control.*.*(..))")
 //    @Around("execution(* com..*.*.*(..))")
-    @Around("execution(* com..*.*(..)) && @within(org.springframework.web.bind.annotation.RestController) || execution(* com..*.*(..)) && @within(org.springframework.stereotype.Controller)"+
-            "execution(* org..*.*(..)) && @within(org.springframework.web.bind.annotation.RestController) || execution(* org..*.*(..)) && @within(org.springframework.stereotype.Controller)")
+//    @Around("execution(* com..*.*(..)) && (@within(org.springframework.web.bind.annotation.RestController) || @within(org.springframework.stereotype.Controller)) " +
+//        "|| execution(* org..*.*(..)) && (@within(org.springframework.web.bind.annotation.RestController) || @within(org.springframework.stereotype.Controller))")
     public Object aroundAdvice(ProceedingJoinPoint joinPoint) throws Throwable {
         long begin = System.currentTimeMillis();
         // 动态获取切入点表达式的包名

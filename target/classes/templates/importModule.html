@@ -11,50 +11,17 @@
             display: none;
         }
 
-        /* 模态弹窗背景 */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            justify-content: center;
-            align-items: center;
-        }
-
-        /* 弹窗内容 */
-        .modal-content {
-            background-color: white;
-            border-radius: 10px;
-            padding: 20px;
-            max-width: 500px;
-            width: 100%;
-        }
-
-        .copy-btn {
-            background-color: #4C51BF;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 8px;
-            cursor: pointer;
-        }
-
-        .copy-btn:hover {
-            background-color: #3E44A4;
-        }
-
-        .copy-message {
-            color: #4CAF50;
-        }
-
         /* 高亮当前激活的菜单项 */
         .active {
             background-color: #4C51BF;
             color: white;
             font-weight: bold;
+        }
+
+        /* 设置生成代码显示区域的最大高度 */
+        #generatedCodeContent {
+            max-height: 300px;
+            overflow-y: auto;
         }
     </style>
 </head>
@@ -67,7 +34,7 @@
         <div class="flex justify-between items-center h-16">
             <!-- 左侧品牌标志 -->
             <div class="flex-shrink-0 flex items-center">
-                <a href="#home" class="text-2xl font-bold text-indigo-600">HIBISCUS IMPORT-MODULE</a>
+                <a href="#home" class="text-2xl font-bold text-indigo-600">HIBISCUS DATA-MANAGER</a>
             </div>
             <!-- 中间菜单项（隐藏在移动设备） -->
             <div class="md:flex md:space-x-8">
@@ -75,50 +42,58 @@
                 <div class="relative group">
                     <button class="inline-flex items-center px-3 py-2 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none">
                         Data Analysis
-                        <svg class="ml-1 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        <svg class="ml-1 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                             stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                         </svg>
                     </button>
                     <!-- Data Analysis 下拉菜单 -->
                     <div class="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
-                        <a href="/code/interface-analysis" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Overview</a>
-                        <a href="#data-analysis-details" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Details</a>
+                        <a href="/code/interface-analysis"
+                           class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Overview</a>
+                        <a href="#data-analysis-details"
+                           class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Details</a>
                     </div>
                 </div>
                 <!-- Interface Test 菜单项 -->
                 <div class="relative group">
                     <button class="inline-flex items-center px-3 py-2 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none">
                         Interface Test
-                        <svg class="ml-1 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        <svg class="ml-1 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                             stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                         </svg>
                     </button>
                     <!-- Interface Test 下拉菜单 -->
                     <div class="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
                         <a href="/app/interface" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Overview</a>
-                        <a href="#interface-test-details" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Details</a>
+                        <a href="#interface-test-details"
+                           class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Details</a>
                     </div>
                 </div>
                 <!-- Code Generate 菜单项 -->
                 <div class="relative group">
                     <button class="inline-flex items-center px-3 py-2 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none">
                         Code Generate
-                        <svg class="ml-1 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        <svg class="ml-1 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                             stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                         </svg>
                     </button>
                     <!-- Code Generate 下拉菜单 -->
                     <div class="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
                         <a href="/code/generate-html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Overview</a>
-                        <a href="#code-generate-details" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Details</a>
+                        <a href="#code-generate-details"
+                           class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Details</a>
                     </div>
                 </div>
                 <!-- User Centre 菜单项 -->
                 <div class="relative group">
                     <button class="inline-flex items-center px-3 py-2 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none">
                         User Centre
-                        <svg class="ml-1 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        <svg class="ml-1 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                             stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                         </svg>
                     </button>
                     <!-- User Centre 下拉菜单 -->
@@ -131,9 +106,12 @@
             </div>
             <!-- 移动设备菜单按钮 -->
             <div class="md:hidden flex items-center">
-                <button type="button" class="text-gray-500 hover:text-gray-700 focus:outline-none focus:text-gray-700" aria-label="菜单" onclick="toggleMobileMenu()">
-                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                <button type="button" class="text-gray-500 hover:text-gray-700 focus:outline-none focus:text-gray-700"
+                        aria-label="菜单" onclick="toggleMobileMenu()">
+                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                         stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M4 6h16M4 12h16M4 18h16"/>
                     </svg>
                 </button>
             </div>
@@ -142,10 +120,17 @@
     <!-- 移动设备下拉菜单 -->
     <div id="mobile-menu" class="md:hidden hidden">
         <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            <a href="#data-analysis-overview" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100">Data Analysis</a>
-            <a href="#interface-test-overview" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100">Interface Test</a>
-            <a href="#code-generate-overview" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100">Code Generate</a>
-            <a href="#user-centre-profile" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100">User Centre</a>
+            <a href="#data-analysis-overview"
+               class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100">Data
+                Analysis</a>
+            <a href="#interface-test-overview"
+               class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100">Interface
+                Test</a>
+            <a href="#code-generate-overview"
+               class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100">Code
+                Generate</a>
+            <a href="#user-centre-profile"
+               class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100">User Centre</a>
             <a href="#logout" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100">退出</a>
         </div>
     </div>
@@ -162,7 +147,6 @@
     </nav>
 
     <main class="w-4/5 p-6">
-        <!-- 面包屑导航 -->
         <nav class="text-gray-600 mb-4">
             <a href="#" class="text-blue-500 hover:text-blue-700">首页</a> &gt;
             <a href="#" class="text-blue-500 hover:text-blue-700">模块导入</a> &gt;
@@ -171,217 +155,103 @@
 
         <h2 class="text-2xl font-bold mb-6">现有模块</h2>
 
-        <!-- 现有模块部分 -->
         <div class="bg-white p-6 shadow-md rounded-lg mb-6">
             <h2 class="text-xl font-bold">模块选择：</h2>
             <div id="moduleList">
-                <!-- 用户模块 -->
                 <div class="mb-4 border border-gray-300 rounded-md p-4">
                     <div class="flex justify-between items-center">
                         <div>
                             <h3 class="text-lg font-semibold">用户模块</h3>
                             <p class="text-sm text-gray-600">处理用户的注册、登录和权限管理</p>
                         </div>
-                        <button class="toggleModule bg-blue-500 text-white px-4 py-2 rounded-md" data-module="user">查看详情</button>
+                        <button class="generateCode bg-green-500 text-white px-4 py-2 rounded-md" data-module="user">生成代码</button>
                     </div>
                 </div>
-
-                <!-- 管理员模块 -->
                 <div class="mb-4 border border-gray-300 rounded-md p-4">
                     <div class="flex justify-between items-center">
                         <div>
                             <h3 class="text-lg font-semibold">管理员模块</h3>
                             <p class="text-sm text-gray-600">管理系统的后台操作，如用户管理和日志查看</p>
                         </div>
-                        <button class="toggleModule bg-blue-500 text-white px-4 py-2 rounded-md" data-module="admin">查看详情</button>
+                        <button class="generateCode bg-green-500 text-white px-4 py-2 rounded-md" data-module="admin">生成代码</button>
                     </div>
                 </div>
-
-                <!-- 统计模块 -->
                 <div class="mb-4 border border-gray-300 rounded-md p-4">
                     <div class="flex justify-between items-center">
                         <div>
                             <h3 class="text-lg font-semibold">统计模块</h3>
                             <p class="text-sm text-gray-600">提供系统的统计数据和分析功能</p>
                         </div>
-                        <button class="toggleModule bg-blue-500 text-white px-4 py-2 rounded-md" data-module="stats">查看详情</button>
+                        <button class="generateCode bg-green-500 text-white px-4 py-2 rounded-md" data-module="stats">生成代码</button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- 增加卡片展示 -->
-        <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
-            <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300">
-                <h3 class="text-xl font-semibold mb-2">用户模块</h3>
-                <p class="text-gray-600">处理用户的注册、登录和权限管理</p>
-                <button class="mt-4 bg-blue-500 text-white px-4 py-2 rounded-md">查看详情</button>
-            </div>
+        <div id="generatedCodeSection" class="hidden mt-8 bg-white p-6 rounded-lg shadow-md">
+            <h3 class="text-xl font-semibold mb-4">生成的代码</h3>
+            <pre id="generatedCodeContent" class="bg-gray-100 p-4 rounded-md overflow-x-auto"></pre>
+            <button id="copyButton" class="copy-btn mt-4">复制代码</button>
+            <a id="downloadCode" href="#" class="copy-btn mt-4">下载代码</a>
+            <span id="copyMessage" class="copy-message hidden ml-4">代码已复制到剪贴板！</span>
+        </div>
 
-            <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300">
-                <h3 class="text-xl font-semibold mb-2">管理员模块</h3>
-                <p class="text-gray-600">管理系统的后台操作，如用户管理和日志查看</p>
-                <button class="mt-4 bg-blue-500 text-white px-4 py-2 rounded-md">查看详情</button>
+        <!-- 成功或失败的模态框 -->
+        <div id="statusModal" class="modal fixed inset-0 flex items-center justify-center hidden">
+            <div class="modal-content p-6 bg-white rounded shadow-md text-center">
+                <p id="statusMessage" class="text-lg font-semibold mb-4"></p>
             </div>
-
-            <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300">
-                <h3 class="text-xl font-semibold mb-2">统计模块</h3>
-                <p class="text-gray-600">提供系统的统计数据和分析功能</p>
-                <button class="mt-4 bg-blue-500 text-white px-4 py-2 rounded-md">查看详情</button>
-            </div>
-        </section>
-
-        <!-- 数据展示表格 -->
-        <section class="mt-8 bg-white p-6 rounded-lg shadow-md">
-            <h3 class="text-xl font-semibold mb-4">模块数据</h3>
-            <table class="min-w-full bg-white border border-gray-300 rounded-md">
-                <thead>
-                <tr>
-                    <th class="py-2 px-4 border-b text-left text-sm font-medium text-gray-700">模块名称</th>
-                    <th class="py-2 px-4 border-b text-left text-sm font-medium text-gray-700">状态</th>
-                    <th class="py-2 px-4 border-b text-left text-sm font-medium text-gray-700">操作</th>
-                </tr>
-                </thead>
-                <tbody>
-                <!-- 示例数据行 -->
-                <tr>
-                    <td class="py-2 px-4 border-b">用户模块</td>
-                    <td class="py-2 px-4 border-b">启用</td>
-                    <td class="py-2 px-4 border-b">
-                        <button class="bg-yellow-500 text-white px-4 py-2 rounded-md">编辑</button>
-                        <button class="bg-red-500 text-white px-4 py-2 rounded-md ml-2">删除</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="py-2 px-4 border-b">管理员模块</td>
-                    <td class="py-2 px-4 border-b">停用</td>
-                    <td class="py-2 px-4 border-b">
-                        <button class="bg-yellow-500 text-white px-4 py-2 rounded-md">编辑</button>
-                        <button class="bg-red-500 text-white px-4 py-2 rounded-md ml-2">删除</button>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </section>
-
-        <!-- 图标和介绍 -->
-        <section class="flex items-center space-x-4 mt-8">
-            <div class="flex items-center justify-center w-1/4 bg-blue-500 text-white p-4 rounded-md">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 5v14M5 12h14"></path>
-                </svg>
-                <span class="text-lg">自定义模块</span>
-            </div>
-            <div class="flex items-center justify-center w-1/4 bg-green-500 text-white p-4 rounded-md">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 5v14M5 12h14"></path>
-                </svg>
-                <span class="text-lg">模块导入</span>
-            </div>
-            <div class="flex items-center justify-center w-1/4 bg-red-500 text-white p-4 rounded-md">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 5v14M5 12h14"></path>
-                </svg>
-                <span class="text-lg">模块详情</span>
-            </div>
-        </section>
-
-        <!-- 页面底部版权信息 -->
-        <footer class="bg-gray-800 text-white py-4 mt-8">
-            <div class="text-center">
-                <p>&copy; 2024 HIBISCUS API. All Rights Reserved.</p>
-            </div>
-        </footer>
+        </div>
     </main>
 </div>
-</body>
+
 <script>
-    // 模块详情展示与弹窗打开
-    document.querySelectorAll('.toggleModule').forEach(button => {
+    // 生成模块代码功能
+    document.querySelectorAll('.generateCode').forEach(button => {
         button.addEventListener('click', function () {
             const moduleId = this.getAttribute('data-module');
-            const moduleDetails = getModuleDetails(moduleId);
 
-            // 更新弹窗内容
-            document.getElementById('moduleTitle').textContent = moduleDetails.title;
-            document.getElementById('moduleDescription').textContent = moduleDetails.description;
-            document.getElementById('applyModule').setAttribute('data-module', moduleId);
+            // 发送请求至后端生成模块代码
+            fetch('/code/generateModule', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: new URLSearchParams({
+                    module: moduleId
+                }).toString(),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data && data.code) {
+                        // 显示生成的代码并提供下载
+                        const generatedCodeSection = document.getElementById('generatedCodeSection');
+                        generatedCodeSection.classList.remove('hidden');
 
-            // 打开弹窗
-            document.getElementById('moduleModal').classList.remove('hidden');
-            document.getElementById('moduleModal').setAttribute('aria-hidden', 'false');
+                        const generatedCodeContent = document.getElementById('generatedCodeContent');
+                        generatedCodeContent.textContent = data.code;
+
+                        // 创建 Blob 下载链接
+                        const blob = new Blob([data.code], { type: 'text/plain' });
+                        const url = URL.createObjectURL(blob);
+                        const downloadLink = document.getElementById('downloadCode');
+                        downloadLink.href = url;
+                        downloadLink.download = `${moduleId}-code.java`;
+
+                        // 显示成功的模态框
+                        showModal('模块代码生成成功：' + moduleId);
+                    } else {
+                        // 显示失败的模态框
+                        showModal('代码生成失败');
+                    }
+                })
+                .catch(error => {
+                    console.error('模块代码生成失败:', error);
+                    // 显示网络错误的模态框
+                    showModal('网络错误，无法生成模块代码');
+                });
         });
     });
 
-    // 获取模块详细信息
-    function getModuleDetails(moduleId) {
-        const modules = {
-            user: {
-                title: '用户模块',
-                description: '处理用户的注册、登录、权限管理等功能。',
-            },
-            admin: {
-                title: '管理员模块',
-                description: '管理系统的后台操作，如用户管理、日志查看等。',
-            },
-            stats: {
-                title: '统计模块',
-                description: '提供系统的统计数据和分析功能。',
-            }
-        };
-        return modules[moduleId] || {};
-    }
-
-    // 选择模块并生成代码
-    document.getElementById('applyModule').addEventListener('click', function () {
-        const moduleId = this.getAttribute('data-module');
-
-        // 发送请求生成代码
-        fetch('/code/generateModule', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: 'module=' + encodeURIComponent(moduleId),
-        })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('网络错误!');
-                }
-                return response.json();
-            })
-            .then(data => {
-                if (data && data.code) {
-                    // 显示生成的代码并提供下载
-                    const generatedCodeSection = document.getElementById('generatedCodeSection');
-                    generatedCodeSection.classList.remove('hidden');
-
-                    const generatedCodeContent = document.getElementById('generatedCodeContent');
-                    generatedCodeContent.textContent = data.code;
-
-                    const blob = new Blob([data.code], { type: 'text/plain' });
-                    const url = URL.createObjectURL(blob);
-                    const downloadLink = document.getElementById('downloadCode');
-                    downloadLink.href = url;
-                    downloadLink.download = `${moduleId}-code.java`;
-                }
-            })
-            .catch(error => {
-                console.error('错误:', error);
-            });
-
-        // 关闭弹窗
-        closeModal();
-    });
-
-    // 关闭模态弹窗
-    document.getElementById('closeModal').addEventListener('click', closeModal);
-
-    function closeModal() {
-        const modal = document.getElementById('moduleModal');
-        modal.classList.add('hidden');
-        modal.setAttribute('aria-hidden', 'true');
-    }
-
-    // 复制代码到剪贴板
+    // 复制代码到剪贴板功能
     document.getElementById('copyButton').addEventListener('click', function () {
         const codeContent = document.getElementById('generatedCodeContent').textContent;
 
@@ -394,19 +264,20 @@
         });
     });
 
-    // 关闭模态弹窗点击外部区域
-    window.addEventListener('click', function (event) {
-        const modal = document.getElementById('moduleModal');
-        if (event.target === modal) {
-            closeModal();
-        }
-    });
+    // 显示模态框函数
+    function showModal(message) {
+        const statusModal = document.getElementById('statusModal');
+        const statusMessage = document.getElementById('statusMessage');
+        statusMessage.textContent = message;
+        statusModal.classList.remove('hidden');
 
-    // 键盘导航支持（ESC关闭模态）
-    window.addEventListener('keydown', function (event) {
-        if (event.key === 'Escape') {
-            closeModal();
-        }
-    });
+        // 3秒后自动隐藏模态框
+        setTimeout(() => {
+            statusModal.classList.add('hidden');
+        }, 1500);
+    }
 </script>
+
+</body>
+
 </html>

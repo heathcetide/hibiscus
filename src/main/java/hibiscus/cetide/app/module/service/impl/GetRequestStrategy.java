@@ -26,9 +26,3 @@ public class GetRequestStrategy implements HttpRequestStrategy {
         return response.body();
     }
 }
-//    String execute(String url, Map<String, Object> params);
-//    @Override
-//    public String execute(String url, Map<String, Object> params) {
-//        String result3= HttpUtil.get(url, params);
-//        return result3;
-//    }
