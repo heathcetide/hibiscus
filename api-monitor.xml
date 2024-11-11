@@ -1,366 +1,366 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <apiMonitoring>
     <api>
-        <averageResponseTime>7.374233128834356</averageResponseTime>
-        <errorRate>44.171779141104295</errorRate>
-        <failureCount>72</failureCount>
-        <maxResponseTime>119</maxResponseTime>
+        <averageResponseTime>6.209033613445378</averageResponseTime>
+        <errorRate>44.32773109243697</errorRate>
+        <failureCount>422</failureCount>
+        <maxResponseTime>124</maxResponseTime>
         <minResponseTime>1</minResponseTime>
-        <monitoringTime>1731340779095</monitoringTime>
-        <responseStatusCode>302</responseStatusCode>
-        <responseTime>3</responseTime>
-        <status>Normal</status>
-        <totalRequests>163</totalRequests>
-        <url>http://localhost:8080/app/codeGenerator</url>
-    </api>
-    <api>
-        <averageResponseTime>7.341463414634147</averageResponseTime>
-        <errorRate>43.90243902439025</errorRate>
-        <failureCount>72</failureCount>
-        <maxResponseTime>119</maxResponseTime>
-        <minResponseTime>1</minResponseTime>
-        <monitoringTime>1731340779106</monitoringTime>
+        <monitoringTime>1731341054587</monitoringTime>
         <responseStatusCode>302</responseStatusCode>
         <responseTime>2</responseTime>
         <status>Normal</status>
-        <totalRequests>164</totalRequests>
+        <totalRequests>952</totalRequests>
+        <url>http://localhost:8080/app/codeGenerator</url>
+    </api>
+    <api>
+        <averageResponseTime>6.213459516298633</averageResponseTime>
+        <errorRate>44.37434279705573</errorRate>
+        <failureCount>422</failureCount>
+        <maxResponseTime>124</maxResponseTime>
+        <minResponseTime>1</minResponseTime>
+        <monitoringTime>1731341054582</monitoringTime>
+        <responseStatusCode>302</responseStatusCode>
+        <responseTime>1</responseTime>
+        <status>Normal</status>
+        <totalRequests>951</totalRequests>
         <url>http://localhost:8080/app/interface</url>
     </api>
     <api>
         <averageResponseTime>0.0</averageResponseTime>
         <errorDescription>405 : [no body]</errorDescription>
-        <errorRate>44.24242424242424</errorRate>
-        <failureCount>73</failureCount>
+        <errorRate>44.42105263157895</errorRate>
+        <failureCount>422</failureCount>
         <maxResponseTime>0</maxResponseTime>
         <minResponseTime>0</minResponseTime>
-        <monitoringTime>1731340779119</monitoringTime>
+        <monitoringTime>1731341054573</monitoringTime>
         <responseStatusCode>0</responseStatusCode>
         <responseTime>0</responseTime>
         <status>Error</status>
-        <totalRequests>165</totalRequests>
+        <totalRequests>950</totalRequests>
         <url>http://localhost:8080/app/register</url>
     </api>
     <api>
-        <averageResponseTime>7.325301204819277</averageResponseTime>
-        <errorRate>43.97590361445783</errorRate>
-        <failureCount>73</failureCount>
-        <maxResponseTime>119</maxResponseTime>
-        <minResponseTime>1</minResponseTime>
-        <monitoringTime>1731340779142</monitoringTime>
+        <averageResponseTime>6.229957805907173</averageResponseTime>
+        <errorRate>44.40928270042194</errorRate>
+        <failureCount>421</failureCount>
+        <maxResponseTime>124</maxResponseTime>
+        <minResponseTime>4</minResponseTime>
+        <monitoringTime>1731341054555</monitoringTime>
         <responseStatusCode>200</responseStatusCode>
-        <responseTime>12</responseTime>
+        <responseTime>4</responseTime>
         <status>Normal</status>
-        <totalRequests>166</totalRequests>
+        <totalRequests>948</totalRequests>
         <url>http://localhost:8080/app/sign</url>
     </api>
     <api>
-        <averageResponseTime>7.3053892215568865</averageResponseTime>
-        <errorRate>43.712574850299404</errorRate>
-        <failureCount>73</failureCount>
-        <maxResponseTime>119</maxResponseTime>
-        <minResponseTime>1</minResponseTime>
-        <monitoringTime>1731340779155</monitoringTime>
+        <averageResponseTime>6.22550052687039</averageResponseTime>
+        <errorRate>44.36248682824026</errorRate>
+        <failureCount>421</failureCount>
+        <maxResponseTime>124</maxResponseTime>
+        <minResponseTime>2</minResponseTime>
+        <monitoringTime>1731341054566</monitoringTime>
         <responseStatusCode>302</responseStatusCode>
-        <responseTime>4</responseTime>
+        <responseTime>2</responseTime>
         <status>Normal</status>
-        <totalRequests>167</totalRequests>
+        <totalRequests>949</totalRequests>
         <url>http://localhost:8080/app/</url>
     </api>
     <api>
         <averageResponseTime>0.0</averageResponseTime>
         <errorDescription>405 : [no body]</errorDescription>
-        <errorRate>44.047619047619044</errorRate>
-        <failureCount>74</failureCount>
+        <errorRate>44.503171247357294</errorRate>
+        <failureCount>421</failureCount>
         <maxResponseTime>0</maxResponseTime>
         <minResponseTime>0</minResponseTime>
-        <monitoringTime>1731340779170</monitoringTime>
+        <monitoringTime>1731341054534</monitoringTime>
         <responseStatusCode>0</responseStatusCode>
         <responseTime>0</responseTime>
         <status>Error</status>
-        <totalRequests>168</totalRequests>
+        <totalRequests>946</totalRequests>
         <url>http://localhost:8080/app/authenticate</url>
     </api>
     <api>
-        <averageResponseTime>7.272189349112426</averageResponseTime>
-        <errorRate>43.786982248520715</errorRate>
-        <failureCount>74</failureCount>
-        <maxResponseTime>119</maxResponseTime>
-        <minResponseTime>1</minResponseTime>
-        <monitoringTime>1731340779188</monitoringTime>
+        <averageResponseTime>6.232312565997888</averageResponseTime>
+        <errorRate>44.45617740232313</errorRate>
+        <failureCount>421</failureCount>
+        <maxResponseTime>124</maxResponseTime>
+        <minResponseTime>9</minResponseTime>
+        <monitoringTime>1731341054549</monitoringTime>
         <responseStatusCode>200</responseStatusCode>
         <responseTime>9</responseTime>
         <status>Normal</status>
-        <totalRequests>169</totalRequests>
+        <totalRequests>947</totalRequests>
         <url>http://localhost:8080/app/login</url>
     </api>
     <api>
         <averageResponseTime>0.0</averageResponseTime>
         <errorDescription>405 : [no body]</errorDescription>
-        <errorRate>44.11764705882353</errorRate>
-        <failureCount>75</failureCount>
+        <errorRate>44.38614900314795</errorRate>
+        <failureCount>423</failureCount>
         <maxResponseTime>0</maxResponseTime>
         <minResponseTime>0</minResponseTime>
-        <monitoringTime>1731340779203</monitoringTime>
+        <monitoringTime>1731341054598</monitoringTime>
         <responseStatusCode>0</responseStatusCode>
         <responseTime>0</responseTime>
         <status>Error</status>
-        <totalRequests>170</totalRequests>
+        <totalRequests>953</totalRequests>
         <url>http://localhost:8080/code/generate</url>
     </api>
     <api>
         <averageResponseTime>0.0</averageResponseTime>
         <errorDescription>Not enough variable values available to expand 'methodName'</errorDescription>
         <errorRate>44.44444444444444</errorRate>
-        <failureCount>76</failureCount>
+        <failureCount>424</failureCount>
         <maxResponseTime>0</maxResponseTime>
         <minResponseTime>0</minResponseTime>
-        <monitoringTime>1731340779213</monitoringTime>
+        <monitoringTime>1731341054602</monitoringTime>
         <responseStatusCode>0</responseStatusCode>
         <responseTime>0</responseTime>
         <status>Error</status>
-        <totalRequests>171</totalRequests>
+        <totalRequests>954</totalRequests>
         <url>http://localhost:8080/code/method-metrics/{methodName}</url>
     </api>
     <api>
         <averageResponseTime>0.0</averageResponseTime>
         <errorDescription>405 : [no body]</errorDescription>
-        <errorRate>44.76744186046512</errorRate>
-        <failureCount>77</failureCount>
+        <errorRate>44.502074688796675</errorRate>
+        <failureCount>429</failureCount>
         <maxResponseTime>0</maxResponseTime>
         <minResponseTime>0</minResponseTime>
-        <monitoringTime>1731340779229</monitoringTime>
+        <monitoringTime>1731341054678</monitoringTime>
         <responseStatusCode>0</responseStatusCode>
         <responseTime>0</responseTime>
         <status>Error</status>
-        <totalRequests>172</totalRequests>
+        <totalRequests>964</totalRequests>
         <url>http://localhost:8080/code/generateModule</url>
     </api>
     <api>
-        <averageResponseTime>7.121387283236994</averageResponseTime>
-        <errorRate>44.50867052023121</errorRate>
-        <failureCount>77</failureCount>
-        <maxResponseTime>119</maxResponseTime>
+        <averageResponseTime>6.1678832116788325</averageResponseTime>
+        <errorRate>44.316996871741395</errorRate>
+        <failureCount>425</failureCount>
+        <maxResponseTime>124</maxResponseTime>
         <minResponseTime>1</minResponseTime>
-        <monitoringTime>1731340779244</monitoringTime>
+        <monitoringTime>1731341054639</monitoringTime>
         <responseStatusCode>302</responseStatusCode>
-        <responseTime>3</responseTime>
+        <responseTime>1</responseTime>
         <status>Normal</status>
-        <totalRequests>173</totalRequests>
+        <totalRequests>959</totalRequests>
         <url>http://localhost:8080/code/interface-analysis</url>
     </api>
     <api>
         <averageResponseTime>0.0</averageResponseTime>
         <errorDescription>405 : [no body]</errorDescription>
-        <errorRate>44.827586206896555</errorRate>
-        <failureCount>78</failureCount>
+        <errorRate>44.375</errorRate>
+        <failureCount>426</failureCount>
         <maxResponseTime>0</maxResponseTime>
         <minResponseTime>0</minResponseTime>
-        <monitoringTime>1731340779256</monitoringTime>
+        <monitoringTime>1731341054646</monitoringTime>
         <responseStatusCode>0</responseStatusCode>
         <responseTime>0</responseTime>
         <status>Error</status>
-        <totalRequests>174</totalRequests>
+        <totalRequests>960</totalRequests>
         <url>http://localhost:8080/code/connectDatabase</url>
     </api>
     <api>
-        <averageResponseTime>7.045714285714285</averageResponseTime>
-        <errorRate>44.57142857142857</errorRate>
-        <failureCount>78</failureCount>
-        <maxResponseTime>119</maxResponseTime>
+        <averageResponseTime>6.179728317659352</averageResponseTime>
+        <errorRate>44.30512016718913</errorRate>
+        <failureCount>424</failureCount>
+        <maxResponseTime>124</maxResponseTime>
         <minResponseTime>1</minResponseTime>
-        <monitoringTime>1731340779268</monitoringTime>
+        <monitoringTime>1731341054622</monitoringTime>
         <responseStatusCode>302</responseStatusCode>
         <responseTime>1</responseTime>
         <status>Normal</status>
-        <totalRequests>175</totalRequests>
+        <totalRequests>957</totalRequests>
         <url>http://localhost:8080/code/data-manager</url>
     </api>
     <api>
-        <averageResponseTime>7.017045454545454</averageResponseTime>
-        <errorRate>44.31818181818182</errorRate>
-        <failureCount>78</failureCount>
-        <maxResponseTime>119</maxResponseTime>
+        <averageResponseTime>6.157127991675338</averageResponseTime>
+        <errorRate>44.32882414151925</errorRate>
+        <failureCount>426</failureCount>
+        <maxResponseTime>124</maxResponseTime>
         <minResponseTime>1</minResponseTime>
-        <monitoringTime>1731340779283</monitoringTime>
+        <monitoringTime>1731341054652</monitoringTime>
         <responseStatusCode>302</responseStatusCode>
         <responseTime>2</responseTime>
         <status>Normal</status>
-        <totalRequests>176</totalRequests>
+        <totalRequests>961</totalRequests>
         <url>http://localhost:8080/code/generate-html</url>
     </api>
     <api>
         <averageResponseTime>0.0</averageResponseTime>
         <errorDescription>405 : [no body]</errorDescription>
-        <errorRate>44.632768361581924</errorRate>
-        <failureCount>79</failureCount>
+        <errorRate>44.44444444444444</errorRate>
+        <failureCount>428</failureCount>
         <maxResponseTime>0</maxResponseTime>
         <minResponseTime>0</minResponseTime>
-        <monitoringTime>1731340779297</monitoringTime>
+        <monitoringTime>1731341054671</monitoringTime>
         <responseStatusCode>0</responseStatusCode>
         <responseTime>0</responseTime>
         <status>Error</status>
-        <totalRequests>177</totalRequests>
+        <totalRequests>963</totalRequests>
         <url>http://localhost:8080/code/generateAllCode</url>
     </api>
     <api>
-        <averageResponseTime>6.96067415730337</averageResponseTime>
-        <errorRate>44.38202247191011</errorRate>
-        <failureCount>79</failureCount>
-        <maxResponseTime>119</maxResponseTime>
-        <minResponseTime>1</minResponseTime>
-        <monitoringTime>1731340779312</monitoringTime>
+        <averageResponseTime>6.185146443514644</averageResponseTime>
+        <errorRate>44.35146443514644</errorRate>
+        <failureCount>424</failureCount>
+        <maxResponseTime>124</maxResponseTime>
+        <minResponseTime>0</minResponseTime>
+        <monitoringTime>1731341054614</monitoringTime>
         <responseStatusCode>302</responseStatusCode>
-        <responseTime>4</responseTime>
+        <responseTime>0</responseTime>
         <status>Normal</status>
-        <totalRequests>178</totalRequests>
+        <totalRequests>956</totalRequests>
         <url>http://localhost:8080/code/method-metrics</url>
     </api>
     <api>
-        <averageResponseTime>6.944134078212291</averageResponseTime>
-        <errorRate>44.134078212290504</errorRate>
-        <failureCount>79</failureCount>
-        <maxResponseTime>119</maxResponseTime>
+        <averageResponseTime>6.191623036649215</averageResponseTime>
+        <errorRate>44.397905759162306</errorRate>
+        <failureCount>424</failureCount>
+        <maxResponseTime>124</maxResponseTime>
         <minResponseTime>1</minResponseTime>
-        <monitoringTime>1731340779326</monitoringTime>
+        <monitoringTime>1731341054607</monitoringTime>
         <responseStatusCode>302</responseStatusCode>
-        <responseTime>4</responseTime>
+        <responseTime>2</responseTime>
         <status>Normal</status>
-        <totalRequests>179</totalRequests>
+        <totalRequests>955</totalRequests>
         <url>http://localhost:8080/code/import-module</url>
     </api>
     <api>
         <averageResponseTime>0.0</averageResponseTime>
         <errorDescription>405 : [no body]</errorDescription>
-        <errorRate>44.44444444444444</errorRate>
-        <failureCount>80</failureCount>
+        <errorRate>44.38669438669439</errorRate>
+        <failureCount>427</failureCount>
         <maxResponseTime>0</maxResponseTime>
         <minResponseTime>0</minResponseTime>
-        <monitoringTime>1731340779346</monitoringTime>
+        <monitoringTime>1731341054661</monitoringTime>
         <responseStatusCode>0</responseStatusCode>
         <responseTime>0</responseTime>
         <status>Error</status>
-        <totalRequests>180</totalRequests>
+        <totalRequests>962</totalRequests>
         <url>http://localhost:8080/code/deleteDataSource</url>
     </api>
     <api>
         <averageResponseTime>0.0</averageResponseTime>
         <errorDescription>405 : [no body]</errorDescription>
-        <errorRate>44.751381215469614</errorRate>
-        <failureCount>81</failureCount>
+        <errorRate>44.363256784968684</errorRate>
+        <failureCount>425</failureCount>
         <maxResponseTime>0</maxResponseTime>
         <minResponseTime>0</minResponseTime>
-        <monitoringTime>1731340779363</monitoringTime>
+        <monitoringTime>1731341054631</monitoringTime>
         <responseStatusCode>0</responseStatusCode>
         <responseTime>0</responseTime>
         <status>Error</status>
-        <totalRequests>181</totalRequests>
+        <totalRequests>958</totalRequests>
         <url>http://localhost:8080/code/executeQuery</url>
     </api>
     <api>
-        <averageResponseTime>7.4945054945054945</averageResponseTime>
-        <errorRate>44.505494505494504</errorRate>
-        <failureCount>81</failureCount>
-        <maxResponseTime>121</maxResponseTime>
+        <averageResponseTime>6.24223602484472</averageResponseTime>
+        <errorRate>44.409937888198755</errorRate>
+        <failureCount>429</failureCount>
+        <maxResponseTime>124</maxResponseTime>
         <minResponseTime>1</minResponseTime>
-        <monitoringTime>1731340779496</monitoringTime>
+        <monitoringTime>1731341054804</monitoringTime>
         <responseStatusCode>200</responseStatusCode>
-        <responseTime>121</responseTime>
+        <responseTime>111</responseTime>
         <status>Normal</status>
-        <totalRequests>182</totalRequests>
+        <totalRequests>966</totalRequests>
         <url>http://localhost:8080/api/hello</url>
     </api>
     <api>
-        <averageResponseTime>7.5136612021857925</averageResponseTime>
-        <errorRate>44.26229508196721</errorRate>
-        <failureCount>81</failureCount>
-        <maxResponseTime>121</maxResponseTime>
+        <averageResponseTime>6.133678756476684</averageResponseTime>
+        <errorRate>44.4559585492228</errorRate>
+        <failureCount>429</failureCount>
+        <maxResponseTime>124</maxResponseTime>
         <minResponseTime>1</minResponseTime>
-        <monitoringTime>1731340779517</monitoringTime>
+        <monitoringTime>1731341054688</monitoringTime>
         <responseStatusCode>200</responseStatusCode>
-        <responseTime>11</responseTime>
+        <responseTime>2</responseTime>
         <status>Normal</status>
-        <totalRequests>183</totalRequests>
+        <totalRequests>965</totalRequests>
         <url>http://localhost:8080/api/execution-times</url>
     </api>
     <api>
-        <averageResponseTime>7.532608695652174</averageResponseTime>
-        <errorRate>44.02173913043478</errorRate>
-        <failureCount>81</failureCount>
-        <maxResponseTime>121</maxResponseTime>
+        <averageResponseTime>6.238883143743537</averageResponseTime>
+        <errorRate>44.36401240951396</errorRate>
+        <failureCount>429</failureCount>
+        <maxResponseTime>124</maxResponseTime>
         <minResponseTime>1</minResponseTime>
-        <monitoringTime>1731340779541</monitoringTime>
+        <monitoringTime>1731341054810</monitoringTime>
         <responseStatusCode>200</responseStatusCode>
-        <responseTime>11</responseTime>
+        <responseTime>3</responseTime>
         <status>Normal</status>
-        <totalRequests>184</totalRequests>
+        <totalRequests>967</totalRequests>
         <url>http://localhost:8080/hibiscus/test/monitor/all</url>
     </api>
     <api>
-        <averageResponseTime>7.518918918918919</averageResponseTime>
-        <errorRate>43.78378378378379</errorRate>
-        <failureCount>81</failureCount>
-        <maxResponseTime>121</maxResponseTime>
+        <averageResponseTime>6.233471074380165</averageResponseTime>
+        <errorRate>44.31818181818182</errorRate>
+        <failureCount>429</failureCount>
+        <maxResponseTime>124</maxResponseTime>
         <minResponseTime>1</minResponseTime>
-        <monitoringTime>1731340779558</monitoringTime>
+        <monitoringTime>1731341054813</monitoringTime>
         <responseStatusCode>200</responseStatusCode>
-        <responseTime>5</responseTime>
+        <responseTime>1</responseTime>
         <status>Normal</status>
-        <totalRequests>185</totalRequests>
+        <totalRequests>968</totalRequests>
         <url>http://localhost:8080/hibiscus/test/interface-list</url>
     </api>
     <api>
         <averageResponseTime>0.0</averageResponseTime>
         <errorDescription>405 : [no body]</errorDescription>
-        <errorRate>44.086021505376344</errorRate>
-        <failureCount>82</failureCount>
+        <errorRate>44.375644994840044</errorRate>
+        <failureCount>430</failureCount>
         <maxResponseTime>0</maxResponseTime>
         <minResponseTime>0</minResponseTime>
-        <monitoringTime>1731340779573</monitoringTime>
+        <monitoringTime>1731341054819</monitoringTime>
         <responseStatusCode>0</responseStatusCode>
         <responseTime>0</responseTime>
         <status>Error</status>
-        <totalRequests>186</totalRequests>
+        <totalRequests>969</totalRequests>
         <url>http://localhost:8080/hibiscus/test/send-request</url>
     </api>
     <api>
         <averageResponseTime>0.0</averageResponseTime>
         <errorDescription>Not enough variable values available to expand 'className'</errorDescription>
-        <errorRate>44.38502673796791</errorRate>
-        <failureCount>83</failureCount>
+        <errorRate>44.43298969072165</errorRate>
+        <failureCount>431</failureCount>
         <maxResponseTime>0</maxResponseTime>
         <minResponseTime>0</minResponseTime>
-        <monitoringTime>1731340779585</monitoringTime>
+        <monitoringTime>1731341054823</monitoringTime>
         <responseStatusCode>0</responseStatusCode>
         <responseTime>0</responseTime>
         <status>Error</status>
-        <totalRequests>187</totalRequests>
+        <totalRequests>970</totalRequests>
         <url>http://localhost:8080/hibiscus/test/request/info/{className}</url>
     </api>
     <api>
-        <averageResponseTime>7.420212765957447</averageResponseTime>
-        <errorRate>44.148936170212764</errorRate>
-        <failureCount>83</failureCount>
-        <maxResponseTime>121</maxResponseTime>
+        <averageResponseTime>6.2162718846549945</averageResponseTime>
+        <errorRate>44.387229660144186</errorRate>
+        <failureCount>431</failureCount>
+        <maxResponseTime>124</maxResponseTime>
         <minResponseTime>1</minResponseTime>
-        <monitoringTime>1731340779604</monitoringTime>
+        <monitoringTime>1731341054834</monitoringTime>
         <responseStatusCode>200</responseStatusCode>
-        <responseTime>4</responseTime>
+        <responseTime>2</responseTime>
         <status>Normal</status>
-        <totalRequests>188</totalRequests>
+        <totalRequests>971</totalRequests>
         <url>http://localhost:8080/hello</url>
     </api>
     <api>
         <averageResponseTime>0.0</averageResponseTime>
         <errorDescription>405 : [no body]</errorDescription>
         <errorRate>44.44444444444444</errorRate>
-        <failureCount>84</failureCount>
+        <failureCount>432</failureCount>
         <maxResponseTime>0</maxResponseTime>
         <minResponseTime>0</minResponseTime>
-        <monitoringTime>1731340779619</monitoringTime>
+        <monitoringTime>1731341054845</monitoringTime>
         <responseStatusCode>0</responseStatusCode>
         <responseTime>0</responseTime>
         <status>Error</status>
-        <totalRequests>189</totalRequests>
+        <totalRequests>972</totalRequests>
         <url>http://localhost:8080/hello1</url>
     </api>
 </apiMonitoring>
