@@ -47,7 +47,7 @@ public class MappingHandler {
 
         if (clazz.isAnnotationPresent(Service.class)){
 //            System.out.println("Service: " + clazz.getName());
-            logger.log(LogLevel.INFO, "Service: " + clazz.getName());
+//            logger.log(LogLevel.INFO, "Service: " + clazz.getName());
         }
 //        if (clazz.isAnnotationPresent(Repository.class)){
 //            System.out.println("Repository: " + clazz.getName());

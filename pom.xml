@@ -71,7 +71,13 @@
             <artifactId>ojdbc8</artifactId>
             <version>19.8.0.0</version>
         </dependency>
-<!--        <dependency>-->
+        <dependency>
+            <groupId>com.github.javaparser</groupId>
+            <artifactId>javaparser-core</artifactId>
+            <version>3.23.1</version>
+        </dependency>
+
+        <!--        <dependency>-->
 <!--            <groupId>org.springframework.boot</groupId>-->
 <!--            <artifactId>spring-boot-starter-jdbc</artifactId>-->
 <!--        </dependency>-->

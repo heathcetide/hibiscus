@@ -1,4 +1,4 @@
-package hibiscus.cetide.app.generator.common;
+package ${packageName}.generator.common;
 
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;

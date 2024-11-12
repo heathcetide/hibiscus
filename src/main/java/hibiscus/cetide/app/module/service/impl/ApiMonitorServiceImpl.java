@@ -40,7 +40,6 @@ public class ApiMonitorServiceImpl implements ApiMonitorService {
 
     private void checkAllApiStatus(RequestInfo requestInfo) {
         String apiUrl = apiUrlUtil.buildApiUrl(requestInfo.getPaths().get(0));
-        System.out.println("Checking API: " + apiUrl);
         HttpHeaders headers = new HttpHeaders();
 
         // 构造请求头，如果有需要

@@ -1,6 +1,8 @@
 package hibiscus.cetide.app.module.control;
 
 import com.google.gson.Gson;
+import hibiscus.cetide.app.basic.log.core.LogLevel;
+import hibiscus.cetide.app.basic.log.core.Logger;
 import hibiscus.cetide.app.common.utils.ApiMonitoring;
 import hibiscus.cetide.app.common.model.FullRequestParams;
 import hibiscus.cetide.app.common.model.RequestInfo;
@@ -21,6 +23,8 @@ public class RequestClient {
     @Autowired
     HttpRequestStrategyFactory factory;
 
+    @Autowired
+    private Logger logger;
 
     @Autowired
     private ApiMonitorService apiMonitorService;
@@ -55,7 +59,7 @@ public class RequestClient {
      */
     @PostMapping("/send-request")
     public String sendRequest(@RequestBody FullRequestParams requestParams) {
-        System.out.println("Received request params: " + requestParams);
+        logger.log(LogLevel.INFO, "Received request params: " + requestParams);
         // 获取请求的各个部分
         String method = requestParams.getMethod();
         String url = requestParams.getUrl();

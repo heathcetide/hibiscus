@@ -1,4 +1,4 @@
-package hibiscus.cetide.app.generator.common;
+package ${packageName}.generator.common;
 /**
  * 用户常量
  *

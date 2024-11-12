@@ -1,4 +1,4 @@
-package hibiscus.cetide.app.generator.common;
+package ${packageName}.generator.common;
 
 import org.apache.commons.lang3.StringUtils;
 

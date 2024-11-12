@@ -95,24 +95,25 @@ Hibiscus提供了一系列功能，以满足现代开发工作流的需求：
 在你的 `pom.xml` 文件中添加以下依赖：
   ```
   <dependency> 
-      <groupId>io.github.heathcetide</groupId> 
-      <artifactId>cetide.hibiscus.demo</artifactId> 
-      <version>0.1.9</version> 
+    <groupId>io.github.heathcetide</groupId>
+    <artifactId>cetide.hibiscus.demo</artifactId>
+    <version>0.2.1</version>
   </dependency>
   ```
 
-### 步骤
-
-按照以下步骤安装Hibiscus：
-
-   ```bash
-   git clone https://github.com/heathcetide/hibiscus
-  ```
 ## 快速开始
+![功能图片](.README-images/function_2.png)
 
-安装并设置好Hibiscus后，你可以开始使用它来管理你的项目。以下是一些基本命令，帮助你快速上手：
+- **SpringBoot的启动类上配置扫描包名**: 
+- ```angular2html
+  @SpringBootApplication(scanBasePackages = {"com.example.hibiscus","hibiscus.cetide.app"})
+  ```
+- ![配置图片](.README-images/function_4.png)
+只需配置两个参数即可使用Hibiscus。(分别是是hibiscus.cetide.app和开发者项目的包名)
 
-[//]: # (- **生成新项目**)
+#### 描述：
+1. **hibiscus 本身无侵入性，开发者只需引入依赖和添加启动类的包名，就可以使用Hibiscus**
+2. **开发者如果更换技术栈，只需移除hibiscus的依赖，并移除包名，即可。**
 
 
 ## 贡献

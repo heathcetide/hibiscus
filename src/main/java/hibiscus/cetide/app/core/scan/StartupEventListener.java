@@ -11,10 +11,9 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
-import org.springframework.boot.SpringApplication;
-
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import java.io.File;
 
 /**
  * 监听启动事件
@@ -40,7 +39,7 @@ public class StartupEventListener implements ApplicationListener<ContextRefreshe
         // 获取主类
         Class<?> scanMainClass = getMainClass(context);
 
-        if (scanMainClass != null && scanMainClass.isAnnotationPresent(SpringBootApplication.class)) {
+        if (scanMainClass.isAnnotationPresent(SpringBootApplication.class)) {
             SpringBootApplication annotation = scanMainClass.getAnnotation(SpringBootApplication.class);
 
             // 获取注解中的属性值
@@ -86,6 +85,18 @@ public class StartupEventListener implements ApplicationListener<ContextRefreshe
 
     @PreDestroy
     public void destroy() {
+        File file = new File("api-monitor.xml");
+        // 检查文件是否存在
+        if (file.exists()) {
+            // 尝试删除文件
+            if (file.delete()) {
+                logger.log(LogLevel.CRITICAL, "DELETE API-Monitor.xml Successful");
+            } else {
+                logger.log(LogLevel.CRITICAL, "Failed to delete API-Monitor.xml");
+            }
+        } else {
+            logger.log(LogLevel.WARNING, "API-Monitor.xml does not exist");
+        }
         logger.log(LogLevel.STOP,"Hibiscus Stopping","Service has been stopped.");
         logger.shutdown();
     }

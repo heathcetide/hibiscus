@@ -1,4 +1,4 @@
-package hibiscus.cetide.app.generator.common;
+package ${packageName}.generator.common;
 
 
 

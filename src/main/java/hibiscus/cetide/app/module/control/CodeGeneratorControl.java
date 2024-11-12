@@ -1,5 +1,8 @@
 package hibiscus.cetide.app.module.control;
 
+import freemarker.template.Configuration;
+import freemarker.template.Template;
+import freemarker.template.TemplateException;
 import hibiscus.cetide.app.common.model.ConnectionDetails;
 import hibiscus.cetide.app.common.utils.ApiUrlUtil;
 import hibiscus.cetide.app.common.utils.AppConfigProperties;
@@ -14,9 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -70,10 +71,21 @@ public class CodeGeneratorControl {
     @PostMapping("/generateAllCode")
     public ResponseEntity<Boolean> generateAllCode(@RequestParam String key) {
         try {
+            copyResourceFiles("PageRequest");
+            copyResourceFiles("CommonConstant");
+            copyResourceFiles("AuthCheck");
+            copyResourceFiles("BaseResponse");
+            copyResourceFiles("BusinessException");
+            copyResourceFiles("DeleteRequest");
+            copyResourceFiles("ErrorCode");
+            copyResourceFiles("GlobalExceptionHandler");
+            copyResourceFiles("ResultUtils");
+            copyResourceFiles("ThrowUtils");
+            copyResourceFiles("UserConstant");
+            copyResourceFiles("SqlUtils");
             ConnectionDetails connectionDetails = connectionPool.get(key);
             generateEntitiesFromConnection(connectionDetails.getConnection());
             printDatabaseInfo(connectionDetails.getConnection());
-            copyResourceFiles();
         } catch (Exception e) {
             return ResponseEntity.ok(false);
         }
@@ -307,7 +319,6 @@ public class CodeGeneratorControl {
         if (catalog.contains("?")) {
             catalog = catalog.substring(0, catalog.indexOf("?"));
         }
-        System.out.println("Database name: " + catalog);
         String schemaPattern = null; // MySQL 中通常不需要指定 schema
 
         // 获取所有表信息
@@ -426,19 +437,31 @@ public class CodeGeneratorControl {
         }
     }
 
-    private void copyResourceFiles() {
-        codeGeneratorService.copyFileFromResources("PageRequest.java");
-        codeGeneratorService.copyFileFromResources("CommonConstant.java");
-        codeGeneratorService.copyFileFromResources("AuthCheck.java");
-        codeGeneratorService.copyFileFromResources("BaseResponse.java");
-        codeGeneratorService.copyFileFromResources("BusinessException.java");
-        codeGeneratorService.copyFileFromResources("DeleteRequest.java");
-        codeGeneratorService.copyFileFromResources("ErrorCode.java");
-        codeGeneratorService.copyFileFromResources("GlobalExceptionHandler.java");
-        codeGeneratorService.copyFileFromResources("ResultUtils.java");
-        codeGeneratorService.copyFileFromResources("ThrowUtils.java");
-        codeGeneratorService.copyFileFromResources("UserConstant.java");
-        codeGeneratorService.copyFileFromResources("SqlUtils.java");
+    private void copyResourceFiles(String fileName) {
+        // 创建 Configuration 对象
+        Configuration cfg = new Configuration(Configuration.VERSION_2_3_31);
+
+        try {
+            // 设置模板目录
+            cfg.setClassLoaderForTemplateLoading(getClass().getClassLoader(), "templates/utils");
+            cfg.setDefaultEncoding("UTF-8");
+            // 加载模板文件
+            Template template = cfg.getTemplate(fileName+".java.ftl");
+
+            // 创建数据模型
+            Map<String, Object> dataModel = new HashMap<>();
+            dataModel.put("packageName", appConfigProperties.getHibiscus());
+            String directoryPath = "src/main/java/" + appConfigProperties.getHibiscus() + "/generator/common/";
+            File directory = new File(directoryPath);
+            if (!directory.exists()) {
+                directory.mkdirs();
+            }
+            try (Writer fileWriter = new FileWriter(new File(directory, fileName + ".java"))) {
+                template.process(dataModel, fileWriter);
+            }
+        } catch (IOException | TemplateException e) {
+            e.printStackTrace();
+        }
     }
 }
 

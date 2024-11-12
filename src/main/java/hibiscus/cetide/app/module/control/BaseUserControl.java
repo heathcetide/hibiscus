@@ -45,7 +45,7 @@ public class BaseUserControl {
     private ApiUrlUtil apiUrlUtil;
 
     @GetMapping("/login")
-    public String loginPage(Model model) {
+    public String loginPage() {
         return "login";
     }
 
@@ -54,7 +54,6 @@ public class BaseUserControl {
     public Map<String, Object> login(@RequestParam(value = "name") String name,
                                      @RequestParam(value = "password") String password,
                                      HttpServletRequest request) {
-        System.out.println("Received login request" + name + " " + password);
         Map returnData = new HashMap();
 
         if (appConfigProperties.getUsername().equals(name) && appConfigProperties.getPassword().equals(password)) {
@@ -99,9 +98,6 @@ public class BaseUserControl {
         // 使用 Map 来过滤掉相同的 className
         Map<String, RequestInfo> uniqueRequestInfoMap = new HashMap<>();
         for (RequestInfo requestInfo : requestInfos) {
-//            System.out.println("Class Name: " + requestInfo.getClassName());
-//            System.out.println("Method Name: " + requestInfo.getMethodName());
-//            System.out.println("Paths: " + requestInfo.getPaths());
             try {
                 uniqueRequestInfoMap.put(requestInfo.getClassName(), requestInfo);
             } catch (Exception e) {

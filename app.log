@@ -3809,3 +3809,214 @@
 [START] appConfigProperties name: hibiscus.cetide.app - {}
 [INFO] Found Main Class: hibiscus.cetide.app.AppApplication - {}
 [STOP] Hibiscus Stopping - {message=Service has been stopped.}
+[START] Hibiscus Starting - {message=Service has been started.}
+[START] appConfigProperties name: hibiscus.cetide.app - {}
+[INFO] Found Main Class: hibiscus.cetide.app.AppApplication - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.CodeGeneratorControl - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
+[INFO] Service: hibiscus.cetide.app.module.service.impl.ApiMonitorServiceImpl - {}
+[INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
+[INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
+[WARNING] API-Monitor.xml does not exist - {message=Service has been stopped.}
+[STOP] Hibiscus Stopping - {}
+[START] Hibiscus Starting - {message=Service has been started.}
+[START] appConfigProperties name: hibiscus.cetide.app - {}
+[INFO] Found Main Class: hibiscus.cetide.app.AppApplication - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.CodeGeneratorControl - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
+[INFO] Service: hibiscus.cetide.app.module.service.impl.ApiMonitorServiceImpl - {}
+[INFO] Service: hibiscus.cetide.app.module.service.impl.BaseUserServiceImpl - {}
+[INFO] Service: hibiscus.cetide.app.module.service.impl.CodeGeneratorService - {}
+[CRITICAL] DELETE API-Monitor.xml Successful - {message=Service has been stopped.}
+[STOP] Hibiscus Stopping - {}
+[START] Hibiscus Starting - {message=Service has been started.}
+[START] appConfigProperties name: hibiscus.cetide.app - {}
+[INFO] Found Main Class: hibiscus.cetide.app.AppApplication - {}
+[WARNING] API-Monitor.xml does not exist - {message=Service has been stopped.}
+[STOP] Hibiscus Stopping - {}
+[START] Hibiscus Starting - {message=Service has been started.}
+[START] appConfigProperties name: hibiscus.cetide.app - {}
+[INFO] Found Main Class: hibiscus.cetide.app.AppApplication - {}
+[WARNING] API-Monitor.xml does not exist - {message=Service has been stopped.}
+[STOP] Hibiscus Stopping - {}
+[START] Hibiscus Starting - {message=Service has been started.}
+[START] appConfigProperties name: hibiscus.cetide.app - {}
+[INFO] Found Main Class: hibiscus.cetide.app.AppApplication - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.CodeGeneratorControl - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
+[WARNING] API-Monitor.xml does not exist - {message=Service has been stopped.}
+[STOP] Hibiscus Stopping - {}
+[START] Hibiscus Starting - {message=Service has been started.}
+[START] appConfigProperties name: hibiscus.cetide.app - {}
+[INFO] Found Main Class: hibiscus.cetide.app.AppApplication - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.CodeGeneratorControl - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
+[WARNING] API-Monitor.xml does not exist - {message=Service has been stopped.}
+[STOP] Hibiscus Stopping - {}
+[START] Hibiscus Starting - {message=Service has been started.}
+[START] appConfigProperties name: hibiscus.cetide.app - {}
+[INFO] Found Main Class: hibiscus.cetide.app.AppApplication - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.CodeGeneratorControl - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
+[WARNING] API-Monitor.xml does not exist - {message=Service has been stopped.}
+[STOP] Hibiscus Stopping - {}
+[START] Hibiscus Starting - {message=Service has been started.}
+[START] appConfigProperties name: hibiscus.cetide.app - {}
+[INFO] Found Main Class: hibiscus.cetide.app.AppApplication - {}
+[WARNING] API-Monitor.xml does not exist - {message=Service has been stopped.}
+[STOP] Hibiscus Stopping - {}
+[START] Hibiscus Starting - {message=Service has been started.}
+[START] appConfigProperties name: hibiscus.cetide.app - {}
+[INFO] Found Main Class: hibiscus.cetide.app.AppApplication - {}
+[WARNING] API-Monitor.xml does not exist - {message=Service has been stopped.}
+[STOP] Hibiscus Stopping - {}
+[START] Hibiscus Starting - {message=Service has been started.}
+[START] appConfigProperties name: hibiscus.cetide.app - {}
+[INFO] Found Main Class: hibiscus.cetide.app.AppApplication - {}
+[WARNING] API-Monitor.xml does not exist - {message=Service has been stopped.}
+[STOP] Hibiscus Stopping - {}
+[START] Hibiscus Starting - {message=Service has been started.}
+[START] appConfigProperties name: hibiscus.cetide.app - {}
+[INFO] Found Main Class: hibiscus.cetide.app.AppApplication - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.CodeGeneratorControl - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
+[WARNING] API-Monitor.xml does not exist - {message=Service has been stopped.}
+[STOP] Hibiscus Stopping - {}
+[START] Hibiscus Starting - {message=Service has been started.}
+[START] appConfigProperties name: hibiscus.cetide.app - {}
+[INFO] Found Main Class: hibiscus.cetide.app.AppApplication - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.CodeGeneratorControl - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
+[INFO] 数据库表全量代码生成完成: C:\Users\Lenovo\Desktop\test\hibiscus/src/main/java/hibiscus/cetide/app/generator/model/vo/AdminVO.java - {}
+[INFO] 数据库表全量代码生成完成: C:\Users\Lenovo\Desktop\test\hibiscus/src/main/java/hibiscus/cetide/app/generator/model/vo/PostVO.java - {}
+[INFO] 数据库表全量代码生成完成: C:\Users\Lenovo\Desktop\test\hibiscus/src/main/java/hibiscus/cetide/app/generator/model/vo/PostLogsVO.java - {}
+[INFO] 数据库表全量代码生成完成: C:\Users\Lenovo\Desktop\test\hibiscus/src/main/java/hibiscus/cetide/app/generator/model/vo/ProductVO.java - {}
+[INFO] 数据库表全量代码生成完成: C:\Users\Lenovo\Desktop\test\hibiscus/src/main/java/hibiscus/cetide/app/generator/model/vo/ProductDetailVO.java - {}
+[INFO] 数据库表全量代码生成完成: C:\Users\Lenovo\Desktop\test\hibiscus/src/main/java/hibiscus/cetide/app/generator/model/vo/QuestionVO.java - {}
+[INFO] 数据库表全量代码生成完成: C:\Users\Lenovo\Desktop\test\hibiscus/src/main/java/hibiscus/cetide/app/generator/model/vo/QuestionSubmitVO.java - {}
+[INFO] 数据库表全量代码生成完成: C:\Users\Lenovo\Desktop\test\hibiscus/src/main/java/hibiscus/cetide/app/generator/model/vo/UserVO.java - {}
+[INFO] 数据库表全量代码生成完成: C:\Users\Lenovo\Desktop\test\hibiscus/src/main/java/hibiscus/cetide/app/generator/model/vo/UserLogsVO.java - {}
+[INFO] 数据库表全量代码生成完成: C:\Users\Lenovo\Desktop\test\hibiscus/src/main/java/hibiscus/cetide/app/generator/model/vo/YkdPaymentRecordVO.java - {}
+[WARNING] API-Monitor.xml does not exist - {message=Service has been stopped.}
+[STOP] Hibiscus Stopping - {}
+[START] Hibiscus Starting - {message=Service has been started.}
+[START] appConfigProperties name: hibiscus.cetide.app - {}
+[INFO] Found Main Class: hibiscus.cetide.app.AppApplication - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.CodeGeneratorControl - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
+[INFO] 数据库表全量代码生成完成: C:\Users\Lenovo\Desktop\test\hibiscus/src/main/java/hibiscus/cetide/app/generator/model/vo/ArticlesVO.java - {}
+[INFO] 数据库表全量代码生成完成: C:\Users\Lenovo\Desktop\test\hibiscus/src/main/java/hibiscus/cetide/app/generator/model/vo/ClipsVO.java - {}
+[INFO] 数据库表全量代码生成完成: C:\Users\Lenovo\Desktop\test\hibiscus/src/main/java/hibiscus/cetide/app/generator/model/vo/CollectionsVO.java - {}
+[INFO] 数据库表全量代码生成完成: C:\Users\Lenovo\Desktop\test\hibiscus/src/main/java/hibiscus/cetide/app/generator/model/vo/CommentsVO.java - {}
+[INFO] 数据库表全量代码生成完成: C:\Users\Lenovo\Desktop\test\hibiscus/src/main/java/hibiscus/cetide/app/generator/model/vo/InvoiceExtrasVO.java - {}
+[INFO] 数据库表全量代码生成完成: C:\Users\Lenovo\Desktop\test\hibiscus/src/main/java/hibiscus/cetide/app/generator/model/vo/InvoiceItemsVO.java - {}
+[INFO] 数据库表全量代码生成完成: C:\Users\Lenovo\Desktop\test\hibiscus/src/main/java/hibiscus/cetide/app/generator/model/vo/InvoiceTitlesVO.java - {}
+[INFO] 数据库表全量代码生成完成: C:\Users\Lenovo\Desktop\test\hibiscus/src/main/java/hibiscus/cetide/app/generator/model/vo/InvoicesVO.java - {}
+[INFO] 数据库表全量代码生成完成: C:\Users\Lenovo\Desktop\test\hibiscus/src/main/java/hibiscus/cetide/app/generator/model/vo/MysqlConnectionsVO.java - {}
+[INFO] 数据库表全量代码生成完成: C:\Users\Lenovo\Desktop\test\hibiscus/src/main/java/hibiscus/cetide/app/generator/model/vo/PlayersVO.java - {}
+[INFO] 数据库表全量代码生成完成: C:\Users\Lenovo\Desktop\test\hibiscus/src/main/java/hibiscus/cetide/app/generator/model/vo/PostsVO.java - {}
+[INFO] 数据库表全量代码生成完成: C:\Users\Lenovo\Desktop\test\hibiscus/src/main/java/hibiscus/cetide/app/generator/model/vo/ProductsVO.java - {}
+[INFO] 数据库表全量代码生成完成: C:\Users\Lenovo\Desktop\test\hibiscus/src/main/java/hibiscus/cetide/app/generator/model/vo/QueryResultsVO.java - {}
+[INFO] 数据库表全量代码生成完成: C:\Users\Lenovo\Desktop\test\hibiscus/src/main/java/hibiscus/cetide/app/generator/model/vo/UsersVO.java - {}
+[INFO] 数据库表全量代码生成完成: C:\Users\Lenovo\Desktop\test\hibiscus/src/main/java/hibiscus/cetide/app/generator/model/vo/VotesVO.java - {}
+[CRITICAL] DELETE API-Monitor.xml Successful - {message=Service has been stopped.}
+[STOP] Hibiscus Stopping - {}
+[START] Hibiscus Starting - {message=Service has been started.}
+[START] appConfigProperties name: hibiscus.cetide.app - {}
+[INFO] Found Main Class: hibiscus.cetide.app.AppApplication - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.CodeGeneratorControl - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
+[INFO] 数据库表全量代码生成完成: C:\Users\Lenovo\Desktop\test\hibiscus/src/main/java/hibiscus/cetide/app/generator/model/vo/AdminVO.java - {}
+[INFO] 数据库表全量代码生成完成: C:\Users\Lenovo\Desktop\test\hibiscus/src/main/java/hibiscus/cetide/app/generator/model/vo/PostVO.java - {}
+[INFO] 数据库表全量代码生成完成: C:\Users\Lenovo\Desktop\test\hibiscus/src/main/java/hibiscus/cetide/app/generator/model/vo/PostLogsVO.java - {}
+[INFO] 数据库表全量代码生成完成: C:\Users\Lenovo\Desktop\test\hibiscus/src/main/java/hibiscus/cetide/app/generator/model/vo/ProductVO.java - {}
+[INFO] 数据库表全量代码生成完成: C:\Users\Lenovo\Desktop\test\hibiscus/src/main/java/hibiscus/cetide/app/generator/model/vo/ProductDetailVO.java - {}
+[INFO] 数据库表全量代码生成完成: C:\Users\Lenovo\Desktop\test\hibiscus/src/main/java/hibiscus/cetide/app/generator/model/vo/QuestionVO.java - {}
+[INFO] 数据库表全量代码生成完成: C:\Users\Lenovo\Desktop\test\hibiscus/src/main/java/hibiscus/cetide/app/generator/model/vo/QuestionSubmitVO.java - {}
+[INFO] 数据库表全量代码生成完成: C:\Users\Lenovo\Desktop\test\hibiscus/src/main/java/hibiscus/cetide/app/generator/model/vo/UserVO.java - {}
+[INFO] 数据库表全量代码生成完成: C:\Users\Lenovo\Desktop\test\hibiscus/src/main/java/hibiscus/cetide/app/generator/model/vo/UserLogsVO.java - {}
+[INFO] 数据库表全量代码生成完成: C:\Users\Lenovo\Desktop\test\hibiscus/src/main/java/hibiscus/cetide/app/generator/model/vo/YkdPaymentRecordVO.java - {}
+[WARNING] API-Monitor.xml does not exist - {message=Service has been stopped.}
+[STOP] Hibiscus Stopping - {}
+[START] Hibiscus Starting - {message=Service has been started.}
+[START] appConfigProperties name: hibiscus.cetide.app - {}
+[INFO] Found Main Class: hibiscus.cetide.app.AppApplication - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.CodeGeneratorControl - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
+[INFO] 数据库表全量代码生成完成: C:\Users\Lenovo\Desktop\test\hibiscus/src/main/java/hibiscus/cetide/app/generator/model/vo/AdminVO.java - {}
+[INFO] 数据库表全量代码生成完成: C:\Users\Lenovo\Desktop\test\hibiscus/src/main/java/hibiscus/cetide/app/generator/model/vo/PostVO.java - {}
+[INFO] 数据库表全量代码生成完成: C:\Users\Lenovo\Desktop\test\hibiscus/src/main/java/hibiscus/cetide/app/generator/model/vo/PostLogsVO.java - {}
+[INFO] 数据库表全量代码生成完成: C:\Users\Lenovo\Desktop\test\hibiscus/src/main/java/hibiscus/cetide/app/generator/model/vo/ProductVO.java - {}
+[INFO] 数据库表全量代码生成完成: C:\Users\Lenovo\Desktop\test\hibiscus/src/main/java/hibiscus/cetide/app/generator/model/vo/ProductDetailVO.java - {}
+[INFO] 数据库表全量代码生成完成: C:\Users\Lenovo\Desktop\test\hibiscus/src/main/java/hibiscus/cetide/app/generator/model/vo/QuestionVO.java - {}
+[INFO] 数据库表全量代码生成完成: C:\Users\Lenovo\Desktop\test\hibiscus/src/main/java/hibiscus/cetide/app/generator/model/vo/QuestionSubmitVO.java - {}
+[INFO] 数据库表全量代码生成完成: C:\Users\Lenovo\Desktop\test\hibiscus/src/main/java/hibiscus/cetide/app/generator/model/vo/UserVO.java - {}
+[INFO] 数据库表全量代码生成完成: C:\Users\Lenovo\Desktop\test\hibiscus/src/main/java/hibiscus/cetide/app/generator/model/vo/UserLogsVO.java - {}
+[INFO] 数据库表全量代码生成完成: C:\Users\Lenovo\Desktop\test\hibiscus/src/main/java/hibiscus/cetide/app/generator/model/vo/YkdPaymentRecordVO.java - {}
+[WARNING] API-Monitor.xml does not exist - {message=Service has been stopped.}
+[STOP] Hibiscus Stopping - {}
+[START] Hibiscus Starting - {message=Service has been started.}
+[START] appConfigProperties name: hibiscus.cetide.app - {}
+[INFO] Found Main Class: hibiscus.cetide.app.AppApplication - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.CodeGeneratorControl - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
+[INFO] 数据库表全量代码生成完成: C:\Users\Lenovo\Desktop\test\hibiscus/src/main/java/hibiscus/cetide/app/generator/model/vo/AdminVO.java - {}
+[INFO] 数据库表全量代码生成完成: C:\Users\Lenovo\Desktop\test\hibiscus/src/main/java/hibiscus/cetide/app/generator/model/vo/PostVO.java - {}
+[INFO] 数据库表全量代码生成完成: C:\Users\Lenovo\Desktop\test\hibiscus/src/main/java/hibiscus/cetide/app/generator/model/vo/PostLogsVO.java - {}
+[INFO] 数据库表全量代码生成完成: C:\Users\Lenovo\Desktop\test\hibiscus/src/main/java/hibiscus/cetide/app/generator/model/vo/ProductVO.java - {}
+[INFO] 数据库表全量代码生成完成: C:\Users\Lenovo\Desktop\test\hibiscus/src/main/java/hibiscus/cetide/app/generator/model/vo/ProductDetailVO.java - {}
+[INFO] 数据库表全量代码生成完成: C:\Users\Lenovo\Desktop\test\hibiscus/src/main/java/hibiscus/cetide/app/generator/model/vo/QuestionVO.java - {}
+[INFO] 数据库表全量代码生成完成: C:\Users\Lenovo\Desktop\test\hibiscus/src/main/java/hibiscus/cetide/app/generator/model/vo/QuestionSubmitVO.java - {}
+[INFO] 数据库表全量代码生成完成: C:\Users\Lenovo\Desktop\test\hibiscus/src/main/java/hibiscus/cetide/app/generator/model/vo/UserVO.java - {}
+[INFO] 数据库表全量代码生成完成: C:\Users\Lenovo\Desktop\test\hibiscus/src/main/java/hibiscus/cetide/app/generator/model/vo/UserLogsVO.java - {}
+[INFO] 数据库表全量代码生成完成: C:\Users\Lenovo\Desktop\test\hibiscus/src/main/java/hibiscus/cetide/app/generator/model/vo/YkdPaymentRecordVO.java - {}
+[WARNING] API-Monitor.xml does not exist - {message=Service has been stopped.}
+[STOP] Hibiscus Stopping - {}
+[START] Hibiscus Starting - {message=Service has been started.}
+[START] appConfigProperties name: hibiscus.cetide.app - {}
+[INFO] Found Main Class: hibiscus.cetide.app.AppApplication - {}
+[WARNING] API-Monitor.xml does not exist - {message=Service has been stopped.}
+[STOP] Hibiscus Stopping - {}
+[START] Hibiscus Starting - {message=Service has been started.}
+[START] appConfigProperties name: hibiscus.cetide.app - {}
+[INFO] Found Main Class: hibiscus.cetide.app.AppApplication - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.BaseUserControl - {}
+[INFO] Controller: hibiscus.cetide.app.module.control.CodeGeneratorControl - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.MyController - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.RequestClient - {}
+[INFO] RestController: hibiscus.cetide.app.module.control.TestController - {}
+[WARNING] API-Monitor.xml does not exist - {message=Service has been stopped.}
+[STOP] Hibiscus Stopping - {}
