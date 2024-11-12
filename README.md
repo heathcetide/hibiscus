@@ -102,7 +102,6 @@ Hibiscus提供了一系列功能，以满足现代开发工作流的需求：
   ```
 
 ## 快速开始
-![功能图片](.README-images/function_2.png)
 
 - **SpringBoot的启动类上配置扫描包名**: 
 - ```angular2html
@@ -111,9 +110,9 @@ Hibiscus提供了一系列功能，以满足现代开发工作流的需求：
 - ![配置图片](.README-images/function_4.png)
 只需配置两个参数即可使用Hibiscus。(分别是是hibiscus.cetide.app和开发者项目的包名)
 
-#### 描述：
-1. **hibiscus 本身无侵入性，开发者只需引入依赖和添加启动类的包名，就可以使用Hibiscus**
-2. **开发者如果更换技术栈，只需移除hibiscus的依赖，并移除包名，即可。**
+#### 注意：
+1. **hibiscus 本身无侵入性，开发者只需引入依赖和添加启动类的包名，就可以直接使用Hibiscus**
+2. **开发者如果更换技术栈，只需移除hibiscus的依赖和主类的包名配置，即可直接去除Hibiscus。**
 
 
 ## 贡献
