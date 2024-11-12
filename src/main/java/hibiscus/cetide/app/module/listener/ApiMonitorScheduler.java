@@ -14,7 +14,7 @@ public class ApiMonitorScheduler {
     }
 
     // 每隔 5 分钟检查一次 API 状态
-    @Scheduled(fixedRate = 5000)
+    @Scheduled(fixedRate = 180000)
     public void monitorApis() {
         apiMonitorService.checkApiStatus();
     }

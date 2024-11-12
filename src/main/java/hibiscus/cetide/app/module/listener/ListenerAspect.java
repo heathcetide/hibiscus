@@ -8,6 +8,7 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -19,17 +20,12 @@ import java.util.Map;
 @Component
 public class ListenerAspect {
 
-    private final Map<String, NetworkMetrics> networkMetricsMap = new HashMap<>();
     private final Map<String, MethodMetrics> methodMetricsMap = new HashMap<>();
 
     @Autowired
     private AppConfigProperties appConfigProperties;
 
-//    @Around("execution(* hibiscus..*.*.*(..))")
-    @Around("execution(* hibiscus.cetide.app.module.control.*.*(..))")
-//    @Around("execution(* com..*.*.*(..))")
-//    @Around("execution(* com..*.*(..)) && (@within(org.springframework.web.bind.annotation.RestController) || @within(org.springframework.stereotype.Controller)) " +
-//        "|| execution(* org..*.*(..)) && (@within(org.springframework.web.bind.annotation.RestController) || @within(org.springframework.stereotype.Controller))")
+    @Around("execution(* *(..)) && (@within(org.springframework.web.bind.annotation.RestController) || @within(org.springframework.stereotype.Controller)) && !within(hibiscus.cetide.app..*)")
     public Object aroundAdvice(ProceedingJoinPoint joinPoint) throws Throwable {
         long begin = System.currentTimeMillis();
         // 动态获取切入点表达式的包名
@@ -60,6 +56,7 @@ public class ListenerAspect {
     public List<MethodMetrics> getMethodMetrics() {
         return new ArrayList<>(methodMetricsMap.values());
     }
+
     private void collectMethodMetrics(ProceedingJoinPoint joinPoint, Object result, MethodMetrics metrics) {
         // 假设输入参数中有InputStream类型的参数
         for (Object arg : joinPoint.getArgs()) {

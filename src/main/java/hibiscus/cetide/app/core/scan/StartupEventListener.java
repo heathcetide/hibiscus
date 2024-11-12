@@ -2,12 +2,16 @@ package hibiscus.cetide.app.core.scan;
 
 import hibiscus.cetide.app.basic.log.core.LogLevel;
 import hibiscus.cetide.app.basic.log.core.Logger;
+import hibiscus.cetide.app.common.utils.AppConfigProperties;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
+import org.springframework.boot.SpringApplication;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -26,8 +30,30 @@ public class StartupEventListener implements ApplicationListener<ContextRefreshe
     @Autowired
     private Logger logger;
 
+    @Autowired
+    private AppConfigProperties appConfigProperties;
+
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
+        ApplicationContext context = event.getApplicationContext();
+
+        // 获取主类
+        Class<?> scanMainClass = getMainClass(context);
+
+        if (scanMainClass != null && scanMainClass.isAnnotationPresent(SpringBootApplication.class)) {
+            SpringBootApplication annotation = scanMainClass.getAnnotation(SpringBootApplication.class);
+
+            // 获取注解中的属性值
+            String[] scanBasePackages = annotation.scanBasePackages();
+
+            // 打印或处理这些属性值
+            for (String basePackage : scanBasePackages) {
+                if (basePackage != null && !basePackage.isEmpty() && !basePackage.equals("hibiscus.cetide.app")){
+                    appConfigProperties.setHibiscus(basePackage);
+                }
+            }
+        }
+        logger.log(LogLevel.START, "appConfigProperties name: " + appConfigProperties.getHibiscus());
         Class<?> mainClass = classScanner.findMainClass();
         if (mainClass != null) {
             logger.log(LogLevel.INFO, "Found Main Class: " + mainClass.getName());
@@ -35,6 +61,22 @@ public class StartupEventListener implements ApplicationListener<ContextRefreshe
         } else {
             logger.log(LogLevel.ERROR, "No Main Class Found.");
         }
+    }
+
+    private Class<?> getMainClass(ApplicationContext context) {
+        // 获取所有bean的名称
+        String[] beanNames = context.getBeanDefinitionNames();
+        for (String beanName : beanNames) {
+            try {
+                Class<?> beanClass = context.getType(beanName);
+                if (beanClass.isAnnotationPresent(SpringBootApplication.class)) {
+                    return beanClass;
+                }
+            } catch (Exception e) {
+                // 忽略无法获取类型的bean
+            }
+        }
+        throw new IllegalStateException("无法找到主类");
     }
     @PostConstruct
     public void initListener() {

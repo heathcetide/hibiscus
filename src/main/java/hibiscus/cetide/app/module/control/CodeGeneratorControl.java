@@ -31,9 +31,6 @@ public class CodeGeneratorControl {
     @Autowired
     private CodeGeneratorService codeGeneratorService;
 
-//    @Autowired
-//    private DataSource dataSource;
-
     @Autowired
     private AppConfigProperties appConfigProperties;
 

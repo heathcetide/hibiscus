@@ -17,35 +17,35 @@
             margin-bottom: 1rem;
         }
         /* 自定义滚动条样式 */
-        .custom-scrollbar {
+        #monitoring-data {
             max-height: 300px; /* 设置最大高度 */
             overflow-y: auto; /* 启用垂直滚动条 */
         }
 
         /* 滚动条轨道 */
-        .custom-scrollbar::-webkit-scrollbar-track {
+        #monitoring-data::-webkit-scrollbar-track {
             background-color: #f1f1f1;
             border-radius: 10px;
         }
 
         /* 滚动条滑块 */
-        .custom-scrollbar::-webkit-scrollbar-thumb {
+        #monitoring-data::-webkit-scrollbar-thumb {
             background-color: #02a6b5;
             border-radius: 10px;
         }
 
         /* 滚动条滑块悬停时的样式 */
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        #monitoring-data::-webkit-scrollbar-thumb:hover {
             background-color: #555;
         }
 
         /* 表格行样式 */
-        .custom-scrollbar tr {
+        #monitoring-data tr {
             height: 30px; /* 减少行高 */
         }
 
         /* 表格单元格样式 */
-        .custom-scrollbar td {
+        #monitoring-data td {
             padding: 4px 8px; /* 调整单元格内边距 */
         }
         table {
@@ -298,18 +298,18 @@
             <!-- 新增 API 监控信息部分 -->
             <section id="api-monitoring" class="mb-8">
                 <h2 class="text-2xl font-bold mb-4 text-indigo-600">API 监控信息</h2>
-                <div class="overflow-x-auto">
-                    <table class="min-w-full shadow-md rounded-lg">
-                        <thead class="text-white">
+                <div id="monitoring-container" class="overflow-x-auto">
+                    <table>
+                        <thead>
                         <tr>
-                            <th class="py-2 px-4 border-b">URL</th>
-                            <th class="py-2 px-4 border-b">状态</th>
-                            <th class="py-2 px-4 border-b">响应时间 (ms)</th>
-                            <th class="py-2 px-4 border-b">监控时间</th>
-                            <th class="py-2 px-4 border-b">平均响应时间 (ms)</th>
-                            <th class="py-2 px-4 border-b">最大响应时间 (ms)</th>
-                            <th class="py-2 px-4 border-b">最小响应时间 (ms)</th>
-                            <th class="py-2 px-4 border-b">响应状态码</th>
+                            <th>URL</th>
+                            <th>状态</th>
+                            <th>响应时间</th>
+                            <th>监控时间</th>
+                            <th>平均响应时间</th>
+                            <th>最大响应时间</th>
+                            <th>最小响应时间</th>
+                            <th>响应状态码</th>
                         </tr>
                         </thead>
                         <tbody id="monitoring-data" class="custom-scrollbar">
@@ -319,6 +319,7 @@
                         </tr>
                         </tbody>
                     </table>
+                    <div id="pagination" class="mt-4 flex justify-center"></div>
                 </div>
             </section>
         </div>
@@ -433,12 +434,52 @@
         chart.setOption(option);
         chartContainer.style.display = 'block';  // 显示图表
     }
-    // 新增函数：获取并展示 API 监控信息
     function loadApiMonitoring() {
         fetch(`/hibiscus/test/monitor/all`)
             .then(response => response.json())
             .then(response => {
                 const monitoringData = response.apiList || []; // 确保 apiList 存在
+                const totalPages = Math.ceil(monitoringData.length / 10);
+                let currentPage = 1;
+
+                function renderTable(page) {
+                    const monitoringContainer = document.getElementById('monitoring-data');
+                    if (!monitoringContainer) {
+                        console.error('无法找到监控数据的容器，确保页面中包含 id 为 "monitoring-data" 的元素。');
+                        return;
+                    }
+                    monitoringContainer.innerHTML = '';
+                    const start = (page - 1) * 10;
+                    const end = start + 10;
+                    const pageData = monitoringData.slice(start, end);
+
+                    pageData.forEach(api => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `                        <td class="py-2 px-4 border-b">${api.url || 'N/A'}</td>
+                        <td class="py-2 px-4 border-b">${api.status || 'N/A'}</td>
+                        <td class="py-2 px-4 border-b">${api.responseTime !== undefined ? api.responseTime : 'N/A'}</td>
+                        <td class="py-2 px-4 border-b">${api.monitoringTime ? new Date(api.monitoringTime).toLocaleString() : 'N/A'}</td>
+                        <td class="py-2 px-4 border-b">${api.averageResponseTime !== undefined ? api.averageResponseTime : '0'}</td>
+                        <td class="py-2 px-4 border-b">${api.maxResponseTime !== undefined ? api.maxResponseTime : '0'}</td>
+                        <td class="py-2 px-4 border-b">${api.minResponseTime !== undefined ? api.minResponseTime : '0'}</td>
+                        <td class="py-2 px-4 border-b">${api.responseStatusCode || 'N/A'}</td>
+                    `;
+                        monitoringContainer.appendChild(row);
+                    });
+
+                    const pagination = document.getElementById('pagination');
+                    if (pagination) {
+                        pagination.innerHTML = `                        <button ${page === 1 ? 'disabled' : ''} onclick="window.changePage(${page - 1})">上一页</button>
+                        <span>第 ${page} 页 / 共 ${totalPages} 页</span>
+                        <button ${page === totalPages ? 'disabled' : ''} onclick="window.changePage(${page + 1})">下一页</button>
+                    `;
+                    }
+                }
+
+                window.changePage = function(page) {
+                    currentPage = page;
+                    renderTable(currentPage);
+                };
 
                 const monitoringContainer = document.getElementById('monitoring-data');
                 if (!monitoringContainer) {
@@ -448,9 +489,9 @@
                 monitoringContainer.innerHTML = ''; // 清空之前的数据
 
                 // 添加高度限制和自定义滑轮样式
-                const monitoringTableContainer = monitoringContainer.parentElement;
+                const monitoringTableContainer = document.getElementById('monitoring-container');
                 if (monitoringTableContainer) {
-                    monitoringTableContainer.style.maxHeight = '400px'; // 设置最大高度
+                    monitoringTableContainer.style.maxHeight = '450px'; // 设置最大高度
                     monitoringTableContainer.style.overflowY = 'auto'; // 超过高度则出现垂直滑轮
                     monitoringTableContainer.style.overflowX = 'auto'; // 添加水平滑轮
                     monitoringTableContainer.style.whiteSpace = 'nowrap'; // 防止内容换行，确保水平滑轮出现
@@ -460,63 +501,23 @@
 
                 // 自定义滚动条样式 - 仅对 Webkit 浏览器（如 Chrome 和 Safari）有效
                 const style = document.createElement('style');
-                style.innerHTML = `
-                    #monitoring-container::-webkit-scrollbar {
-                        height: 8px;
-                    }
-                    #monitoring-container::-webkit-scrollbar-track {
-                        background: #f8fafc;
-                    }
-                    #monitoring-container::-webkit-scrollbar-thumb {
-                        background-color: #02a6b5;
-                        border-radius: 10px;
-                        border: 2px solid #f8fafc;
-                    }
-                `;
+                style.innerHTML = `                #monitoring-container::-webkit-scrollbar {
+                    width: 8px; /* 注意这里应该是 width 而不是 height */
+                }
+                #monitoring-container::-webkit-scrollbar-track {
+                    background: #f8fafc;
+                }
+                #monitoring-container::-webkit-scrollbar-thumb {
+                    background-color: #02a6b5;
+                    border-radius: 10px;
+                    border: 2px solid #f8fafc;
+                }
+            `;
                 document.head.appendChild(style);
 
                 if (monitoringData.length === 0) {
                     monitoringContainer.innerHTML = '<tr><td colspan="12" class="text-center text-gray-500">暂无监控数据。</td></tr>';
                     return;
-                }
-
-                const pageSize = 10; // 每页显示的数据量
-                let currentPage = 1;
-                const totalPages = Math.ceil(monitoringData.length / pageSize);
-
-                function renderTable(page) {
-                    if (!monitoringContainer) {
-                        console.error('无法找到监控数据的容器，确保页面中包含 id 为 "monitoring-data" 的元素。');
-                        return;
-                    }
-                    monitoringContainer.innerHTML = '';
-                    const start = (page - 1) * pageSize;
-                    const end = start + pageSize;
-                    const pageData = monitoringData.slice(start, end);
-
-                    pageData.forEach(api => {
-                        const row = document.createElement('tr');
-                        row.innerHTML = `
-                            <td class="py-2 px-4 border-b">${api.url || 'N/A'}</td>
-                            <td class="py-2 px-4 border-b">${api.status || 'N/A'}</td>
-                            <td class="py-2 px-4 border-b">${api.responseTime !== undefined ? api.responseTime : 'N/A'}</td>
-                            <td class="py-2 px-4 border-b">${api.monitoringTime ? new Date(api.monitoringTime).toLocaleString() : 'N/A'}</td>
-                            <td class="py-2 px-4 border-b">${api.averageResponseTime !== undefined ? api.averageResponseTime : '0'}</td>
-                            <td class="py-2 px-4 border-b">${api.maxResponseTime !== undefined ? api.maxResponseTime : '0'}</td>
-                            <td class="py-2 px-4 border-b">${api.minResponseTime !== undefined ? api.minResponseTime : '0'}</td>
-                            <td class="py-2 px-4 border-b">${api.responseStatusCode || 'N/A'}</td>
-                        `;
-                        monitoringContainer.appendChild(row);
-                    });
-
-                    const pagination = document.getElementById('pagination');
-                    if (pagination) {
-                        pagination.innerHTML = `
-                            <button ${currentPage === 1 ? 'disabled' : ''} onclick="changePage(${currentPage - 1})">上一页</button>
-                            <span>第 ${currentPage} 页 / 共 ${totalPages} 页</span>
-                            <button ${currentPage === totalPages ? 'disabled' : ''} onclick="changePage(${currentPage + 1})">下一页</button>
-                        `;
-                    }
                 }
 
                 renderTable(currentPage);
@@ -534,7 +535,6 @@
     // 每10秒更新一次数据
     setInterval(loadApiMonitoring, 10000);
 
-    // 更新表格数据并绑定事件
     function fetchMethodMetrics() {
         fetch('/code/method-metrics')
             .then(response => response.json())
@@ -547,15 +547,18 @@
                 if (limitedData.length === 0) {
                     tableBody.innerHTML = '<tr><td colspan="5" class="text-center">暂无数据</td></tr>';
                 } else {
+                    console.log('method metrics:', limitedData);
                     limitedData.forEach(metric => {
-                        const row = `<tr data-method-name="${metric.methodName}">
+                        if (metric && metric.methodName) { // 添加空值检查
+                            const row = `<tr data-method-name="${metric.methodName}">
                             <td class="border px-4 py-2">${metric.methodName}</td>
                             <td class="border px-4 py-2">${metric.accessCount}</td>
                             <td class="border px-4 py-2">${metric.totalResponseTime}</td>
                             <td class="border px-4 py-2">${metric.uploadBytes}</td>
                             <td class="border px-4 py-2">${metric.downloadBytes}</td>
                         </tr>`;
-                        tableBody.insertAdjacentHTML('beforeend', row);
+                            tableBody.insertAdjacentHTML('beforeend', row);
+                        }
                     });
                 }
                 // 绑定点击事件
@@ -566,6 +569,39 @@
             })
             .catch(error => console.error('Error fetching data:', error));
     }
+
+    // // 更新表格数据并绑定事件
+    // function fetchMethodMetrics() {
+    //     fetch('/code/method-metrics')
+    //         .then(response => response.json())
+    //         .then(data => {
+    //             const tableBody = document.getElementById('methodMetricsTableBody');
+    //             tableBody.innerHTML = ''; // 清空旧数据
+    //
+    //             const limitedData = data.slice(0, 4); // 只展示前五个数据
+    //
+    //             if (limitedData.length === 0) {
+    //                 tableBody.innerHTML = '<tr><td colspan="5" class="text-center">暂无数据</td></tr>';
+    //             } else {
+    //                 limitedData.forEach(metric => {
+    //                     const row = `<tr data-method-name="${metric.methodName}">
+    //                         <td class="border px-4 py-2">${metric.methodName}</td>
+    //                         <td class="border px-4 py-2">${metric.accessCount}</td>
+    //                         <td class="border px-4 py-2">${metric.totalResponseTime}</td>
+    //                         <td class="border px-4 py-2">${metric.uploadBytes}</td>
+    //                         <td class="border px-4 py-2">${metric.downloadBytes}</td>
+    //                     </tr>`;
+    //                     tableBody.insertAdjacentHTML('beforeend', row);
+    //                 });
+    //             }
+    //             // 绑定点击事件
+    //             bindTableRowClick();
+    //             // 生成建议
+    //             generateSuggestions(data.map(metric => metric.totalResponseTime));
+    //             initBarChart(limitedData);
+    //         })
+    //         .catch(error => console.error('Error fetching data:', error));
+    // }
 
 
     // 页面加载时初始化数据
