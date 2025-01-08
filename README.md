@@ -64,7 +64,7 @@
 
 ### maven依赖
 ```xml
-<!-- spring-base-->
+<!-- hibiscus - base -->
 <dependency>
    <groupId>io.github.heathcetide</groupId>
    <artifactId>cetide.hibiscus.demo</artifactId>
