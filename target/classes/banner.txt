@@ -1,8 +1,15 @@
-
- ________  _______  _________  ___  ________  _______
-|\   ____\|\  ___ \|\___   ___\\  \|\   ___ \|\  ___ \
-\ \  \___|\ \   __/\|___ \  \_\ \  \ \  \_|\ \ \   __/|
- \ \  \    \ \  \_|/__  \ \  \ \ \  \ \  \ \\ \ \  \_|/__
-  \ \  \____\ \  \_|\ \  \ \  \ \ \  \ \  \_\\ \ \  \_|\ \
-   \ \_______\ \_______\  \ \__\ \ \__\ \_______\ \_______\
-    \|_______|\|_______|   \|__|  \|__|\|_______|\|_______|
+        ${AnsiStyle.BOLD}${AnsiColor.BRIGHT_BLUE} ________  _______  _________  ___  ________  _______
+        ${AnsiColor.BRIGHT_BLUE}|\   ____\|\  ___ \|\___   ___\\  \|\   ___ \|\  ___ \
+        ${AnsiColor.BLUE}\ \  \___|\ \   __/\|___ \  \_\ \  \ \  \_|\ \ \   __/|
+        ${AnsiColor.CYAN} \ \  \    \ \  \_|/__  \ \  \ \ \  \ \  \ \\ \ \  \_|/__
+        ${AnsiColor.BRIGHT_CYAN}  \ \  \____\ \  \_|\ \  \ \  \ \ \  \ \  \_\\ \ \  \_|\ \
+        ${AnsiColor.BRIGHT_GREEN}   \ \_______\ \_______\  \ \__\ \ \__\ \_______\ \_______\
+        ${AnsiColor.GREEN}    \|_______|\|_______|   \|__|  \|__|\|_______|\|_______|
+${AnsiStyle.BOLD}${AnsiColor.BRIGHT_BLUE}   ⚡ Hibiscus Framework :  ${AnsiColor.BLUE} 0.3.3${AnsiColor.BRIGHT_GREEN}   ⚡ Spring Boot :   ${spring-boot.version}
+${AnsiColor.BRIGHT_CYAN}   ⚡               Java :   ${java.version}  ${AnsiColor.GREEN}⚡          OS :   ${os.name}   (${os.arch})
+${AnsiStyle.BOLD}${AnsiColor.BRIGHT_BLUE} __  __     __     ______     __     ______     ______     __  __     ______
+${AnsiColor.BRIGHT_BLUE}/\ \_\ \   /\ \   /\  == \   /\ \   /\  ___\   /\  ___\   /\ \/\ \   /\  ___\
+${AnsiColor.BLUE}\ \  __ \  \ \ \  \ \  __<   \ \ \  \ \___  \  \ \ \____  \ \ \_\ \  \ \___  \
+${AnsiColor.CYAN} \ \_\ \_\  \ \_\  \ \_____\  \ \_\  \/\_____\  \ \_____\  \ \_____\  \/\_____\
+${AnsiColor.BRIGHT_CYAN}  \/_/\/_/   \/_/   \/_____/   \/_/   \/_____/   \/_____/   \/_____/   \/_____/
+${AnsiStyle.NORMAL}${AnsiColor.DEFAULT}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<pre th:inline="text"><![CDATA[
+package [(${packageName})].dto;
+
+import lombok.Data;
+import java.io.Serializable;
+import java.util.Date;
+import javax.validation.constraints.NotNull;
+
+@Data
+public class [(${className})]AddRequest implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+    [# th:each="field : ${fields}"]
+    /**
+     * [(${field.comment})]
+     */
+    [# th:if="${!field.nullable}"]
+    @NotNull(message = "[(${field.comment})]不能为空")
+    [/]
+    private [(${field.type})] [(${field.name})];
+    
+    [/]
+}]]></pre>
+</body>
+</html> 

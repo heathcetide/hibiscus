@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>hibiscus - log - dashboard</title>
+    <link href="/css/logger.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="container">
+    <div class="dashboard-header">
+        <div class="dashboard-header-bg"></div>
+        <h1 class="dashboard-title">
+            <span class="dashboard-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    <path d="M12 8v4l3 3"></path>
+                </svg>
+            </span>
+            Log Management Dashboard
+        </h1>
+        <p class="dashboard-subtitle">Advanced Log Analysis & Monitoring System ——  cetide R & D</p>
+    </div>
+
+    <div class="control-panel">
+        <div class="filter-group">
+            <div class="form-group">
+                <label for="logLevel">Log Level</label>
+                <select id="logLevel" class="form-control">
+                    <option value="">All</option>
+                    <option value="INFO">INFO</option>
+                    <option value="DEBUG">DEBUG</option>
+                    <option value="WARN">WARN</option>
+                    <option value="ERROR">ERROR</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="keyword">Keyword</label>
+                <input type="text" id="keyword" class="form-control" placeholder="Search...">
+            </div>
+
+            <div class="form-group">
+                <label for="startDate">Start Date</label>
+                <input type="date" id="startDate" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="endDate">End Date</label>
+                <input type="date" id="endDate" class="form-control">
+            </div>
+        </div>
+        
+        <div class="button-group">
+            <button id="fetchLogsBtn" class="btn btn-primary">Fetch Logs</button>
+            <button id="autoRefreshBtn" class="btn btn-info">Auto Refresh</button>
+            <button id="archiveLogsBtn" class="btn btn-warning">Archive</button>
+            <button id="compressLogsBtn" class="btn btn-success">Compress</button>
+            <button id="exportLogsBtn" class="btn btn-secondary">Export</button>
+        </div>
+    </div>
+
+    <div class="terminal">
+        <div class="terminal-header">
+            <div class="window-controls">
+                <span class="control-dot dot-red"></span>
+                <span class="control-dot dot-yellow"></span>
+                <span class="control-dot dot-green"></span>
+            </div>
+            <span class="terminal-title">Terminal - Log Output</span>
+        </div>
+        <div class="terminal-content" id="logContainer"></div>
+    </div>
+
+    <div class="operation-panel">
+        <h2 class="operation-title">Operation Logs</h2>
+        <div class="operation-content" id="operationLogContainer"></div>
+    </div>
+
+    <div class="analysis-panel">
+        <div class="panel-header">
+            <h3>Log Analysis</h3>
+            <div class="view-controls">
+                <button class="btn btn-sm" data-view="timeline">Timeline</button>
+                <button class="btn btn-sm" data-view="heatmap">Error Heatmap</button>
+                <button class="btn btn-sm" data-view="patterns">Patterns</button>
+            </div>
+        </div>
+        
+        <div class="visualization-container">
+            <div id="timelineContainer"></div>
+            <div id="heatmapContainer"></div>
+            <div id="patternContainer"></div>
+        </div>
+        
+        <div class="context-view" id="contextView"></div>
+        
+        <div class="intelligence-panel">
+            <h4>Intelligent Analysis</h4>
+            <div id="anomalyContainer"></div>
+            <div id="solutionContainer"></div>
+        </div>
+    </div>
+</div>
+<script src="/lib/axios/axios.min.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/logger.js"></script>
+</body>
+</html>

@@ -1,0 +1,315 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* 标题容器样式 */
+.dashboard-header {
+    background: linear-gradient(135deg, #1a365d 0%, #2c5282 100%);
+    padding: 2rem 0;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+/* 标题装饰效果 */
+.dashboard-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg,
+    rgba(66, 153, 225, 0) 0%,
+    rgba(66, 153, 225, 0.8) 50%,
+    rgba(66, 153, 225, 0) 100%);
+}
+
+/* 主标题样式 */
+.dashboard-title {
+    text-align: center;
+    color: #ffffff;
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    letter-spacing: 0.5px;
+}
+
+/* 副标题样式 */
+.dashboard-subtitle {
+    text-align: center;
+    color: #e2e8f0;
+    font-size: 1rem;
+    margin-top: 0.5rem;
+    font-weight: 400;
+    opacity: 0.9;
+}
+
+/* 标题图标样式 */
+.dashboard-icon {
+    display: inline-block;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+/* 动态背景效果 */
+.dashboard-header-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.1;
+    background-image:
+            linear-gradient(45deg, #000 25%, transparent 25%),
+            linear-gradient(-45deg, #000 25%, transparent 25%),
+            linear-gradient(45deg, transparent 75%, #000 75%),
+            linear-gradient(-45deg, transparent 75%, #000 75%);
+    background-size: 20px 20px;
+    animation: moveBackground 20s linear infinite;
+}
+
+@keyframes moveBackground {
+    0% {
+        background-position: 0 0, 10px 0, 10px -10px, 0px 10px;
+    }
+    100% {
+        background-position: 20px 20px, 30px 20px, 30px 10px, 20px 30px;
+    }
+}
+
+/* 控制面板样式 */
+.control-panel {
+    background: white;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.filter-group {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.form-group label {
+    font-size: 14px;
+    color: #666;
+}
+
+.form-control {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    min-width: 200px;
+}
+
+.button-group {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s;
+}
+
+.btn:hover {
+    opacity: 0.9;
+}
+
+.btn-primary { background-color: #3498db; }
+.btn-secondary { background-color: #34495e; }
+.btn-warning { background-color: #f1c40f; }
+.btn-success { background-color: #2ecc71; }
+.btn-info { background-color: #9b59b6; }
+.btn-danger { background-color: #e74c3c; }
+
+/* 终端样式 */
+.terminal {
+    background-color: #1e1e1e;
+    border-radius: 8px;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.terminal-header {
+    background-color: #333;
+    padding: 8px 16px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.window-controls {
+    display: flex;
+    gap: 8px;
+}
+
+.control-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.dot-red { background-color: #ff5f56; }
+.dot-yellow { background-color: #ffbd2e; }
+.dot-green { background-color: #27c93f; }
+
+.terminal-title {
+    color: #fff;
+    margin-left: auto;
+    font-size: 14px;
+}
+
+.terminal-content {
+    background-color: #1e1e1e;
+    color: #d4d4d4;
+    padding: 16px;
+    height: 500px;
+    overflow-y: auto;
+    font-family: 'Consolas', 'Monaco', monospace;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+/* 日志条目样式 */
+.log-entry {
+    white-space: pre-wrap;
+    margin-bottom: 4px;
+    font-size: 13px;
+    line-height: 1.5;
+    padding: 2px 0;
+}
+
+.info-log { color: #61afef; }
+.error-log { color: #e06c75; }
+.debug-log { color: #c678dd; }
+.warn-log { color: #e5c07b; }
+
+/* 操作日志面板 */
+.operation-panel {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.operation-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 16px;
+    color: #2c3e50;
+}
+
+.operation-content {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.operation-entry {
+    padding: 8px;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+}
+
+.operation-entry:last-child {
+    border-bottom: none;
+}
+
+.timestamp {
+    font-weight: bold;
+    color: #666;
+}
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .control-panel {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .filter-group, .button-group {
+        flex-direction: column;
+    }
+
+    .form-control {
+        width: 100%;
+        min-width: unset;
+    }
+
+    .terminal-content {
+        height: 400px;
+    }
+
+    .dashboard-title {
+        font-size: 2rem;
+    }
+    .dashboard-subtitle {
+        font-size: 0.9rem;
+    }
+}
+.terminal-title {
+    font-family: "Courier New", Courier, monospace;
+    font-size: 14px;
+    color: #ffffff;
+    font-weight: bold;
+}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<pre th:inline="text"><![CDATA[
+package [(${packageName})].controller;
+
+import [(${packageName})].dto.[(${className})]AddRequest;
+import [(${packageName})].dto.[(${className})]EditRequest;
+import [(${packageName})].dto.[(${className})]QueryRequest;
+import [(${packageName})].service.[(${className})]Service;
+import [(${packageName})].vo.[(${className})]VO;
+import com.github.pagehelper.PageInfo;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/[(${#strings.toLowerCase(className)})]")
+public class [(${className})]Controller {
+    
+    private final [(${className})]Service [(${#strings.toLowerCase(className)})]Service;
+    
+    public [(${className})]Controller([(${className})]Service [(${#strings.toLowerCase(className)})]Service) {
+        this.[(${#strings.toLowerCase(className)})]Service = [(${#strings.toLowerCase(className)})]Service;
+    }
+    
+    @PostMapping
+    public [(${className})]VO create(@Valid @RequestBody [(${className})]AddRequest request) {
+        return [(${#strings.toLowerCase(className)})]Service.create(request);
+    }
+    
+    @PutMapping
+    public [(${className})]VO update(@Valid @RequestBody [(${className})]EditRequest request) {
+        return [(${#strings.toLowerCase(className)})]Service.update(request);
+    }
+    
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
+        [(${#strings.toLowerCase(className)})]Service.delete(id);
+    }
+    
+    @GetMapping("/{id}")
+    public [(${className})]VO findById(@PathVariable Long id) {
+        return [(${#strings.toLowerCase(className)})]Service.findById(id);
+    }
+    
+    @GetMapping("/page")
+    public PageInfo<[(${className})]VO> findByPage([(${className})]QueryRequest request) {
+        return [(${#strings.toLowerCase(className)})]Service.findByPage(request);
+    }
+    
+    @GetMapping("/list")
+    public List<[(${className})]VO> findByCondition([(${className})]QueryRequest request) {
+        return [(${#strings.toLowerCase(className)})]Service.findByCondition(request);
+    }
+}]]></pre>
+</body>
+</html> 

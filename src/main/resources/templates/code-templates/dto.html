@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<pre th:inline="text">
+package [(${packageName})].dto;
+
+import lombok.Data;
+import java.util.Date;
+import java.io.Serializable;
+
+@Data
+public class [(${className})]DTO implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+    [# th:each="field : ${fields}"]
+    /**
+     * [(${field.comment})]
+     */
+    private [(${field.type})] [(${field.name})];
+    [/]
+}
+</pre>
+</body>
+</html> 

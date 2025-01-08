@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<pre th:inline="text">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="[(${packageName})].mapper.[(${className})]Mapper">
+    
+    <resultMap id="BaseResultMap" type="[(${packageName})].entity.[(${className})]">
+        <th:block th:each="field : ${fields}">
+        <result column="[(${field.name})]" property="[(${field.name})]" />
+        </th:block>
+    </resultMap>
+    
+    <sql id="Base_Column_List">
+        <th:block th:each="field,stat : ${fields}">[(${field.name})]<th:block th:if="${!stat.last}">,</th:block></th:block>
+    </sql>
+    
+    <insert id="insert" parameterType="[(${packageName})].entity.[(${className})]">
+        INSERT INTO [(${tableName})] (
+            <include refid="Base_Column_List"/>
+        )
+        VALUES (
+            <th:block th:each="field,stat : ${fields}">#{[(${field.name})]}
+            <th:block th:if="${!stat.last}">,</th:block></th:block>
+        )
+    </insert>
+    
+    <insert id="insertBatch">
+        INSERT INTO [(${tableName})] (
+            <include refid="Base_Column_List"/>
+        )
+        VALUES
+        <foreach collection="items" item="item" separator=",">
+        (
+            <th:block th:each="field,stat : ${fields}">#{item.[(${field.name})]}
+            <th:block th:if="${!stat.last}">,</th:block></th:block>
+        )
+        </foreach>
+    </insert>
+    
+    <update id="updateById">
+        UPDATE [(${tableName})]
+        <set>
+            <th:block th:each="field : ${fields}">
+            <if test="[(${field.name})] != null">
+                [(${field.name})] = #{[(${field.name})]},
+            </if>
+            </th:block>
+        </set>
+        WHERE id = #{id}
+    </update>
+    
+    <delete id="deleteById">
+        DELETE FROM [(${tableName})] WHERE id = #{id}
+    </delete>
+    
+    <select id="selectById" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"/>
+        FROM [(${tableName})]
+        WHERE id = #{id}
+    </select>
+    
+    <select id="selectAll" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"/>
+        FROM [(${tableName})]
+    </select>
+    
+    <select id="selectByCondition" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"/>
+        FROM [(${tableName})]
+        <where>
+            <th:block th:each="field : ${fields}">
+            <if test="[(${field.name})] != null">
+                AND [(${field.name})] = #{[(${field.name})]}
+            </if>
+            </th:block>
+        </where>
+    </select>
+</mapper>
+</pre>
+</body>
+</html> 

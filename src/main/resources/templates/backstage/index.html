@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hibiscus - backstage</title>
+    <link rel="stylesheet" href="/css/backstage.css">
+    <link rel="stylesheet" href="/lib/xterm/xterm.min.css"/>
+    <script src="/lib/xterm/xterm.min.js"></script>
+    <script src="/lib/xterm/xterm-addon-fit.min.js"></script>
+</head>
+
+<body>
+<div class="layout">
+    <!-- 侧边栏 -->
+    <div class="sidebar">
+        <div class="nav-item active" onclick="switchPage('code-generate')">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 7L12 3L4 7M20 7L12 11M20 7V17L12 21M12 11L4 7M12 11V21M4 7V17L12 21"/>
+            </svg>
+            code - generate
+        </div>
+        <div class="nav-item" onclick="switchPage('database-admin')">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"/>
+            </svg>
+            database - manager
+        </div>
+        <div class="nav-item" onclick="switchPage('redis-admin')">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 4c4.418 0 8 1.79 8 4s-3.582 4-8 4-8-1.79-8-4 3.582-4 8-4zm0 8c4.418 0 8-1.79 8-4m-8 4c-4.418 0-8-1.79-8-4m8 4v8m-8-4c0 2.21 3.582 4 8 4s8-1.79 8-4"/>
+            </svg>
+            redis - manager
+        </div>
+        <div class="nav-item" onclick="switchPage('config-manager')">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12.22 2h-.44a2 2 0 00-2 2v.18a2 2 0 01-1 1.73l-.43.25a2 2 0 01-2 0l-.15-.08a2 2 0 00-2.73.73l-.22.38a2 2 0 00.73 2.73l.15.1a2 2 0 011 1.72v.51a2 2 0 01-1 1.74l-.15.09a2 2 0 00-.73 2.73l.22.38a2 2 0 002.73.73l.15-.08a2 2 0 012 0l.43.25a2 2 0 011 1.73V20a2 2 0 002 2h.44a2 2 0 002-2v-.18a2 2 0 011-1.73l.43-.25a2 2 0 012 0l.15.08a2 2 0 002.73-.73l.22-.39a2 2 0 00-.73-2.73l-.15-.08a2 2 0 01-1-1.74v-.5a2 2 0 011-1.74l.15-.09a2 2 0 00.73-2.73l-.22-.38a2 2 0 00-2.73-.73l-.15.08a2 2 0 01-2 0l-.43-.25a2 2 0 01-1-1.73V4a2 2 0 00-2-2z"/>
+                <circle cx="12" cy="12" r="3"/>
+            </svg>
+            config - manager
+        </div>
+        <!-- 新增 performance-monitor -->
+        <div class="nav-item" onclick="switchPage('performance-monitor')">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/>
+            </svg>
+            perf - monitor
+        </div>
+        <!-- 新增 cache-manager -->
+        <div class="nav-item" onclick="switchPage('cache-manager')">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 8v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h14a2 2 0 012 2z"/>
+                <path d="M7 8h10M7 12h10M7 16h10"/>
+            </svg>
+            cache - manager
+        </div>
+        <!-- 新增 interface-Test -->
+        <div class="nav-item" onclick="openExternalPage('/api/hibiscus/interface')">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 4h18v16H3V4zm8 4h4v4h-4V8zm-2 0H6v4h3V8z"/>
+            </svg>
+            interface - Test
+        </div>
+        <!-- 新增 logger - record -->
+        <div class="nav-item" onclick="openExternalPage('/api/hibiscus/logs')">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 3h18v18H3V3zm7 10h8v2h-8v-2zm0-4h8v2h-8V9zm-5 6h3v2H5v-2zm0-4h3v2H5V7z"/>
+            </svg>
+            logger - record
+        </div>
+        <div class="nav-item" onclick="switchPage('signal-manager')">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M2 16.1A5 5 0 0 1 5.9 20M2 12.05A9 9 0 0 1 9.95 20M2 8V6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-6"/>
+                <line x1="2" y1="20" x2="2" y2="20"/>
+            </svg>
+            signal - manager
+        </div>
+    </div>
+
+    <!-- 主要内容区域 -->
+    <div class="main-content">
+        <!-- 代码生成器页面 -->
+        <div id="code-generate" class="page active">
+            <div class="container">
+                <div class="card">
+                    <h2 class="card-title">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                             stroke-width="2">
+                            <path d="M20 7L12 3L4 7M20 7L12 11M20 7V17L12 21M12 11L4 7M12 11V21M4 7V17L12 21"/>
+                        </svg>
+                        cetide - code
+                    </h2>
+
+                    <!-- 数据库配置部分 -->
+                    <div class="form-group">
+                        <form id="dbConfigForm" onsubmit="event.preventDefault(); connectDatabase();">
+                            <div class="form-group">
+                                <label class="form-label">数据库类型</label>
+                                <select name="dbType" class="form-control form-select">
+                                    <option value="mysql">MySQL</option>
+                                    <option value="postgresql">PostgreSQL</option>
+                                    <option value="oracle">Oracle</option>
+                                    <option value="sqlserver">SQL Server</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">主机地址</label>
+                                <input type="text" name="host" class="form-control" value="localhost">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">端口</label>
+                                <input type="text" name="port" class="form-control" value="3306">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">数据库名</label>
+                                <input type="text" name="database" class="form-control" placeholder="请输入数据库名"
+                                       required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">用户名</label>
+                                <input type="text" name="username" class="form-control" placeholder="请输入用户名"
+                                       required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">密码</label>
+                                <input type="password" name="password" class="form-control" placeholder="请输入密码"
+                                       required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                     stroke-width="2">
+                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                </svg>
+                                连接数据库
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- 生成配置区域 -->
+                    <div id="generateConfig" class="generate-config" style="display: none;">
+                        <h3>生成配置</h3>
+                        <form id="generateForm">
+                            <div class="form-group">
+                                <label class="form-label">包名</label>
+                                <input type="text" name="packageName" class="form-control"
+                                       placeholder="com.example.demo">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">作者</label>
+                                <input type="text" name="author" class="form-control" placeholder="请输入作者名">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">选择表</label>
+                                <div id="generateTableList" class="table-list"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">生成选项</label>
+                                <div class="checkbox-group">
+                                    <label><input type="checkbox" name="generateOptions" value="entity"> Entity</label>
+                                    <label><input type="checkbox" name="generateOptions" value="mapper"> Mapper</label>
+                                    <label><input type="checkbox" name="generateOptions" value="mapper-xml"> Mapper XML</label>
+                                    <label><input type="checkbox" name="generateOptions" value="service">
+                                        Service</label>
+                                    <label><input type="checkbox" name="generateOptions" value="service-impl">
+                                        ServiceImpl</label>
+                                    <label><input type="checkbox" name="generateOptions" value="controller"> Controller</label>
+                                    <label><input type="checkbox" name="generateOptions" value="dto-add">
+                                        DTO-Add</label>
+                                    <label><input type="checkbox" name="generateOptions" value="dto-edit">
+                                        DTO-Edit</label>
+                                    <label><input type="checkbox" name="generateOptions" value="dto-query">
+                                        DTO-Query</label>
+                                    <label><input type="checkbox" name="generateOptions" value="vo"> VO</label>
+                                </div>
+                            </div>
+
+                            <button type="button" onclick="generateCode()" class="btn btn-primary">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                     stroke-width="2">
+                                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                                生成代码
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- 生成结果展示部分 -->
+                    <div id="resultSection" class="hidden">
+                        <h3 class="card-title">生成结果</h3>
+                        <div id="codeTabs" class="code-tabs"></div>
+                        <div id="codeContent" class="code-content"></div>
+                        <div class="button-group">
+                            <button onclick="saveChanges()" class="btn btn-primary">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                     stroke-width="2">
+                                    <path d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"/>
+                                </svg>
+                                保存修改
+                            </button>
+                            <button onclick="downloadAllCode()" class="btn btn-success">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                     stroke-width="2">
+                                    <path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+                                </svg>
+                                下载全部代码
+                            </button>
+                            <button onclick="applyToProject()" class="btn btn-primary">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                     stroke-width="2">
+                                    <path d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"/>
+                                </svg>
+                                应用到项目
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 数据库管理页面 -->
+        <div id="database-admin" class="page">
+            <div class="container">
+                <div class="card">
+                    <h2 class="card-title">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                             stroke-width="2">
+                            <path d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"/>
+                        </svg>
+                        database - manager
+                    </h2>
+                    <div id="database-content">
+                        <!-- 这里将根据数据库连接状态动态显示内容 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 配置管理页面 -->
+        <div id="config-manager" class="page">
+            <div class="container">
+                <div class="card">
+                    <h2 class="card-title">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                             stroke-width="2">
+                            <path d="M12.22 2h-.44a2 2 0 00-2 2v.18a2 2 0 01-1 1.73l-.43.25a2 2 0 01-2 0l-.15-.08a2 2 0 00-2.73.73l-.22.38a2 2 0 00.73 2.73l.15.1a2 2 0 011 1.72v.51a2 2 0 01-1 1.74l-.15.09a2 2 0 00-.73 2.73l.22.38a2 2 0 002.73.73l.15-.08a2 2 0 012 0l.43.25a2 2 0 011 1.73V20a2 2 0 002 2h.44a2 2 0 002-2v-.18a2 2 0 011-1.73l.43-.25a2 2 0 012 0l.15.08a2 2 0 002.73-.73l.22-.39a2 2 0 00-.73-2.73l-.15-.08a2 2 0 01-1-1.74v-.5a2 2 0 011-1.74l.15-.09a2 2 0 00.73-2.73l-.22-.38a2 2 0 00-2.73-.73l-.15.08a2 2 0 01-2 0l-.43-.25a2 2 0 01-1-1.73V4a2 2 0 00-2-2z"/>
+                            <circle cx="12" cy="12" r="3"/>
+                        </svg>
+                        配置管理
+                    </h2>
+
+                    <!-- 配置文件列表 -->
+                    <div class="config-section">
+                        <div class="section-header">
+                            <h3>配置文件列表</h3>
+                            <div class="search-box">
+                                <input type="text" id="configSearchInput" class="form-control"
+                                       placeholder="搜索配置文件...">
+                            </div>
+                        </div>
+                        <div class="table-wrapper">
+                            <table class="data-table">
+                                <thead>
+                                <tr>
+                                    <th>文件名</th>
+                                    <th>路径</th>
+                                    <th>最后修改时间</th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
+                                <tbody id="configFilesList"></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- 配置历史记录 -->
+                    <div class="config-history">
+                        <div class="section-header">
+                            <h3>修改历史</h3>
+                            <div class="history-filter">
+                                <select id="historyFileSelect" class="form-control" onchange="viewHistory(this.value)">
+                                    <option value="">选择文件查看历史</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="table-wrapper">
+                            <table class="data-table">
+                                <thead>
+                                <tr>
+                                    <th>版本</th>
+                                    <th>修改时间</th>
+                                    <th>操作人</th>
+                                    <th>说明</th>
+                                    <th>状态</th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
+                                <tbody id="configHistoryList">
+                                <tr>
+                                    <td colspan="6" class="text-center">请选择文件查看历史记录</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Redis管理页面 -->
+        <div id="redis-admin" class="page">
+            <div class="container">
+                <div class="card">
+                    <h2 class="card-title">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                             stroke-width="2">
+                            <path d="M12 4c4.418 0 8 1.79 8 4s-3.582 4-8 4-8-1.79-8-4 3.582-4 8-4zm0 8c4.418 0 8-1.79 8-4m-8 4c-4.418 0-8-1.79-8-4m8 4v8m-8-4c0 2.21 3.582 4 8 4s8-1.79 8-4"/>
+                        </svg>
+                        redis - manager
+                    </h2>
+                    <!-- Redis连接配置表单 -->
+                    <div class="form-group">
+                        <form id="redisConfigForm">
+                            <div class="form-group">
+                                <label class="form-label">主机地址</label>
+                                <input type="text" name="host" class="form-control" value="localhost">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">端口</label>
+                                <input type="text" name="port" class="form-control" value="6379">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">密码</label>
+                                <input type="password" name="password" class="form-control"
+                                       placeholder="请输入密码(如果有)">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">数据库索引</label>
+                                <input type="number" name="database" class="form-control" value="0" min="0" max="15">
+                            </div>
+                            <button type="button" onclick="connectRedis()" class="btn btn-primary">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                     stroke-width="2">
+                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                </svg>
+                                连接Redis
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Redis数据管理区域 -->
+                    <div id="redisManager" class="hidden">
+                        <div class="form-group">
+                            <label class="form-label">键模式搜索</label>
+                            <div class="search-bar">
+                                <input type="text" id="redisSearchPattern" class="search-input"
+                                       placeholder="输入搜索模式,例如: user:*">
+                                <button onclick="searchRedisKeys()" class="btn btn-primary">搜索</button>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">添加新键值对</label>
+                            <div class="add-key-form">
+                                <input type="text" id="newKey" class="form-control" placeholder="键名">
+                                <select id="valueType" class="form-control">
+                                    <option value="string">String</option>
+                                    <option value="list">List</option>
+                                    <option value="hash">Hash</option>
+                                    <option value="set">Set</option>
+                                    <option value="zset">Sorted Set</option>
+                                </select>
+                                <textarea id="newValue" class="form-control" placeholder="值"></textarea>
+                                <button onclick="addRedisKey()" class="btn btn-success">添加</button>
+                            </div>
+                        </div>
+
+                        <!-- 在Redis管理区域的表格下方添加分页控件 -->
+                        <div class="table-wrapper">
+                            <table class="data-table">
+                                <thead>
+                                <tr>
+                                    <th>键名</th>
+                                    <th>类型</th>
+                                    <th>值</th>
+                                    <th>TTL</th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
+                                <tbody id="redisKeysList"></tbody>
+                            </table>
+                            <div id="redisPagination" class="pagination"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 性能监控页面 -->
+        <div id="performance-monitor" class="page">
+            <div class="container">
+                <div class="card">
+                    <h2>性能监控</h2>
+
+                    <!-- JVM监控部分 -->
+                    <div class="monitor-section">
+                        <div class="section-header">
+                            <h3>JVM监控</h3>
+                            <button class="btn-refresh" onclick="updateJvmMetrics()">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                     viewBox="0 0 16 16">
+                                    <path d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
+                                    <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="metrics-grid">
+                            <!-- 堆内存使用情况 -->
+                            <div class="metric-item memory-info">
+                                <h4>堆内存使用情况</h4>
+                                <div class="progress-bar">
+                                    <div id="heapMemoryProgress" class="progress" style="width: 0%"></div>
+                                </div>
+                                <div id="heapMemoryText" class="metric-value">0MB / 0MB (0%)</div>
+                            </div>
+
+                            <!-- 非堆内存使用情况 -->
+                            <div class="metric-item memory-info">
+                                <h4>非堆内存使用情况</h4>
+                                <div class="progress-bar">
+                                    <div id="nonHeapMemoryProgress" class="progress" style="width: 0%"></div>
+                                </div>
+                                <div id="nonHeapMemoryText" class="metric-value">0MB / 0MB (0%)</div>
+                            </div>
+
+                            <!-- GC信息 -->
+                            <div class="metric-item gc-info">
+                                <h4>Young GC次数</h4>
+                                <div id="youngGcCount" class="metric-value">0</div>
+                            </div>
+                            <div class="metric-item gc-info">
+                                <h4>Full GC次数</h4>
+                                <div id="fullGcCount" class="metric-value">0</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 线程监控部分 -->
+                    <div class="monitor-section">
+                        <div class="section-header">
+                            <h3>线程监控</h3>
+                            <button class="btn-refresh" onclick="updateThreadMetrics()">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                     viewBox="0 0 16 16">
+                                    <path d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
+                                    <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="metrics-grid">
+                            <div class="metric-item">
+                                <h4>活跃线程数</h4>
+                                <div id="activeThreadCount" class="metric-value">0</div>
+                            </div>
+                            <div class="metric-item">
+                                <h4>守护线程数</h4>
+                                <div id="daemonThreadCount" class="metric-value">0</div>
+                            </div>
+                            <div class="metric-item">
+                                <h4>峰值线程数</h4>
+                                <div id="peakThreadCount" class="metric-value">0</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 数据库连接池监控部分 -->
+                    <div class="monitor-section">
+                        <div class="section-header">
+                            <h3>数据库连接池监控</h3>
+                            <button class="btn-refresh" onclick="updateDbPoolMetrics()">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                     viewBox="0 0 16 16">
+                                    <path d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
+                                    <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="metrics-grid">
+                            <div class="metric-item">
+                                <h4>活跃连接数</h4>
+                                <div id="activeConnections" class="metric-value">0</div>
+                            </div>
+                            <div class="metric-item">
+                                <h4>空闲连接数</h4>
+                                <div id="idleConnections" class="metric-value">0</div>
+                            </div>
+                            <div class="metric-item">
+                                <h4>总连接数</h4>
+                                <div id="totalConnections" class="metric-value">0</div>
+                            </div>
+                            <div class="metric-item">
+                                <h4>最大连接数</h4>
+                                <div id="maxConnections" class="metric-value">0</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- API性能监控部分 -->
+                    <div class="monitor-section">
+                        <div class="section-header">
+                            <h3>API性能监控</h3>
+                            <button class="btn-refresh" onclick="updateApiMetrics()">
+                                <i class="fas fa-sync-alt"></i>
+                            </button>
+                        </div>
+
+                        <!-- 统计卡片 -->
+                        <div class="stats-grid">
+                            <div class="metric-card">
+                                <h5>总请求数</h5>
+                                <p id="totalRequests">0</p>
+                            </div>
+                            <div class="metric-card">
+                                <h5>平均响应时间</h5>
+                                <p id="avgResponseTime">0.00ms</p>
+                            </div>
+                            <div class="metric-card">
+                                <h5>错误率</h5>
+                                <p id="errorRate">0.00%</p>
+                            </div>
+                        </div>
+
+                        <!-- API调用历史 -->
+                        <h4 class="table-title">API调用历史</h4>
+                        <div class="table-responsive">
+                            <table class="table table-sm">
+                                <thead>
+                                <tr>
+                                    <th>时间</th>
+                                    <th>路径</th>
+                                    <th>响应时间</th>
+                                    <th>状态码</th>
+                                </tr>
+                                </thead>
+                                <tbody id="apiHistoryTable">
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- API路径统计 -->
+                        <h4 class="table-title">API路径统计</h4>
+                        <div class="table-responsive">
+                            <table class="table table-sm">
+                                <thead>
+                                <tr>
+                                    <th>路径</th>
+                                    <th>总请求数</th>
+                                    <th>平均响应时间</th>
+                                    <th>错误率</th>
+                                </tr>
+                                </thead>
+                                <tbody id="apiPathStatsTable">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 缓存管理页面 -->
+        <div id="cache-manager" class="page">
+            <div class="container">
+                <div class="card">
+                    <h2 class="card-title">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                             stroke-width="2">
+                            <path d="M21 8v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h14a2 2 0 012 2z"/>
+                            <path d="M7 8h10M7 12h10M7 16h10"/>
+                        </svg>
+                        缓存管理
+                    </h2>
+
+                    <!-- 缓存概览 -->
+                    <div class="cache-overview">
+                        <div class="overview-cards">
+                            <div class="overview-card">
+                                <div class="card-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                         stroke-width="2">
+                                        <path d="M20 7L12 3L4 7M20 7L12 11M20 7V17L12 21M12 11L4 7M12 11V21M4 7V17L12 21"/>
+                                    </svg>
+                                </div>
+                                <div class="card-info">
+                                    <span class="card-label">缓存实例</span>
+                                    <span class="card-value" id="totalCaches">0</span>
+                                </div>
+                            </div>
+                            <div class="overview-card">
+                                <div class="card-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                         stroke-width="2">
+                                        <path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+                                    </svg>
+                                </div>
+                                <div class="card-info">
+                                    <span class="card-label">总条目数</span>
+                                    <span class="card-value" id="totalEntries">0</span>
+                                </div>
+                            </div>
+                            <div class="overview-card">
+                                <div class="card-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                         stroke-width="2">
+                                        <path d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                                    </svg>
+                                </div>
+                                <div class="card-info">
+                                    <span class="card-label">内存占用</span>
+                                    <span class="card-value" id="memoryUsage">0 MB</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 缓存实例列表 -->
+                    <div class="cache-instances">
+                        <div class="section-header">
+                            <h3>缓存实例列表</h3>
+                            <div class="header-actions">
+                                <button class="btn btn-primary" onclick="createNewCache()">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                         stroke-width="2">
+                                        <path d="M12 4v16m8-8H4"/>
+                                    </svg>
+                                    创建缓存
+                                </button>
+                                <div class="search-box">
+                                    <input type="text" id="instanceSearch" placeholder="搜索缓存实例...">
+                                    <button class="search-button" onclick="searchCaches()" title="搜索">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                             stroke="currentColor" stroke-width="2">
+                                            <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="cache-data-table">
+                                <thead>
+                                <tr>
+                                    <th>缓存名称</th>
+                                    <th>条目数</th>
+                                    <th>配置信息</th>
+                                    <th>压缩</th>
+                                    <th>监控</th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
+                                <tbody id="cacheInstancesList"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 创建缓存模态框 -->
+        <div id="createCacheModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>创建新缓存</h3>
+                    <span class="close" onclick="closeModalById('createCacheModal')">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <form id="createCacheForm">
+                        <div class="form-group">
+                            <label for="newCacheName">缓存名称</label>
+                            <input type="text" id="newCacheName" class="form-control" required placeholder="缓存名称">
+                        </div>
+                        <div class="form-group">
+                            <label for="newCacheMaxSize">最大容量</label>
+                            <input type="number" id="newCacheMaxSize" class="form-control" min="1" placeholder="不限制">
+                        </div>
+                        <div class="form-group">
+                            <label for="newCacheExpiration">过期时间（秒）</label>
+                            <input type="number" id="newCacheExpiration" class="form-control" min="-1"
+                                   placeholder="永不过期">
+                            <small>-1表示永不过期</small>
+                        </div>
+                        <div class="button-group">
+                            <button type="button" class="btn btn-secondary"
+                                    onclick="closeModalById('createCacheModal')">取消
+                            </button>
+                            <button type="submit" class="btn btn-primary">创建</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- 缓存详情模态框 -->
+        <div id="cacheDetailsModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>缓存详情 - <span id="modalCacheName"></span></h3>
+                    <span class="close" onclick="closeModalById('cacheDetailsModal')">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <div class="cache-info">
+                        <div class="info-item">
+                            <label>最大容量：</label>
+                            <span id="modalMaxSize"></span>
+                        </div>
+                        <div class="info-item">
+                            <label>驱逐策略：</label>
+                            <span id="modalEvictionPolicy"></span>
+                        </div>
+                        <div class="info-item">
+                            <label>总条目数：</label>
+                            <span id="modalTotalRequests"></span>
+                        </div>
+                    </div>
+
+                    <!-- 添加操作按钮区域 -->
+                    <div id="cacheDetailActions" class="action-buttons">
+                        <!-- 按钮将由JavaScript动态添加 -->
+                    </div>
+
+                    <div class="table-wrapper">
+                        <table class="data-table">
+                            <thead>
+                            <tr>
+                                <th>键</th>
+                                <th>值</th>
+                                <th>过期时间</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody id="cacheContentList">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 修改配置缓存模态框 -->
+        <div id="updateConfigModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>修改缓存配置 - <span id="updateCacheName"></span></h3>
+                    <span class="close" onclick="closeModalById('updateConfigModal')">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <form id="updateConfigForm">
+                        <div class="form-group">
+                            <label for="updateMaxSize">最大容量</label>
+                            <input type="number" id="updateMaxSize" name="maxSize" class="form-control" min="1"
+                                   placeholder="不限制">
+                        </div>
+                        <div class="form-group">
+                            <label for="updateTTL">过期时间（秒）</label>
+                            <input type="number" id="updateTTL" name="ttlSeconds" class="form-control" min="-1"
+                                   placeholder="永不过期">
+                            <small>-1表示永不过期</small>
+                        </div>
+                        <div class="button-group">
+                            <button type="button" class="btn btn-secondary"
+                                    onclick="closeModalById('updateConfigModal')">取消
+                            </button>
+                            <button type="submit" class="btn btn-primary">保存</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- 添加缓存条目模态框 -->
+        <div id="addEntryModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>添加缓存条目</h3>
+                    <span class="close" onclick="closeModalById('addEntryModal')">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <form id="addEntryForm">
+                        <div class="form-group">
+                            <label for="entryKey">键名</label>
+                            <input type="text" id="entryKey" name="key" class="form-control" required placeholder="key">
+                        </div>
+                        <div class="form-group">
+                            <label for="entryValue">值</label>
+                            <textarea id="entryValue" name="value" class="form-control" required
+                                      placeholder="value"></textarea>
+                        </div>
+                        <div class="button-group">
+                            <button type="button" class="btn btn-secondary" onclick="closeModalById('addEntryModal')">
+                                取消
+                            </button>
+                            <button type="submit" class="btn btn-primary">添加</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- 确认删除模态框 -->
+        <div id="confirmDeleteModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>确认删除</h3>
+                    <span class="close" onclick="closeModalById('confirmDeleteModal')">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <p>确定要删除这个缓存条目吗？此操作不可恢复。</p>
+                    <div class="button-group">
+                        <button class="btn btn-secondary" onclick="closeModalById('confirmDeleteModal')">取消</button>
+                        <button class="btn btn-danger" onclick="confirmDelete()">删除</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 信号管理页面 -->
+        <div class="page" id="signal-manager">
+            <div class="monitor-section">
+                <div class="section-header">
+                    <h3>信号管理</h3>
+                    <button class="btn-refresh" onclick="refreshSignalMetrics()">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                             stroke-width="2">
+                            <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.3"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- 信号组管理 -->
+                <div class="card">
+                    <div class="card-title">
+                        <h4>信号组</h4>
+                        <button class="btn btn-primary" style="float: right" onclick="showCreateGroupModal()">
+                            创建信号组
+                        </button>
+                    </div>
+                    <div class="table-wrapper">
+                        <table class="data-table" id="signal-groups-table">
+                            <thead>
+                            <tr>
+                                <th>组名</th>
+                                <th>信号数量</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- 信号监控 -->
+                <div class="card mt-3">
+                    <div class="card-title">
+                        <h4>信号监控</h4>
+                    </div>
+                    <div class="table-wrapper">
+                        <table class="data-table" id="signal-metrics-table">
+                            <thead>
+                            <tr>
+                                <th>信号名称</th>
+                                <th>优先级</th>
+                                <th>处理器数量</th>
+                                <th>成功次数</th>
+                                <th>失败次数</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 数据查看/编辑模态框 -->
+<div id="dataModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 id="modalTitle">表数据</h3>
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+        </div>
+        <div class="search-bar">
+            <input type="text" class="search-input" id="searchInput" placeholder="搜索...">
+        </div>
+        <div id="modalContent"></div>
+        <div id="pagination" class="pagination"></div>
+    </div>
+</div>
+
+<div id="toast" class="toast">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+    </svg>
+    <span id="toastMessage"></span>
+</div>
+
+<!-- 编辑模态框 -->
+<div id="editModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>编辑数据</h3>
+            <button class="modal-close" onclick="closeEditModal()">&times;</button>
+        </div>
+        <form id="editForm" class="edit-form">
+            <!-- 表单内容将动态生成 -->
+        </form>
+    </div>
+</div>
+
+<!-- 确认删除对话框 -->
+<div id="confirmDialog" class="modal">
+    <div class="modal-content confirm-dialog">
+        <h3>确认删除</h3>
+        <p>确定要删除这条数据吗？此操作不可恢复。</p>
+        <div class="button-group">
+            <button class="btn btn-primary" onclick="closeConfirmDialog()">取消</button>
+            <button class="btn btn-danger" onclick="confirmDelete()">删除</button>
+        </div>
+    </div>
+</div>
+
+<div id="databaseManager" style="display: none;">
+    <div class="connection-status"></div>
+    <div class="table-list">
+        <h3>数据库表</h3>
+        <div class="table-grid"></div>
+    </div>
+    <div id="tableDataModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModalById('tableDataModal')">&times;</span>
+            <h2>表格数据</h2>
+            <div class="table-data"></div>
+        </div>
+    </div>
+</div>
+
+<!-- 添加新的对话框组件 -->
+<div id="promptDialog" class="modal">
+    <div class="modal-content confirm-dialog">
+        <h3 id="promptTitle">输入</h3>
+        <div class="form-group">
+            <input type="text" id="promptInput" class="form-control">
+        </div>
+        <div class="button-group">
+            <button class="btn btn-primary" onclick="closePromptDialog(false)">取消</button>
+            <button class="btn btn-success" onclick="closePromptDialog(true)">确定</button>
+        </div>
+    </div>
+</div>
+
+<div id="alertDialog" class="modal">
+    <div class="modal-content confirm-dialog">
+        <h3 id="alertTitle">提示</h3>
+        <p id="alertMessage"></p>
+        <div class="button-group">
+            <button class="btn btn-primary" onclick="closeAlertDialog()">确定</button>
+        </div>
+    </div>
+</div>
+
+<!-- 配置编辑模态框 -->
+<div id="configEditModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>编辑配置</h3>
+            <button class="modal-close" onclick="closeConfigEditModal()">&times;</button>
+        </div>
+        <div class="form-group">
+            <label>修改说明</label>
+            <input type="text" id="configDescription" class="form-control" placeholder="请输入修改说明">
+        </div>
+        <div class="form-group">
+            <label>配置内容</label>
+            <div id="configEditor" style="height: 500px; border: 1px solid #ddd;"></div>
+        </div>
+        <div class="button-group">
+            <button class="btn btn-primary" onclick="validateConfig()">验证配置</button>
+            <button class="btn btn-success" onclick="saveConfig()">保存配置</button>
+        </div>
+    </div>
+</div>
+
+<!-- 配置对比模态框 -->
+<div id="configCompareModal" class="modal">
+    <div class="modal-content large-modal">
+        <div class="modal-header">
+            <h3>配置对比</h3>
+            <button class="modal-close" onclick="closeConfigCompareModal()">&times;</button>
+        </div>
+        <div class="compare-container">
+            <div class="compare-item">
+                <h4>历史版本</h4>
+                <div id="compareEditor1" style="height: 500px; border: 1px solid #ddd;"></div>
+            </div>
+            <div class="compare-item">
+                <h4>当前版本</h4>
+                <div id="compareEditor2" style="height: 500px; border: 1px solid #ddd;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 加载动画 -->
+<div class="loading-overlay" id="codeGenerateLoading">
+    <div class="loading-container">
+        <div class="loading-spinner">
+            <div class="loading-circle"></div>
+            <div class="loading-circle"></div>
+            <div class="loading-circle"></div>
+        </div>
+        <div class="loading-text">正在生成代码...</div>
+    </div>
+</div>
+
+<div class="loading-overlay" id="databaseLoading">
+    <div class="loading-container">
+        <div class="loading-spinner">
+            <div class="loading-circle"></div>
+            <div class="loading-circle"></div>
+            <div class="loading-circle"></div>
+        </div>
+        <div class="loading-text">正在加载数据库信息...</div>
+    </div>
+</div>
+
+<div class="loading-overlay" id="redisLoading">
+    <div class="loading-container">
+        <div class="loading-spinner">
+            <div class="loading-circle"></div>
+            <div class="loading-circle"></div>
+            <div class="loading-circle"></div>
+        </div>
+        <div class="loading-text">正在加载Redis数据...</div>
+    </div>
+</div>
+
+<div class="loading-overlay" id="configLoading">
+    <div class="loading-container">
+        <div class="loading-spinner">
+            <div class="loading-circle"></div>
+            <div class="loading-circle"></div>
+            <div class="loading-circle"></div>
+        </div>
+        <div class="loading-text">正在加载配置信息...</div>
+    </div>
+</div>
+
+<div class="loading-mask" id="codeGenerateLoadingMask">
+    <div class="loading-box">
+        <div class="spinner"></div>
+        <div class="text">正在生成代码...</div>
+    </div>
+</div>
+
+<div class="loading-mask" id="databaseLoadingMask">
+    <div class="loading-box">
+        <div class="spinner"></div>
+        <div class="text">正在加载数据库信息...</div>
+    </div>
+</div>
+
+<div class="loading-mask" id="redisLoadingMask">
+    <div class="loading-box">
+        <div class="spinner"></div>
+        <div class="text">正在加载Redis数据...</div>
+    </div>
+</div>
+
+<div class="loading-mask" id="configLoadingMask">
+    <div class="loading-box">
+        <div class="spinner"></div>
+        <div class="text">正在加载配置信息...</div>
+    </div>
+</div>
+
+<div class="ssh-float-button" onclick="toggleSSHTerminal()">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M4 17l6-6-6-6M12 19h8"/>
+    </svg>
+</div>
+
+<div class="ssh-terminal-modal" id="sshTerminalModal">
+    <div class="ssh-terminal-container">
+        <div class="ssh-terminal-header">
+            <div class="ssh-connection-form">
+                <input type="text" id="sshHost" placeholder="主机地址">
+                <input type="number" id="sshPort" placeholder="端口" value="22">
+                <input type="text" id="sshUsername" placeholder="用户名">
+                <input type="password" id="sshPassword" placeholder="密码">
+                <button class="btn btn-primary" onclick="connectSSH()">连接</button>
+            </div>
+            <button class="ssh-close-button" onclick="toggleSSHTerminal()">&times;</button>
+        </div>
+        <div class="ssh-terminal-content">
+            <div id="terminal"></div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="/lib/axios/axios.min.js"></script>
+<script src="/js/auth.js"></script>
+<script>
+    // 创建一个函数来初始化所有依赖
+    function initDependencies() {
+        // 加载 Chart.js
+        const chartScript = document.createElement('script');
+        chartScript.src = 'https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js';
+        chartScript.onload = function () {
+            // Chart.js 加载完成后，加载 Monaco Editor
+            const monacoLoader = document.createElement('script');
+            monacoLoader.src = 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.44.0/min/vs/loader.js';
+            monacoLoader.onload = function () {
+                // Monaco Editor loader 加载完成后，配置并加载编辑器
+                require.config({paths: {vs: 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.44.0/min/vs'}});
+                require(['vs/editor/editor.main'], function () {
+                    // 最后加载应用程序的主要 JavaScript 文件
+                    const script = document.createElement('script');
+                    script.src = '/js/backstage.js';
+                    document.body.appendChild(script);
+                });
+            };
+            document.body.appendChild(monacoLoader);
+        };
+        document.body.appendChild(chartScript);
+    }
+
+    // 启动依赖加载
+    initDependencies();
+</script>
+</html>

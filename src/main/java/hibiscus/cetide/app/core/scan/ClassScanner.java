@@ -1,7 +1,10 @@
 package hibiscus.cetide.app.core.scan;
 
-import hibiscus.cetide.app.common.AppConfigProperties;
+import hibiscus.cetide.app.core.model.AppConfigProperties;
 import org.reflections.Reflections;
+import org.reflections.scanners.Scanners;
+import org.reflections.util.ClasspathHelper;
+import org.reflections.util.ConfigurationBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Component;
@@ -19,9 +22,17 @@ public class ClassScanner {
 
     @Autowired
     private AppConfigProperties appConfigProperties;
-    public  Class<?> findMainClass() {
-        String scanBasePackages= appConfigProperties.getHibiscus();
-        Reflections reflections = new Reflections(scanBasePackages);
+    
+    public Class<?> findMainClass() {
+        String scanBasePackages = appConfigProperties.getScanPath();
+        if (scanBasePackages == null || scanBasePackages.isEmpty()) {
+            scanBasePackages = "com.example"; // 默认包路径
+        }
+        
+        Reflections reflections = new Reflections(new ConfigurationBuilder()
+            .setUrls(ClasspathHelper.forPackage(scanBasePackages))
+            .setScanners(Scanners.TypesAnnotated));
+            
         Set<Class<?>> classes = reflections.getTypesAnnotatedWith(SpringBootApplication.class);
         for (Class<?> clazz : classes) {
             if (hasMainMethod(clazz)) {
@@ -30,6 +41,7 @@ public class ClassScanner {
         }
         return null;
     }
+
     private boolean hasMainMethod(Class<?> clazz) {
         try {
             Method method = clazz.getMethod("main", String[].class);
@@ -40,17 +52,21 @@ public class ClassScanner {
     }
 
     public void scanApplication(Class<?> mainClass) {
-        if (mainClass.isAnnotationPresent(SpringBootApplication.class)) {
+        if (mainClass != null && mainClass.isAnnotationPresent(SpringBootApplication.class)) {
             SpringBootApplication annotation = mainClass.getAnnotation(SpringBootApplication.class);
             String[] scanBasePackages = annotation.scanBasePackages();
-            for (String basePackage : scanBasePackages) {
-                scanPackage(basePackage);
+            if (scanBasePackages.length == 0) {
+                // 如果没有指定扫描包，使用主类所在的包
+                scanPackage(mainClass.getPackage().getName());
+            } else {
+                for (String basePackage : scanBasePackages) {
+                    scanPackage(basePackage);
+                }
             }
         }
     }
 
     private void scanPackage(String basePackage) {
-        // 转换包名并扫描类
         ClassLoader classLoader = getClass().getClassLoader();
         URL resource = classLoader.getResource(basePackage.replace(".", "/"));
         if (resource != null) {

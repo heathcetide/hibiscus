@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<pre th:inline="text"><![CDATA[
+package [(${packageName})].service.impl;
+
+import [(${packageName})].entity.[(${className})];
+import [(${packageName})].dto.[(${className})]AddRequest;
+import [(${packageName})].dto.[(${className})]EditRequest;
+import [(${packageName})].dto.[(${className})]QueryRequest;
+import [(${packageName})].vo.[(${className})]VO;
+import [(${packageName})].mapper.[(${className})]Mapper;
+import [(${packageName})].service.[(${className})]Service;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import org.springframework.beans.BeanUtils;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import java.util.List;
+import java.util.stream.Collectors;
+
+@Service
+public class [(${className})]ServiceImpl implements [(${className})]Service {
+    
+    private final [(${className})]Mapper mapper;
+    
+    public [(${className})]ServiceImpl([(${className})]Mapper mapper) {
+        this.mapper = mapper;
+    }
+    
+    @Override
+    @Transactional
+    public [(${className})]VO create([(${className})]AddRequest request) {
+        [(${className})] entity = new [(${className})]();
+        BeanUtils.copyProperties(request, entity);
+        mapper.insert(entity);
+        return convertToVO(entity);
+    }
+    
+    @Override
+    @Transactional
+    public [(${className})]VO update([(${className})]EditRequest request) {
+        [(${className})] entity = new [(${className})]();
+        BeanUtils.copyProperties(request, entity);
+        mapper.updateById(entity);
+        return convertToVO(entity);
+    }
+    
+    @Override
+    @Transactional
+    public void delete(Long id) {
+        mapper.deleteById(id);
+    }
+    
+    @Override
+    public [(${className})]VO findById(Long id) {
+        return convertToVO(mapper.selectById(id));
+    }
+    
+    @Override
+    public PageInfo<[(${className})]VO> findByPage([(${className})]QueryRequest request) {
+        PageHelper.startPage(request.getPageNum(), request.getPageSize());
+        [(${className})] condition = new [(${className})]();
+        BeanUtils.copyProperties(request, condition);
+        List<[(${className})]> list = mapper.selectByCondition(condition);
+        PageInfo<[(${className})]> pageInfo = new PageInfo<>(list);
+        
+        List<[(${className})]VO> voList = list.stream()
+                .map(this::convertToVO)
+                .collect(Collectors.toList());
+        
+        PageInfo<[(${className})]VO> result = new PageInfo<>();
+        BeanUtils.copyProperties(pageInfo, result);
+        result.setList(voList);
+        return result;
+    }
+    
+    @Override
+    public List<[(${className})]VO> findByCondition([(${className})]QueryRequest request) {
+        [(${className})] condition = new [(${className})]();
+        BeanUtils.copyProperties(request, condition);
+        return mapper.selectByCondition(condition).stream()
+                .map(this::convertToVO)
+                .collect(Collectors.toList());
+    }
+    
+    private [(${className})]VO convertToVO([(${className})] entity) {
+        if (entity == null) {
+            return null;
+        }
+        [(${className})]VO vo = new [(${className})]VO();
+        BeanUtils.copyProperties(entity, vo);
+        return vo;
+    }
+}]]></pre>
+</body>
+</html> 

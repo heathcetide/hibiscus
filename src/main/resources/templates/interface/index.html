@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hibiscus - api - test</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="/css/interface.css" rel="stylesheet">
+</head>
+<body>
+    <div class="main-container">
+        <!-- API Sidebar -->
+        <aside id="api-sidebar" class="w-full md:w-1/4 bg-gray-700 text-white p-6 rounded-md mb-6 md:mb-0">
+            <div class="mb-4">
+                <input type="text" 
+                       id="api-search" 
+                       class="w-full px-3 py-2 bg-gray-600 text-white rounded border border-gray-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500" 
+                       placeholder="Search APIs...">
+            </div>
+            <h2 class="text-xl font-bold border-b-2 pb-2 mb-4">API List</h2>
+            <ul id="api-list" class="space-y-2">
+                <!-- API列表会动态加载到这里 -->
+            </ul>
+        </aside>
+
+        <!-- Main Content Area -->
+        <div class="content-area">
+            <!-- Request Section -->
+            <div class="request-section">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-xl font-bold">Request</h2>
+                </div>
+
+                <!-- URL Bar -->
+                <div class="flex items-center space-x-2 mb-4">
+                    <span id="method-badge" class="method-badge method-get">GET</span>
+                    <input type="text" id="request-url" class="flex-1 px-4 py-2 border rounded" placeholder="Enter URL">
+                    <div class="flex items-center space-x-2 mb-4">
+                        <button onclick="sendRequest()" 
+                                class="bg-green-500 text-white px-6 py-2 rounded hover:bg-green-600">
+                            发送请求
+                        </button>
+                        <button onclick="clearForm()" 
+                                class="bg-gray-500 text-white px-6 py-2 rounded hover:bg-gray-600">
+                            清除
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Request Configuration Tabs -->
+                <div class="tab-panel">
+                    <div class="tab-buttons">
+                        <button class="tab-button active" data-tab="params">Params</button>
+                        <button class="tab-button" data-tab="headers">Headers</button>
+                        <button class="tab-button" data-tab="body">Body</button>
+                        <button class="tab-button" data-tab="auth">Auth</button>
+                        <button class="tab-button" data-tab="performance">Performance</button>
+                        <button class="tab-button" data-tab="docs">Docs</button>
+                    </div>
+                    
+                    <div class="tab-content active" id="params">
+                        <div id="params-container" class="space-y-2">
+                            <!-- 参数会动态添加到这里 -->
+                        </div>
+                        <button onclick="addParameter('params-container')" 
+                                class="mt-2 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                            Add Parameter
+                        </button>
+                    </div>
+                    
+                    <div class="tab-content" id="headers">
+                        <div id="headers-container" class="space-y-2">
+                            <!-- 请求头会动态添加到这里 -->
+                        </div>
+                        <button onclick="addParameter('headers-container')" 
+                                class="mt-2 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                            Add Header
+                        </button>
+                    </div>
+                    
+                    <div class="tab-content" id="body">
+                        <div id="body-editor" class="editor-container"></div>
+                    </div>
+                    
+                    <div class="tab-content" id="auth">
+                        <select id="auth-type" class="w-full p-2 border rounded mb-2">
+                            <option value="none">No Auth</option>
+                            <option value="bearer">Bearer Token</option>
+                            <option value="basic">Basic Auth</option>
+                        </select>
+                        <div id="auth-inputs"></div>
+                    </div>
+                    
+                    <div class="tab-content" id="performance">
+                        <div class="performance-controls mb-4">
+                            <div class="flex items-center space-x-4 mb-4">
+                                <div class="flex-1">
+                                    <label class="block text-sm font-medium mb-1">并发用户数</label>
+                                    <input type="number" id="concurrent-users" 
+                                           class="w-full px-3 py-2 border rounded" 
+                                           value="10" min="1" max="100">
+                                </div>
+                                <div class="flex-1">
+                                    <label class="block text-sm font-medium mb-1">请求次数</label>
+                                    <input type="number" id="request-count" 
+                                           class="w-full px-3 py-2 border rounded" 
+                                           value="100" min="1" max="1000">
+                                </div>
+                                <div class="flex-1">
+                                    <label class="block text-sm font-medium mb-1">请求间隔(ms)</label>
+                                    <input type="number" id="request-interval" 
+                                           class="w-full px-3 py-2 border rounded" 
+                                           value="100" min="0" max="5000">
+                                </div>
+                            </div>
+                            <button onclick="startPerformanceTest()" 
+                                    class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                                开始测试
+                            </button>
+                        </div>
+                        
+                        <div class="performance-results">
+                            <div class="grid grid-cols-2 gap-4 mb-4">
+                                <div class="bg-gray-100 p-4 rounded">
+                                    <h3 class="font-bold mb-2">基本指标</h3>
+                                    <div class="space-y-2">
+                                        <div>总请求数：<span id="total-requests">0</span></div>
+                                        <div>成功请求：<span id="success-requests">0</span></div>
+                                        <div>失败请求：<span id="failed-requests">0</span></div>
+                                        <div>平均响应时间：<span id="avg-response-time">0</span> ms</div>
+                                    </div>
+                                </div>
+                                <div class="bg-gray-100 p-4 rounded">
+                                    <h3 class="font-bold mb-2">响应时间分布</h3>
+                                    <div class="space-y-2">
+                                        <div>最快响应：<span id="min-response-time">0</span> ms</div>
+                                        <div>最慢响应：<span id="max-response-time">0</span> ms</div>
+                                        <div>90%响应时间：<span id="p90-response-time">0</span> ms</div>
+                                        <div>99%响应时间：<span id="p99-response-time">0</span> ms</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-gray-100 p-4 rounded mb-4">
+                                <h3 class="font-bold mb-2">TPS统计</h3>
+                                <div class="space-y-2">
+                                    <div>平均TPS：<span id="avg-tps">0</span></div>
+                                    <div>峰值TPS：<span id="peak-tps">0</span></div>
+                                    <div>最低TPS：<span id="min-tps">0</span></div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-gray-100 p-4 rounded">
+                                <h3 class="font-bold mb-2">错误分析</h3>
+                                <div id="error-analysis" class="space-y-2">
+                                    <!-- 错误信息会动态添加到这里 -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="docs">
+                        <div class="flex justify-end mb-4">
+                            <div class="flex space-x-2">
+                                <button onclick="exportDocs('md')" 
+                                        class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                                    Export as Markdown
+                                </button>
+                                <button onclick="exportDocs('html')" 
+                                        class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
+                                    Export as HTML
+                                </button>
+                            </div>
+                        </div>
+                        <div id="api-documentation">
+                            <!-- API文档会动态添加到这里 -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Response Section -->
+            <div class="response-section">
+                <div class="flex items-center justify-between mb-2">
+                    <h2 class="text-xl font-bold">Response</h2>
+                    <div class="flex items-center space-x-2">
+                        <span id="response-status"></span>
+                        <span id="response-time"></span>
+                        <button onclick="copyResponse()" class="text-blue-500 hover:text-blue-600">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                      d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/>
+                            </svg>
+                        </button>
+                        <button onclick="exportResponseAsJson()" class="text-green-500 hover:text-green-600">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                      d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div id="response-editor" class="editor-container response-editor"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/monaco-editor@0.33.0/min/vs/loader.js"></script>
+
+    <!-- 这里是您的JavaScript代码，保持原有逻辑不变，只需调整UI相关的部分 -->
+    <script th:inline="javascript">
+        // 获取后端注入的baseURL
+        const baseURL = /*[[${baseURL}]]*/ 'http://localhost:8080';
+        let requestEditor, responseEditor;
+
+        // 初始化 Monaco Editor
+        require.config({ paths: { 'vs': 'https://unpkg.com/monaco-editor@0.33.0/min/vs' }});
+        require(['vs/editor/editor.main'], function() {
+            // 请求编辑器
+            requestEditor = monaco.editor.create(document.getElementById('body-editor'), {
+                value: '{\n\t\n}',
+                language: 'json',
+                theme: 'vs-light',
+                automaticLayout: true
+            });
+
+            // 响应编辑器
+            responseEditor = monaco.editor.create(document.getElementById('response-editor'), {
+                value: '// 等待响应...',
+                language: 'json',
+                theme: 'vs-light',
+                readOnly: true,
+                automaticLayout: true
+            });
+        });
+
+        // 存储所有API信息的变量
+        let allApiList = {};
+
+        // 修改loadApiList函数
+        async function loadApiList() {
+            try {
+                const response = await axios.get('/api/hibiscus/interface/api-list');
+                allApiList = response.data; // 保存完整的API列表
+                renderApiList(allApiList); // 渲染API列表
+                
+                // 添加搜索功能
+                const searchInput = document.getElementById('api-search');
+                searchInput.addEventListener('input', handleSearch);
+            } catch (error) {
+                console.error('Error loading API list:', error);
+            }
+        }
+
+        // 搜索处理函数
+        function handleSearch(event) {
+            const searchTerm = event.target.value.toLowerCase();
+            const filteredApis = {};
+            
+            Object.entries(allApiList).forEach(([className, apiInfo]) => {
+                // 搜索类名
+                if (className.toLowerCase().includes(searchTerm)) {
+                    filteredApis[className] = apiInfo;
+                    return;
+                }
+                
+                // 搜索方法名和路径
+                const matchingMethods = apiInfo.methods.filter(method => 
+                    method.methodName.toLowerCase().includes(searchTerm) ||
+                    method.paths.toLowerCase().includes(searchTerm) ||
+                    method.requestMethod.toLowerCase().includes(searchTerm)
+                );
+                
+                if (matchingMethods.length > 0) {
+                    filteredApis[className] = {
+                        ...apiInfo,
+                        methods: matchingMethods
+                    };
+                }
+            });
+            
+            renderApiList(filteredApis);
+        }
+
+        // 渲染API列表的函数
+        function renderApiList(apiList) {
+            const apiListContainer = document.getElementById('api-list');
+            apiListContainer.innerHTML = '';
+            
+            if (Object.keys(apiList).length === 0) {
+                apiListContainer.innerHTML = `
+                    <li class="text-gray-400 text-center py-4">
+                        No matching APIs found
+                    </li>
+                `;
+                return;
+            }
+
+            // 跟踪展开的组数量
+            let openGroups = new Set();
+            const MAX_OPEN_GROUPS = 2;
+
+            Object.entries(apiList).forEach(([className, apiInfo]) => {
+                const displayName = className.split('.').pop();
+                
+                const apiGroup = document.createElement('div');
+                apiGroup.className = 'api-group';
+                apiGroup.innerHTML = `
+                    <div class="api-group-header">
+                        <span title="${className}">${displayName}</span>
+                        <svg class="w-4 h-4 transform transition-transform duration-300" viewBox="0 0 20 20">
+                            <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/>
+                        </svg>
+                    </div>
+                    <div class="api-methods" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;">
+                        ${apiInfo.methods.map(method => `
+                            <div class="api-method-item" 
+                                 onclick="loadApiDetails('${className}', '${method.methodName}')">
+                                <span class="method-badge method-${method.requestMethod.toLowerCase()}">${method.requestMethod}</span>
+                                <span>${method.methodName}</span>
+                                <span class="text-gray-400 text-sm">${method.paths}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+
+                // 添加点击展开/收起功能
+                const header = apiGroup.querySelector('.api-group-header');
+                const methods = apiGroup.querySelector('.api-methods');
+                const arrow = header.querySelector('svg');
+
+                header.addEventListener('click', () => {
+                    const isExpanding = methods.style.maxHeight === '0px' || methods.style.maxHeight === '';
+                    
+                    if (isExpanding) {
+                        // 如果已经达到最大展开数，关闭最早展开的组
+                        if (openGroups.size >= MAX_OPEN_GROUPS) {
+                            const firstOpen = openGroups.values().next().value;
+                            const firstGroup = document.querySelector(`[data-group-id="${firstOpen}"]`);
+                            if (firstGroup) {
+                                const firstMethods = firstGroup.querySelector('.api-methods');
+                                const firstArrow = firstGroup.querySelector('svg');
+                                firstMethods.style.maxHeight = '0px';
+                                firstArrow.classList.remove('rotate-180');
+                                openGroups.delete(firstOpen);
+                            }
+                        }
+                        
+                        // 展开当前组
+                        methods.style.maxHeight = methods.scrollHeight + 'px';
+                        arrow.classList.add('rotate-180');
+                        openGroups.add(className);
+                    } else {
+                        // 收起当前组
+                        methods.style.maxHeight = '0px';
+                        arrow.classList.remove('rotate-180');
+                        openGroups.delete(className);
+                    }
+                });
+
+                // 添加组ID用于标识
+                apiGroup.setAttribute('data-group-id', className);
+                apiListContainer.appendChild(apiGroup);
+            });
+        }
+
+        // 添加搜索结果高亮功能
+        function highlightText(text, searchTerm) {
+            if (!searchTerm) return text;
+            const regex = new RegExp(`(${searchTerm})`, 'gi');
+            return text.replace(regex, '<mark class="bg-yellow-200 text-gray-900">$1</mark>');
+        }
+
+        // 加载API详情
+        async function loadApiDetails(className, methodName) {
+            try {
+                const response = await axios.get('/api/hibiscus/interface/api-details', {
+                    params: { className, methodName }
+                });
+
+                const apiDetails = response.data;
+                if (!apiDetails) {
+                    console.error('No API details found');
+                    return;
+                }
+                
+                // 更新URL和方法
+                const methodBadge = document.getElementById('method-badge');
+                methodBadge.textContent = apiDetails.requestMethod;
+                methodBadge.className = `method-badge method-${apiDetails.requestMethod.toLowerCase()}`;
+                
+                // 确保URL格式正确
+                const url = apiDetails.paths;
+                document.getElementById('request-url').value = url.startsWith('/') ? url : '/' + url;
+                
+                // 更新参数表单
+                updateParamsForm(apiDetails.parameters || []);
+                
+                // 清空并重置body编辑器
+                if (requestEditor) {
+                    requestEditor.setValue('{\n    \n}');
+                }
+                
+                // 清空响应编辑器
+                if (responseEditor) {
+                    responseEditor.setValue('// 等待响应...');
+                }
+                
+                // 切换到参数标签页
+                switchTab('params');
+                
+            } catch (error) {
+                console.error('Error loading API details:', error);
+                if (responseEditor) {
+                    responseEditor.setValue(`Error loading API details: ${error.message}`);
+                }
+            }
+        }
+
+        // 切换标签页
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-button').forEach(btn => 
+                btn.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => 
+                content.classList.remove('active'));
+            
+            document.querySelector(`[data-tab="${tabId}"]`).classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+        }
+
+        // 更新参数表单
+        function updateParamsForm(parameters) {
+            const container = document.getElementById('params-container');
+            container.innerHTML = '';
+            
+            if (parameters && parameters.length > 0) {
+                parameters.forEach(param => {
+                    const row = document.createElement('div');
+                    row.className = 'flex items-center space-x-2 mb-2';
+                    row.innerHTML = `
+                        <input type="text" value="${param.name}" class="w-1/3 px-2 py-1 border rounded" readonly>
+                        <input type="text" class="w-1/3 px-2 py-1 border rounded" placeholder="Value">
+                        <span class="text-sm text-gray-500 w-1/4">${param.type}</span>
+                        ${param.required ? '<span class="text-red-500">*</span>' : ''}
+                    `;
+                    container.appendChild(row);
+                });
+            } else {
+                container.innerHTML = '<div class="text-gray-500">No parameters required</div>';
+            }
+        }
+
+        // 添加参数函数
+        function addParameter(containerId) {
+            const container = document.getElementById(containerId);
+            const row = document.createElement('div');
+            row.className = 'flex items-center space-x-2 mb-2';
+            row.innerHTML = `
+                <input type="text" placeholder="Key" class="w-1/3 px-2 py-1 border rounded">
+                <input type="text" placeholder="Value" class="w-1/3 px-2 py-1 border rounded">
+                <button onclick="removeParameter(this)" class="text-red-500 hover:text-red-700">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            `;
+            container.appendChild(row);
+        }
+
+        // 移除参数函数
+        function removeParameter(button) {
+            button.closest('.flex').remove();
+        }
+
+        // 发送请求函数
+        async function sendRequest() {
+            const method = document.getElementById('method-badge').textContent;
+            let url = document.getElementById('request-url').value;
+            
+            // 确保URL格式正确
+            if (!url.startsWith('http://') && !url.startsWith('https://')) {
+                url = window.location.origin + (url.startsWith('/') ? url : '/' + url);
+            }
+            
+            // 收集查询参数
+            const params = {};
+            document.querySelectorAll('#params-container .flex').forEach(row => {
+                const inputs = row.querySelectorAll('input');
+                const key = inputs[0].value;
+                const value = inputs[1].value;
+                if (key && value) params[key] = value;
+            });
+            
+            // 收集请求头
+            const headers = {};
+            document.querySelectorAll('#headers-container .flex').forEach(row => {
+                const inputs = row.querySelectorAll('input');
+                const key = inputs[0].value;
+                const value = inputs[1].value;
+                if (key && value) headers[key] = value;
+            });
+            
+            // 获取请求体
+            let body;
+            try {
+                const bodyContent = requestEditor.getValue().trim();
+                body = bodyContent ? JSON.parse(bodyContent) : null;
+            } catch (e) {
+                console.error('Invalid JSON in request body');
+                responseEditor.setValue('Error: Invalid JSON in request body');
+                return;
+            }
+            
+            try {
+                responseEditor.setValue('Sending request...');
+                
+                const startTime = performance.now(); // 记录开始时间
+                const response = await axios.post('/api/hibiscus/interface/test', {
+                    method: method,
+                    url: url,
+                    headers: headers,
+                    params: params,
+                    body: body
+                });
+                const endTime = performance.now(); // 记录结束时间
+                const duration = Math.round(endTime - startTime); // 计算持续时间（毫秒）
+                
+                // 更新响应状态和时间
+                const status = response.status;
+                document.getElementById('response-status').textContent = `Status: ${status}`;
+                document.getElementById('response-time').textContent = `Time: ${duration}ms`;
+                
+                // 更新响应内容
+                const responseData = JSON.stringify(response.data, null, 2);
+                responseEditor.setValue(responseData);
+                
+            } catch (error) {
+                console.error('Request failed:', error);
+                const errorMessage = error.response?.data?.error || error.message;
+                responseEditor.setValue(`Error: ${errorMessage}`);
+                
+                // 更新错误状态
+                document.getElementById('response-status').textContent = 
+                    `Status: ${error.response?.status || 500}`;
+                document.getElementById('response-time').textContent = '';
+            }
+        }
+
+        // 标签页切换函数
+        document.querySelectorAll('.tab-button').forEach(button => {
+            button.addEventListener('click', () => {
+                // 移除所有active类
+                document.querySelectorAll('.tab-button').forEach(btn => 
+                    btn.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(content => 
+                    content.classList.remove('active'));
+                
+                // 添加active类到当前选中的标签页
+                button.classList.add('active');
+                const tabId = button.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+                
+                // 如果是body标签页，重新布局编辑器
+                if (tabId === 'body' && requestEditor) {
+                    requestEditor.layout();
+                }
+            });
+        });
+
+        // 初始化页面
+        loadApiList();
+
+        function clearForm() {
+            // 清除参数
+            document.getElementById('params-container').innerHTML = '';
+            
+            // 清除请求体
+            if (requestEditor) {
+                requestEditor.setValue('{\n    \n}');
+            }
+            
+            // 清除响应
+            if (responseEditor) {
+                responseEditor.setValue('// 等待响应...');
+            }
+            
+            // 清除状态和时间
+            document.getElementById('response-status').textContent = '';
+            document.getElementById('response-time').textContent = '';
+        }
+
+        // 添加复制响应功能
+        async function copyResponse() {
+            try {
+                const responseText = responseEditor.getValue();
+                await navigator.clipboard.writeText(responseText);
+                
+                // 显示复制成功提示
+                const copyButton = document.querySelector('.response-section button');
+                copyButton.classList.add('text-green-500');
+                
+                setTimeout(() => {
+                    copyButton.classList.remove('text-green-500');
+                }, 2000);
+            } catch (err) {
+                console.error('Failed to copy response:', err);
+            }
+        }
+
+        function exportResponseAsJson() {
+            try {
+                const responseText = responseEditor.getValue();
+                let fileName = 'response.json';
+                
+                // 尝试从响应中提取有意义的文件名
+                try {
+                    const responseObj = JSON.parse(responseText);
+                    if (responseObj.data) {
+                        // 如果响应中包含实体信息，使用它来生成文件名
+                        const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+                        fileName = `response_${timestamp}.json`;
+                    }
+                } catch (e) {
+                    console.warn('Could not parse response JSON for filename');
+                }
+                
+                // 创建Blob对象
+                const blob = new Blob([responseText], { type: 'application/json' });
+                const url = window.URL.createObjectURL(blob);
+                
+                // 创建下载链接
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = fileName;
+                document.body.appendChild(a);
+                a.click();
+                
+                // 清理
+                window.URL.revokeObjectURL(url);
+                document.body.removeChild(a);
+                
+                // 显示导出成功提示
+                const exportButton = document.querySelector('.response-section button:last-child');
+                exportButton.classList.add('text-green-500');
+                
+                setTimeout(() => {
+                    exportButton.classList.remove('text-green-500');
+                }, 2000);
+            } catch (err) {
+                console.error('Failed to export response:', err);
+            }
+        }
+
+        // 修改导出文档函数
+        async function exportDocs(format) {
+            try {
+                const response = await axios.get('/api/hibiscus/interface/api-list');
+                const apiList = response.data;
+                
+                // 生成文档内容
+                const content = generateMarkdownDocs(apiList);
+                
+                // 如果是HTML格式，将Markdown转换为HTML
+                const finalContent = format === 'html' 
+                    ? convertMarkdownToHtml(content) 
+                    : content;
+                
+                // 创建并下载文件
+                const blob = new Blob([finalContent], { 
+                    type: format === 'md' ? 'text/markdown' : 'text/html' 
+                });
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `api-documentation.${format}`;
+                document.body.appendChild(a);
+                a.click();
+                window.URL.revokeObjectURL(url);
+                document.body.removeChild(a);
+                
+            } catch (error) {
+                console.error('Error exporting documentation:', error);
+            }
+        }
+
+        // 添加Markdown转HTML的函数
+        function convertMarkdownToHtml(markdown) {
+            return `
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>API Documentation</title>
+    <style>
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #2d3748;
+        }
+        h1 { 
+            color: #1a202c;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 10px;
+        }
+        h2 { 
+            color: #2d3748;
+            margin-top: 30px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        h3 { 
+            color: #4a5568;
+            margin-top: 24px;
+        }
+        code {
+            background: #f7fafc;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: Consolas, Monaco, 'Andale Mono', monospace;
+            font-size: 0.9em;
+        }
+        pre {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+        pre code {
+            background: transparent;
+            color: inherit;
+            padding: 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #e2e8f0;
+            padding: 8px 12px;
+            text-align: left;
+        }
+        th {
+            background: #f7fafc;
+            font-weight: 600;
+        }
+        tr:nth-child(even) {
+            background: #f7fafc;
+        }
+        .method {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 3px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .get { background: #ebf8ff; color: #2b6cb0; }
+        .post { background: #f0fff4; color: #2f855a; }
+        .put { background: #fffff0; color: #975a16; }
+        .delete { background: #fff5f5; color: #c53030; }
+        hr {
+            border: none;
+            border-top: 1px solid #e2e8f0;
+            margin: 30px 0;
+        }
+    </style>
+</head>
+<body>
+    ${convertMarkdownToHtmlContent(markdown)}
+</body>
+</html>`;
+        }
+
+        // Markdown到HTML内容转换的辅助函数
+        function convertMarkdownToHtmlContent(markdown) {
+            let html = markdown
+                // 转换标题
+                .replace(/^# (.*$)/gm, '<h1>$1</h1>')
+                .replace(/^## (.*$)/gm, '<h2>$1</h2>')
+                .replace(/^### (.*$)/gm, '<h3>$1</h3>')
+                // 转换粗体
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                // 转换表格
+                .replace(/(\|.*\|\n\|[-|\s]*\|\n)((?:\|.*\|\n)*)/g, (match, header, rows) => {
+                    const headerCells = header.split('\n')[0].split('|').filter(cell => cell.trim());
+                    const tableRows = rows.split('\n').filter(row => row.trim());
+                    
+                    let table = '<table class="w-full my-4">\n<thead>\n<tr>\n';
+                    table += headerCells.map(cell => `<th class="border px-4 py-2">${cell.trim()}</th>`).join('\n');
+                    table += '\n</tr>\n</thead>\n<tbody>\n';
+                    
+                    tableRows.forEach(row => {
+                        if (row.trim()) {
+                            const cells = row.split('|').filter(cell => cell.trim());
+                            table += '<tr>\n';
+                            table += cells.map(cell => `<td class="border px-4 py-2">${cell.trim()}</td>`).join('\n');
+                            table += '\n</tr>\n';
+                        }
+                    });
+                    
+                    table += '</tbody>\n</table>\n';
+                    return table;
+                })
+                // 修改代码块转换，处理JSON格式化
+                .replace(/```(\w*)\n([\s\S]*?)```/g, (match, lang, code) => {
+                    let formattedCode = code.trim();
+                    if (lang === 'json') {
+                        try {
+                            // 解析并重新格式化JSON，确保没有多余的空行
+                            const jsonObj = JSON.parse(formattedCode);
+                            formattedCode = JSON.stringify(jsonObj, null, 2);
+                        } catch (e) {
+                            console.warn('Invalid JSON in code block:', e);
+                        }
+                    }
+                    // 移除所有连续的空行，只保留单个换行
+                    formattedCode = formattedCode.replace(/\n\s*\n/g, '\n');
+                    return `<pre><code class="language-${lang}">${formattedCode}</code></pre>`;
+                })
+                // 转换内联代码
+                .replace(/`([^`]+)`/g, '<code>$1</code>')
+                // 转换分隔线
+                .replace(/^---$/gm, '<hr>')
+                // 转换段落
+                .replace(/^(?!<[h|p|u|t])(.*$)/gm, '<p>$1</p>')
+                // 清理空段落
+                .replace(/<p><\/p>/g, '');
+            
+            return html;
+        }
+
+        // 修改生成文档的函数
+        function generateMarkdownDocs(apiList) {
+            let doc = '# API Documentation\n\n';
+            
+            Object.entries(apiList).forEach(([className, apiInfo]) => {
+                doc += `## ${className.split('.').pop()}\n\n`;
+                
+                apiInfo.methods.forEach(method => {
+                    // 基本信息
+                    doc += `### ${method.methodName}\n\n`;
+                    doc += `**URL:** \`${method.paths}\`\n\n`;
+                    doc += `**Method:** \`${method.requestMethod}\`\n\n`;
+                    
+                    // 处理路径参数
+                    const pathParams = method.paths.match(/\{(\w+)\}/g) || [];
+                    const queryParams = method.parameters?.filter(p => p.paramType === 'QUERY') || [];
+                    const bodyParams = method.parameters?.filter(p => p.paramType === 'BODY') || [];
+                    
+                    if (pathParams.length > 0 || queryParams.length > 0 || bodyParams.length > 0) {
+                        doc += '**Parameters:**\n\n';
+                        doc += '| Name | Type | Required | Location | Description |\n';
+                        doc += '|------|------|----------|-----------|-------------|\n';
+                        
+                        // 合并所有参数并按位置排序
+                        const allParams = [
+                            ...pathParams.map(param => ({
+                                name: param.replace(/[{}]/g, ''),
+                                type: 'string',
+                                required: true,
+                                location: 'path',
+                                description: 'Path parameter'
+                            })),
+                            ...queryParams.map(param => ({
+                                name: param.name,
+                                type: param.type,
+                                required: param.required,
+                                location: 'query',
+                                description: param.description || '-'
+                            })),
+                            ...bodyParams.map(param => ({
+                                name: param.name,
+                                type: param.type,
+                                required: param.required,
+                                location: 'body',
+                                description: param.description || '-'
+                            }))
+                        ];
+                        
+                        allParams.forEach(param => {
+                            doc += `| ${param.name} | ${param.type} | ${param.required ? 'Yes' : 'No'} | ${param.location} | ${param.description} |\n`;
+                        });
+                        
+                        doc += '\n';
+                    }
+                    
+                    // 生成示例请求
+                    doc += '**Example Request:**\n\n';
+                    if (method.requestMethod === 'GET') {
+                        // GET请求示例，包含路径参数和查询参数
+                        let exampleUrl = method.paths;
+                        pathParams.forEach(param => {
+                            const paramName = param.replace(/[{}]/g, '');
+                            exampleUrl = exampleUrl.replace(param, getExampleValue(paramName));
+                        });
+                        
+                        const queryString = queryParams
+                            .map(p => `${p.name}=${getExampleValue(p.type)}`)
+                            .join('&');
+                            
+                        doc += `\`\`\`\n${exampleUrl}${queryString ? '?' + queryString : ''}\n\`\`\`\n\n`;
+                    } else {
+                        // POST/PUT请求示例
+                        if (bodyParams.length > 0) {
+                            const exampleBody = {};
+                            bodyParams.forEach(param => {
+                                exampleBody[param.name] = getExampleValue(param.type);
+                            });
+                            doc += '```json\n' + JSON.stringify(exampleBody, null, 2) + '\n```\n\n';
+                        }
+                    }
+                    
+                    // 生成示例响应
+                    doc += '**Example Response:**\n\n';
+                    const responseExample = generateResponseExample(method);
+                    doc += '```json\n' + responseExample + '\n```\n\n';
+                    
+                    doc += '---\n\n';
+                });
+            });
+            
+            return doc;
+        }
+
+        // 改进示例值生成函数
+        function getExampleValue(type) {
+            const lowerType = type.toLowerCase();
+            switch (lowerType) {
+                case 'id':
+                case 'userid':
+                case 'orderid':
+                    return 1;
+                case 'string':
+                case 'name':
+                case 'title':
+                    return 'example';
+                case 'email':
+                    return 'user@example.com';
+                case 'phone':
+                    return '1234567890';
+                case 'integer':
+                case 'long':
+                    return 100;
+                case 'boolean':
+                    return true;
+                case 'double':
+                case 'float':
+                case 'price':
+                case 'amount':
+                    return 99.99;
+                case 'date':
+                    return '2024-01-03';
+                case 'datetime':
+                    return '2024-01-03T12:00:00';
+                case 'array':
+                    return [];
+                case 'object':
+                    return {};
+                default:
+                    return 'example';
+            }
+        }
+
+        // 修改生成响应示例的函数
+        function generateResponseExample(method) {
+            const methodName = method.methodName.toLowerCase();
+            let response;
+            
+            if (methodName.includes('list') || methodName.includes('all')) {
+                response = {
+                    code: 200,
+                    message: "Success",
+                    data: [generateExampleItem(method)]
+                };
+            } else if (methodName.includes('get') || methodName.includes('find')) {
+                response = {
+                    code: 200,
+                    message: "Success",
+                    data: generateExampleItem(method)
+                };
+            } else if (methodName.includes('create') || methodName.includes('add')) {
+                response = {
+                    code: 201,
+                    message: "Created successfully",
+                    data: { id: 1, ...generateExampleItem(method) }
+                };
+            } else if (methodName.includes('update')) {
+                response = {
+                    code: 200,
+                    message: "Updated successfully",
+                    data: true
+                };
+            } else if (methodName.includes('delete')) {
+                response = {
+                    code: 200,
+                    message: "Deleted successfully",
+                    data: null
+                };
+            } else {
+                response = {
+                    code: 200,
+                    message: "Operation successful",
+                    data: null
+                };
+            }
+            
+            // 使用自定义的格式化函数
+            return formatJSON(response);
+        }
+
+        // 修改自定义的JSON格式化函数
+        function formatJSON(obj, indent = 2) {
+            let formatted = '';
+            const spaces = ' '.repeat(indent);
+            
+            function format(obj, depth = 0) {
+                const currentIndent = spaces.repeat(depth);
+                
+                if (Array.isArray(obj)) {
+                    if (obj.length === 0) return '[]';
+                    formatted += '[';
+                    obj.forEach((item, index) => {
+                        formatted += '\n' + currentIndent + spaces;
+                        format(item, depth + 1);
+                        if (index < obj.length - 1) formatted += ',';
+                    });
+                    formatted += '\n' + currentIndent + ']';
+                } else if (obj === null) {
+                    formatted += 'null';
+                } else if (typeof obj === 'object') {
+                    if (Object.keys(obj).length === 0) return '{}';
+                    formatted += '{';
+                    Object.entries(obj).forEach(([key, value], index) => {
+                        formatted += '\n' + currentIndent + spaces + `"${key}": `;
+                        format(value, depth + 1);
+                        if (index < Object.keys(obj).length - 1) formatted += ',';
+                    });
+                    formatted += '\n' + currentIndent + '}';
+                } else if (typeof obj === 'string') {
+                    formatted += `"${obj}"`;
+                } else {
+                    formatted += obj;
+                }
+            }
+            
+            format(obj);
+            return formatted;
+        }
+
+        // 生成示例项的辅助函数
+        function generateExampleItem(method) {
+            // 基于方法名推测返回对象的结构
+            const methodName = method.methodName.toLowerCase();
+            
+            if (methodName.includes('user')) {
+                return {
+                    "id": 1,
+                    "username": "example_user",
+                    "email": "user@example.com",
+                    "createdAt": "2024-01-03T12:00:00"
+                };
+            } else if (methodName.includes('order')) {
+                return {
+                    "id": 1,
+                    "orderNumber": "ORD20240103001",
+                    "amount": 99.99,
+                    "status": "PENDING"
+                };
+            }
+            
+            // 默认返回一个通用对象
+            return {
+                "id": 1,
+                "name": "Example Name",
+                "description": "Example Description",
+                "createdAt": "2024-01-03T12:00:00"
+            };
+        }
+
+        // 性能测试相关函数
+        async function startPerformanceTest() {
+            // 获取测试参数
+            const concurrentUsers = parseInt(document.getElementById('concurrent-users').value);
+            const requestCount = parseInt(document.getElementById('request-count').value);
+            const requestInterval = parseInt(document.getElementById('request-interval').value);
+            
+            // 重置计数器
+            resetPerformanceCounters();
+            
+            // 创建并发用户
+            const users = Array(concurrentUsers).fill(null).map(() => ({
+                successCount: 0,
+                failureCount: 0,
+                responseTimes: [],
+                errors: new Map()
+            }));
+            
+            // 开始时间
+            const startTime = performance.now();
+            let completedRequests = 0;
+            
+            // 创建请求队列
+            const requests = [];
+            for (let i = 0; i < requestCount; i++) {
+                requests.push(sendTestRequest(users[i % concurrentUsers], i));
+                if (requestInterval > 0) {
+                    await new Promise(resolve => setTimeout(resolve, requestInterval));
+                }
+            }
+            
+            // 等待所有请求完成
+            await Promise.all(requests);
+            
+            // 计算并显示结果
+            calculateAndDisplayResults(users, startTime, performance.now());
+        }
+
+        async function sendTestRequest(user, index) {
+            const startTime = performance.now();
+            try {
+                const response = await sendRequest(true); // true表示这是性能测试请求
+                const duration = performance.now() - startTime;
+                
+                user.successCount++;
+                user.responseTimes.push(duration);
+                
+                updateRealTimeMetrics(duration, true);
+            } catch (error) {
+                const duration = performance.now() - startTime;
+                user.failureCount++;
+                
+                // 记录错误
+                const errorKey = error.response?.status || 'unknown';
+                user.errors.set(errorKey, (user.errors.get(errorKey) || 0) + 1);
+                
+                updateRealTimeMetrics(duration, false);
+            }
+        }
+
+        function resetPerformanceCounters() {
+            document.getElementById('total-requests').textContent = '0';
+            document.getElementById('success-requests').textContent = '0';
+            document.getElementById('failed-requests').textContent = '0';
+            document.getElementById('avg-response-time').textContent = '0';
+            document.getElementById('min-response-time').textContent = '0';
+            document.getElementById('max-response-time').textContent = '0';
+            document.getElementById('p90-response-time').textContent = '0';
+            document.getElementById('p99-response-time').textContent = '0';
+            document.getElementById('avg-tps').textContent = '0';
+            document.getElementById('peak-tps').textContent = '0';
+            document.getElementById('min-tps').textContent = '0';
+            document.getElementById('error-analysis').innerHTML = '';
+        }
+
+        function updateRealTimeMetrics(duration, isSuccess) {
+            const totalRequests = parseInt(document.getElementById('total-requests').textContent) + 1;
+            const successRequests = parseInt(document.getElementById('success-requests').textContent) + (isSuccess ? 1 : 0);
+            const failedRequests = parseInt(document.getElementById('failed-requests').textContent) + (isSuccess ? 0 : 1);
+            
+            document.getElementById('total-requests').textContent = totalRequests;
+            document.getElementById('success-requests').textContent = successRequests;
+            document.getElementById('failed-requests').textContent = failedRequests;
+        }
+
+        function calculateAndDisplayResults(users, startTime, endTime) {
+            // 合并所有用户的数据
+            const allResponseTimes = users.flatMap(user => user.responseTimes);
+            const totalSuccess = users.reduce((sum, user) => sum + user.successCount, 0);
+            const totalFailures = users.reduce((sum, user) => sum + user.failureCount, 0);
+            const totalDuration = (endTime - startTime) / 1000; // 转换为秒
+            
+            // 计算响应时间统计
+            const avgResponseTime = allResponseTimes.reduce((sum, time) => sum + time, 0) / allResponseTimes.length;
+            const sortedTimes = allResponseTimes.sort((a, b) => a - b);
+            const minResponseTime = sortedTimes[0];
+            const maxResponseTime = sortedTimes[sortedTimes.length - 1];
+            const p90Index = Math.floor(sortedTimes.length * 0.9);
+            const p99Index = Math.floor(sortedTimes.length * 0.99);
+            
+            // 计算TPS
+            const avgTps = totalSuccess / totalDuration;
+            
+            // 更新UI
+            document.getElementById('avg-response-time').textContent = avgResponseTime.toFixed(2);
+            document.getElementById('min-response-time').textContent = minResponseTime.toFixed(2);
+            document.getElementById('max-response-time').textContent = maxResponseTime.toFixed(2);
+            document.getElementById('p90-response-time').textContent = sortedTimes[p90Index].toFixed(2);
+            document.getElementById('p99-response-time').textContent = sortedTimes[p99Index].toFixed(2);
+            document.getElementById('avg-tps').textContent = avgTps.toFixed(2);
+            
+            // 显示错误分析
+            const errorAnalysis = document.getElementById('error-analysis');
+            errorAnalysis.innerHTML = '';
+            const allErrors = new Map();
+            users.forEach(user => {
+                user.errors.forEach((count, error) => {
+                    allErrors.set(error, (allErrors.get(error) || 0) + count);
+                });
+            });
+            
+            allErrors.forEach((count, error) => {
+                const errorDiv = document.createElement('div');
+                errorDiv.className = 'text-red-500';
+                errorDiv.textContent = `错误 ${error}: ${count} 次`;
+                errorAnalysis.appendChild(errorDiv);
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<pre th:inline="text">
+package [(${packageName})].mapper;
+
+import [(${packageName})].entity.[(${className})];
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import java.util.List;
+
+@Mapper
+public interface [(${className})]Mapper {
+    
+    /**
+     * 插入记录
+     */
+    int insert([(${className})] record);
+    
+    /**
+     * 批量插入记录
+     */
+    int insertBatch(@Param("items") List<[(${className})]> items);
+    
+    /**
+     * 根据主键更新记录
+     */
+    int updateById([(${className})] record);
+    
+    /**
+     * 根据主键删除记录
+     */
+    int deleteById(@Param("id") Long id);
+    
+    /**
+     * 根据主键查询记录
+     */
+    [(${className})] selectById(@Param("id") Long id);
+    
+    /**
+     * 查询所有记录
+     */
+    List<[(${className})]> selectAll();
+    
+    /**
+     * 条件查询记录
+     */
+    List<[(${className})]> selectByCondition([(${className})] condition);
+}
+</pre>
+</body>
+</html> 

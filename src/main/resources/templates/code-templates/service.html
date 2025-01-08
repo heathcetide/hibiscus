@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<pre th:inline="text">
+package [(${packageName})].service;
+
+import [(${packageName})].dto.[(${className})]AddRequest;
+import [(${packageName})].dto.[(${className})]EditRequest;
+import [(${packageName})].dto.[(${className})]QueryRequest;
+import [(${packageName})].vo.[(${className})]VO;
+import com.github.pagehelper.PageInfo;
+import java.util.List;
+
+public interface [(${className})]Service {
+    
+    /**
+     * 创建记录
+     */
+    [(${className})]VO create([(${className})]AddRequest request);
+    
+    /**
+     * 更新记录
+     */
+    [(${className})]VO update([(${className})]EditRequest request);
+    
+    /**
+     * 删除记录
+     */
+    void delete(Long id);
+    
+    /**
+     * 获取单条记录
+     */
+    [(${className})]VO findById(Long id);
+    
+    /**
+     * 分页查询
+     */
+    PageInfo<[(${className})]VO> findByPage([(${className})]QueryRequest request);
+    
+    /**
+     * 条件查询
+     */
+    List<[(${className})]VO> findByCondition([(${className})]QueryRequest request);
+}
+</pre>
+</body>
+</html> 
