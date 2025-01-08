@@ -132,25 +132,6 @@ To help developers better understand and use Hibiscus Cetide, we provide a compl
 
 📦 [hibiscus-example](https://github.com/heathcetide/hibiscus-example)
 
-### Project Structure
-```
-hibiscus-example/
-├── src/
-│   ├── main/
-│   │   ├── java/
-│   │   │   └── com/example/demo/
-│   │   │       ├── controller/    # API Controllers
-│   │   │       ├── service/       # Business Logic
-│   │   │       ├── model/         # Data Models
-│   │   │       └── config/        # Configurations
-│   │   └── resources/
-│   │       ├── templates/         # Page Templates
-│   │       ├── static/            # Static Resources
-│   │       └── application.yml    # Configuration File
-│   └── test/                      # Test Cases
-└── pom.xml                        # Project Dependencies
-```
-
 ### Feature Demonstrations
 The demo project includes complete implementations of the following core features:
 
