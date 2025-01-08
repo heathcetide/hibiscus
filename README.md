@@ -40,29 +40,7 @@
     </p>
 </div>
 
-## 🎯 技术栈
-
-### 后端技术
-<p>
-    <img src="https://img.shields.io/badge/Spring%20Boot-2.7.x-brightgreen.svg" alt="Spring Boot">
-    <img src="https://img.shields.io/badge/Java-8+-orange.svg" alt="Java">
-    <img src="https://img.shields.io/badge/MyBatis-3.5.x-yellow.svg" alt="MyBatis">
-    <img src="https://img.shields.io/badge/Redis-5.0+-red.svg" alt="Redis">
-    <img src="https://img.shields.io/badge/MySQL-5.7+-blue.svg" alt="MySQL">
-    <img src="https://img.shields.io/badge/Maven-3.6+-purple.svg" alt="Maven">
-</p>
-
-### 前端技术
-<p>
-    <img src="https://img.shields.io/badge/HTML5--e34f26.svg?logo=html5&logoColor=white" alt="HTML5">
-    <img src="https://img.shields.io/badge/CSS3--1572b6.svg?logo=css3&logoColor=white" alt="CSS3">
-    <img src="https://img.shields.io/badge/JavaScript--f7df1e.svg?logo=javascript&logoColor=black" alt="JavaScript">
-    <img src="https://img.shields.io/badge/Chart.js-3.x-pink.svg" alt="Chart.js">
-    <img src="https://img.shields.io/badge/xterm.js-4.x-green.svg" alt="xterm.js">
-    <img src="https://img.shields.io/badge/WebSocket--gray.svg" alt="WebSocket">
-</p>
-
-### maven依赖
+## maven依赖
 ```xml
 <!-- hibiscus - base -->
 <dependency>
