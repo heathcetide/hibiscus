@@ -27,6 +27,11 @@ public class HibiscusAuthController {
         this.authService = authService;
     }
 
+    /**
+     * 处理登录页面
+     *
+     * @return 如果已认证，重定向到后台页面；否则返回登录页面。
+     */
     @GetMapping("/login")
     public String login() {
         if (authService.isAuthenticated()) {
@@ -35,6 +40,12 @@ public class HibiscusAuthController {
         return "login";
     }
 
+    /**
+     * 处理登录操作
+     *
+     * @param request 登录请求参数（用户名、密码等）
+     * @return 登录成功时返回包含用户信息的响应，失败时返回错误信息。
+     */
     @PostMapping("/login")
     @ResponseBody
     public ResponseEntity<?> login(@RequestBody LoginRequest request) {
@@ -55,6 +66,11 @@ public class HibiscusAuthController {
         }
     }
 
+    /**
+     * 处理注销操作
+     *
+     * @return 注销成功返回空响应，失败返回错误信息。
+     */
     @PostMapping("/logout")
     @ResponseBody
     public ResponseEntity<?> logout() {
@@ -70,6 +86,11 @@ public class HibiscusAuthController {
         }
     }
 
+    /**
+     * 处理检查用户认证状态
+     *
+     * @return 返回用户是否已认证的信息。
+     */
     @GetMapping("/check")
     @ResponseBody
     public ResponseEntity<?> checkAuth() {

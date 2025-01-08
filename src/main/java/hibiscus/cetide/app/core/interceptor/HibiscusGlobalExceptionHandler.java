@@ -1,4 +1,4 @@
-package hibiscus.cetide.app.core.controller;
+package hibiscus.cetide.app.core.interceptor;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

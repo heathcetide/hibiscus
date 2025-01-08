@@ -14,6 +14,11 @@ public class HibiscusMonitorController {
     @Autowired
     private HibiscusMonitorService monitorService;
 
+    /**
+     * 获取JVM性能指标信息。
+     *
+     * @return 返回JVM性能指标数据或错误信息。
+     */
     @GetMapping("/jvm")
     public ResponseEntity<?> getJvmMetrics() {
         try {
@@ -23,6 +28,11 @@ public class HibiscusMonitorController {
         }
     }
 
+    /**
+     * 获取线程使用情况的监控数据。
+     *
+     * @return 返回线程使用指标数据或错误信息。
+     */
     @GetMapping("/threads")
     public ResponseEntity<?> getThreadMetrics() {
         try {
@@ -32,6 +42,11 @@ public class HibiscusMonitorController {
         }
     }
 
+    /**
+     * 获取数据库连接池的监控数据。
+     *
+     * @return 返回数据库连接池指标数据或错误信息。
+     */
     @GetMapping("/dbpool")
     public ResponseEntity<?> getDbPoolMetrics() {
         try {
@@ -41,6 +56,11 @@ public class HibiscusMonitorController {
         }
     }
 
+    /**
+     * 获取API性能统计数据。
+     *
+     * @return 返回API性能指标数据或错误信息。
+     */
     @GetMapping("/api-stats")
     public ResponseEntity<?> getApiMetrics() {
         try {

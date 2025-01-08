@@ -15,6 +15,12 @@ public class HibiscusRedisController {
     @Autowired
     private HibiscusRedisService redisService;
 
+    /**
+     * 连接 Redis 数据库。
+     *
+     * @param config 包含主机地址、端口、密码和数据库索引的连接配置信息
+     * @return 成功或失败信息
+     */
     @PostMapping("/connect")
     public ResponseEntity<Map<String, Object>> connect(@RequestBody Map<String, Object> config) {
         Map<String, Object> response = new HashMap<>();
@@ -34,6 +40,12 @@ public class HibiscusRedisController {
         return ResponseEntity.ok(response);
     }
 
+    /**
+     * 获取匹配指定模式的键列表。
+     *
+     * @param pattern 键匹配模式（默认为 "*"）
+     * @return 键列表或错误信息
+     */
     @GetMapping("/keys")
     public ResponseEntity<Map<String, Object>> getKeys(@RequestParam(defaultValue = "*") String pattern) {
         Map<String, Object> response = new HashMap<>();
@@ -48,6 +60,12 @@ public class HibiscusRedisController {
         return ResponseEntity.ok(response);
     }
 
+    /**
+     * 获取指定键的详细信息。
+     *
+     * @param key 要查询的键
+     * @return 键的详细信息或错误信息
+     */
     @GetMapping("/key/{key}")
     public ResponseEntity<Map<String, Object>> getKey(@PathVariable String key) {
         Map<String, Object> response = new HashMap<>();
@@ -67,6 +85,12 @@ public class HibiscusRedisController {
         return ResponseEntity.ok(response);
     }
 
+    /**
+     * 添加一个新的键。
+     *
+     * @param request 包含键名、类型和值的请求信息
+     * @return 成功或失败信息
+     */
     @PostMapping("/key")
     public ResponseEntity<Map<String, Object>> addKey(@RequestBody Map<String, Object> request) {
         Map<String, Object> response = new HashMap<>();
@@ -85,6 +109,13 @@ public class HibiscusRedisController {
         return ResponseEntity.ok(response);
     }
 
+    /**
+     * 更新指定键的值。
+     *
+     * @param key     要更新的键
+     * @param request 包含类型和值的更新信息
+     * @return 成功或失败信息
+     */
     @PutMapping("/key/{key}")
     public ResponseEntity<Map<String, Object>> updateKey(
             @PathVariable String key,
@@ -104,6 +135,12 @@ public class HibiscusRedisController {
         return ResponseEntity.ok(response);
     }
 
+    /**
+     * 删除指定键。
+     *
+     * @param key 要删除的键
+     * @return 成功或失败信息
+     */
     @DeleteMapping("/key/{key}")
     public ResponseEntity<Map<String, Object>> deleteKey(@PathVariable String key) {
         Map<String, Object> response = new HashMap<>();
@@ -118,6 +155,13 @@ public class HibiscusRedisController {
         return ResponseEntity.ok(response);
     }
 
+    /**
+     * 设置指定键的过期时间。
+     *
+     * @param key     要设置的键
+     * @param request 包含过期时间的请求信息
+     * @return 成功或失败信息
+     */
     @PutMapping("/key/{key}/ttl")
     public ResponseEntity<Map<String, Object>> setExpire(
             @PathVariable String key,
@@ -135,6 +179,11 @@ public class HibiscusRedisController {
         return ResponseEntity.ok(response);
     }
 
+    /**
+     * 获取当前连接的 Redis 信息。
+     *
+     * @return 包含连接信息的 Map 或错误信息
+     */
     @GetMapping("/connection-info")
     public ResponseEntity<Map<String, Object>> getConnectionInfo() {
         Map<String, Object> response = new HashMap<>();

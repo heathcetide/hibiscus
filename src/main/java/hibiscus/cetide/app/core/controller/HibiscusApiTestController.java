@@ -21,12 +21,22 @@ public class HibiscusApiTestController {
         this.apiCollectorService = apiCollectorService;
         this.mappingHandler = mappingHandler;
     }
-    
+
+    /**
+     * 获取所有收集的 API 信息。
+     *
+     * @return 包含 API 信息的 Map，键为 API 路径，值为 API 的详细信息。
+     */
     @GetMapping("/list")
     public Map<String, HibiscusApiCollectorService.ApiInfo> listApis() {
         return apiCollectorService.getAllApiInfo();
     }
-    
+
+    /**
+     * 获取所有扫描到的 API 请求信息。
+     *
+     * @return 包含扫描到的请求信息的列表。
+     */
     @GetMapping("/scan-list")
     public List<RequestInfo> listScannedApis() {
         return mappingHandler.getRequestInfos();

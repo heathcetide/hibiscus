@@ -10,6 +10,9 @@ import java.util.Queue;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
+/**
+ * 一个组件，用于收集API请求和响应的样例数据。
+ */
 @Component
 public class HibiscusRequestResponseCollector {
     private static final Logger log = LoggerFactory.getLogger(HibiscusRequestResponseCollector.class);
@@ -17,7 +20,15 @@ public class HibiscusRequestResponseCollector {
     
     private final ObjectMapper objectMapper = new ObjectMapper();
     private final Map<String, Queue<ApiSample>> samples = new ConcurrentHashMap<>();
-    
+
+    /**
+     * 收集指定API路径的请求和响应样例。
+     *
+     * @param path      API路径
+     * @param request   请求对象
+     * @param response  响应对象
+     * @param timestamp 请求发生的时间戳
+     */
     public void collectSample(String path, Object request, Object response, long timestamp) {
         try {
             String requestJson = objectMapper.writeValueAsString(request);
@@ -37,11 +48,20 @@ public class HibiscusRequestResponseCollector {
             log.error("Failed to collect API sample", e);
         }
     }
-    
+
+    /**
+     * 获取指定API路径的请求和响应样例。
+     *
+     * @param path API路径
+     * @return 样例队列，如果路径没有样例则返回空队列。
+     */
     public Queue<ApiSample> getSamples(String path) {
         return samples.getOrDefault(path, new ConcurrentLinkedQueue<>());
     }
-    
+
+    /**
+     * API请求和响应的样例数据。
+     */
     public static class ApiSample {
         private final String request;
         private final String response;
