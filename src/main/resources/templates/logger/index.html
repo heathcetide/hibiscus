@@ -3,7 +3,324 @@
 <head>
     <meta charset="UTF-8">
     <title>hibiscus - log - dashboard</title>
-    <link href="/css/logger.css" rel="stylesheet"/>
+<!--    <link href="/css/logger.css" rel="stylesheet"/>-->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* 标题容器样式 */
+        .dashboard-header {
+            background: linear-gradient(135deg, #1a365d 0%, #2c5282 100%);
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* 标题装饰效果 */
+        .dashboard-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg,
+            rgba(66, 153, 225, 0) 0%,
+            rgba(66, 153, 225, 0.8) 50%,
+            rgba(66, 153, 225, 0) 100%);
+        }
+
+        /* 主标题样式 */
+        .dashboard-title {
+            text-align: center;
+            color: #ffffff;
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            letter-spacing: 0.5px;
+        }
+
+        /* 副标题样式 */
+        .dashboard-subtitle {
+            text-align: center;
+            color: #e2e8f0;
+            font-size: 1rem;
+            margin-top: 0.5rem;
+            font-weight: 400;
+            opacity: 0.9;
+        }
+
+        /* 标题图标样式 */
+        .dashboard-icon {
+            display: inline-block;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        /* 动态背景效果 */
+        .dashboard-header-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.1;
+            background-image:
+                    linear-gradient(45deg, #000 25%, transparent 25%),
+                    linear-gradient(-45deg, #000 25%, transparent 25%),
+                    linear-gradient(45deg, transparent 75%, #000 75%),
+                    linear-gradient(-45deg, transparent 75%, #000 75%);
+            background-size: 20px 20px;
+            animation: moveBackground 20s linear infinite;
+        }
+
+        @keyframes moveBackground {
+            0% {
+                background-position: 0 0, 10px 0, 10px -10px, 0px 10px;
+            }
+            100% {
+                background-position: 20px 20px, 30px 20px, 30px 10px, 20px 30px;
+            }
+        }
+
+        /* 控制面板样式 */
+        .control-panel {
+            background: white;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .filter-group {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .form-group label {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .form-control {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            min-width: 200px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.2s;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+
+        .btn-primary { background-color: #3498db; }
+        .btn-secondary { background-color: #34495e; }
+        .btn-warning { background-color: #f1c40f; }
+        .btn-success { background-color: #2ecc71; }
+        .btn-info { background-color: #9b59b6; }
+        .btn-danger { background-color: #e74c3c; }
+
+        /* 终端样式 */
+        .terminal {
+            background-color: #1e1e1e;
+            border-radius: 8px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .terminal-header {
+            background-color: #333;
+            padding: 8px 16px;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .window-controls {
+            display: flex;
+            gap: 8px;
+        }
+
+        .control-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .dot-red { background-color: #ff5f56; }
+        .dot-yellow { background-color: #ffbd2e; }
+        .dot-green { background-color: #27c93f; }
+
+        .terminal-title {
+            color: #fff;
+            margin-left: auto;
+            font-size: 14px;
+        }
+
+        .terminal-content {
+            background-color: #1e1e1e;
+            color: #d4d4d4;
+            padding: 16px;
+            height: 500px;
+            overflow-y: auto;
+            font-family: 'Consolas', 'Monaco', monospace;
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+        }
+
+        /* 日志条目样式 */
+        .log-entry {
+            white-space: pre-wrap;
+            margin-bottom: 4px;
+            font-size: 13px;
+            line-height: 1.5;
+            padding: 2px 0;
+        }
+
+        .info-log { color: #61afef; }
+        .error-log { color: #e06c75; }
+        .debug-log { color: #c678dd; }
+        .warn-log { color: #e5c07b; }
+
+        /* 操作日志面板 */
+        .operation-panel {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .operation-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 16px;
+            color: #2c3e50;
+        }
+
+        .operation-content {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .operation-entry {
+            padding: 8px;
+            border-bottom: 1px solid #eee;
+            font-size: 14px;
+        }
+
+        .operation-entry:last-child {
+            border-bottom: none;
+        }
+
+        .timestamp {
+            font-weight: bold;
+            color: #666;
+        }
+
+        /* 滚动条样式 */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .control-panel {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .filter-group, .button-group {
+                flex-direction: column;
+            }
+
+            .form-control {
+                width: 100%;
+                min-width: unset;
+            }
+
+            .terminal-content {
+                height: 400px;
+            }
+
+            .dashboard-title {
+                font-size: 2rem;
+            }
+            .dashboard-subtitle {
+                font-size: 0.9rem;
+            }
+        }
+        .terminal-title {
+            font-family: "Courier New", Courier, monospace;
+            font-size: 14px;
+            color: #ffffff;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
 <div class="container">
@@ -103,6 +420,246 @@
 </div>
 <script src="/lib/axios/axios.min.js"></script>
 <script src="/js/auth.js"></script>
-<script src="/js/logger.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const logs = [];
+        const operationLogs = [];
+        let autoRefreshInterval = null;
+
+        const logContainer = document.getElementById('logContainer');
+        const operationLogContainer = document.getElementById('operationLogContainer');
+        const logLevel = document.getElementById('logLevel');
+        const keyword = document.getElementById('keyword');
+        const autoRefreshBtn = document.getElementById('autoRefreshBtn');
+
+        document.getElementById('fetchLogsBtn').addEventListener('click', fetchLogs);
+        document.getElementById('archiveLogsBtn').addEventListener('click', archiveLogs);
+        document.getElementById('compressLogsBtn').addEventListener('click', compressLogs);
+        document.getElementById('exportLogsBtn').addEventListener('click', handleExport);
+        autoRefreshBtn.addEventListener('click', toggleAutoRefresh);
+
+        function addOperationLog(message) {
+            const timestamp = new Date().toISOString();
+            operationLogs.unshift({ timestamp, message }); // 新日志添加到顶部
+            if (operationLogs.length > 100) { // 限制操作日志数量
+                operationLogs.pop();
+            }
+            renderOperationLogs();
+        }
+
+        function renderOperationLogs() {
+            operationLogContainer.innerHTML = operationLogs.map(opLog => `
+                <div class="p-2 border-b border-gray-200">
+                    <strong>${new Date(opLog.timestamp).toLocaleString()}</strong> -
+                    <span class="font-semibold">${opLog.message}</span>
+                </div>
+            `).join('');
+        }
+
+        function renderLogs() {
+            const selectedLevel = logLevel.value;
+            const keywordFilter = keyword.value.toLowerCase();
+
+            const filteredLogs = logs.filter(log => {
+                const matchesLevel = !selectedLevel || log.level === selectedLevel;
+                const matchesKeyword = !keywordFilter ||
+                    log.message.toLowerCase().includes(keywordFilter) ||
+                    log.logger.toLowerCase().includes(keywordFilter);
+                return matchesLevel && matchesKeyword;
+            });
+
+            logContainer.innerHTML = filteredLogs.map(log => `
+                <div class="log-entry ${log.level.toLowerCase()}-log">
+                    <strong>${log.timestamp}</strong> [${log.thread}] ${log.level} ${log.logger} - ${log.message}
+                </div>
+            `).join('');
+
+            // 自动滚动到底部
+            logContainer.scrollTop = logContainer.scrollHeight;
+        }
+
+        function fetchLogs() {
+            const level = logLevel.value;
+            const searchKeyword = keyword.value;
+            const start = document.getElementById('startDate').value;
+            const end = document.getElementById('endDate').value;
+            const token = AuthUtil.getToken();
+            fetch(`/api/hibiscus/logs/api/logs?level=${encodeURIComponent(level)}&keyword=${encodeURIComponent(searchKeyword)}&startDate=${start}&endDate=${end}`,{
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    logs.length = 0;
+                    logs.push(...data);
+                    renderLogs();
+                    addOperationLog("Fetched logs successfully.");
+                })
+                .catch(error => {
+                    console.error('Error fetching logs:', error);
+                    addOperationLog("Failed to fetch logs: " + error.message);
+                });
+        }
+
+        function archiveLogs() {
+            const token = AuthUtil.getToken();
+            fetch('/api/hibiscus/logs/api/logs/archive', {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+                .then(response => {
+                    if (response.ok) {
+                        addOperationLog("Logs have been archived successfully.");
+                        fetchLogs(); // 刷新日志显示
+                    } else {
+                        throw new Error('Failed to archive logs');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error archiving logs:', error);
+                    addOperationLog("Failed to archive logs: " + error.message);
+                });
+        }
+
+        function compressLogs() {
+            const compressBtn = document.getElementById('compressLogsBtn');
+            compressBtn.disabled = true;
+            compressBtn.textContent = 'Compressing...';
+            const token = AuthUtil.getToken();
+            fetch('/api/hibiscus/logs/api/logs/compress', {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        return response.text().then(text => {
+                            throw new Error(text || 'Failed to compress logs');
+                        });
+                    }
+                    addOperationLog("Logs have been compressed successfully.");
+                    fetchLogs(); // 刷新日志显示
+                })
+                .catch(error => {
+                    console.error('Error compressing logs:', error);
+                    addOperationLog("Failed to compress logs: " + error.message);
+                    // 显示用户友好的错误消息
+                    const errorMessage = error.message.includes('另一个程序正在使用此文件')
+                        ? "Log files are currently in use. Please try again later."
+                        : error.message;
+                    logContainer.innerHTML += `
+                        <div class="log-entry error-log">
+                            <strong>${new Date().toISOString()}</strong> ERROR: ${errorMessage}
+                        </div>
+                    `;
+                })
+                .finally(() => {
+                    compressBtn.disabled = false;
+                    compressBtn.textContent = 'Compress';
+                });
+        }
+
+        function handleExport() {
+            AuthUtil.redirectTo('/api/hibiscus/logs/api/logs/export')
+            addOperationLog("Started logs export.");
+        }
+
+        function toggleAutoRefresh() {
+            if (autoRefreshInterval) {
+                clearInterval(autoRefreshInterval);
+                autoRefreshInterval = null;
+                autoRefreshBtn.textContent = 'Auto Refresh';
+                autoRefreshBtn.classList.remove('bg-red-500', 'hover:bg-red-600');
+                autoRefreshBtn.classList.add('bg-purple-500', 'hover:bg-purple-600');
+                addOperationLog("Auto refresh disabled.");
+            } else {
+                autoRefreshInterval = setInterval(fetchLogs, 5000); // 每5秒刷新一次
+                autoRefreshBtn.textContent = 'Stop Refresh';
+                autoRefreshBtn.classList.remove('bg-purple-500', 'hover:bg-purple-600');
+                autoRefreshBtn.classList.add('bg-red-500', 'hover:bg-red-600');
+                addOperationLog("Auto refresh enabled (5s interval).");
+            }
+        }
+
+        // 监听过滤器变化
+        logLevel.addEventListener('change', renderLogs);
+        keyword.addEventListener('input', renderLogs);
+
+        // 初始加载
+        fetchLogs();
+
+        function initializeVisualizations() {
+            // 时间轴视图
+            const timeline = new Timeline({
+                container: 'timelineContainer',
+                data: logs,
+                onClick: (event) => highlightRelatedLogs(event)
+            });
+
+            // 错误分布热图
+            const heatmap = new ErrorHeatmap({
+                container: 'heatmapContainer',
+                data: logs.filter(log => log.level === 'ERROR')
+            });
+
+            // 实时监控面板
+            const monitor = new LiveMonitor({
+                container: 'monitorContainer',
+                metrics: ['errors', 'warnings', 'api-calls']
+            });
+        }
+
+        function highlightRelatedLogs(event) {
+            const timeWindow = 5 * 60 * 1000; // 5分钟窗口
+            const relatedLogs = findRelatedLogs(event, timeWindow);
+            displayLogContext(relatedLogs);
+        }
+
+        function displayLogContext(relatedLogs) {
+            const contextView = document.getElementById('contextView');
+            contextView.innerHTML = `
+                <div class="context-timeline">
+                    ${generateTimelineHTML(relatedLogs)}
+                </div>
+                <div class="context-details">
+                    ${generateContextDetails(relatedLogs)}
+                </div>
+            `;
+        }
+
+        // 初始化日期范围
+        function initializeDateRange() {
+            const token = AuthUtil.getToken();
+            fetch('/api/hibiscus/logs/api/date-range',{
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+                .then(response => response.json())
+                .then(range => {
+                    const startDate = document.getElementById('startDate');
+                    const endDate = document.getElementById('endDate');
+
+                    startDate.value = range.earliest;
+                    endDate.value = range.latest;
+
+                    // 设置最大和最小日期
+                    startDate.max = range.latest;
+                    endDate.max = range.latest;
+                    startDate.min = range.earliest;
+                    endDate.min = range.earliest;
+                });
+        }
+
+        // 初始化
+        initializeDateRange();
+    });
+</script>
+<!--<script src="/js/logger.js"></script>-->
 </body>
 </html>

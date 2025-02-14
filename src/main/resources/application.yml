@@ -1,0 +1,67 @@
+spring:
+ datasource:
+   driver-class-name: com.mysql.cj.jdbc.Driver
+   url: jdbc:mysql://localhost:3306/game_db
+   username: root
+   password: 1234
+   redis:
+     database: 1
+     port: 6379
+     host: 43.136.179.241
+     enabled: true
+ application:
+   name: spring-boot-helper
+ profiles:
+   active: dev
+# 日志配置
+logging:
+ level:
+   root: INFO
+   hibiscus.cetide.app: DEBUG
+   org.springframework.web: INFO
+ file:
+   path: logs
+   name: ${logging.file.path}/app.log
+
+hibiscus:
+ helper:
+  api-test:
+    enabled: true
+    base-path: /api-test
+  scanPath: hibiscus.cetide.app
+ jwt:
+  secret: aGliaXNjdXMtY2V0aWRlLXNlY3JldC1rZXktZm9yLWp3dC10b2tlbi1nZW5lcmF0aW9u
+  expiration: 86400000  # 24小时，单位：毫秒
+ cache:
+   instances:
+    product_cache:
+     max-size: 10000
+     ttl: 3600000
+     eviction-policy: LRU
+     compression-enabled: false
+     metrics-enabled: false
+    user_cache:
+     max-size: 5000
+     ttl: 7200000
+     eviction-policy: LRU
+     compression-enabled: true
+     metrics-enabled: true
+    config_cache:
+     max-size: 1000
+     ttl: -1
+     eviction-policy: LRU
+     compression-enabled: false
+     metrics-enabled: true
+ ssh:
+   connection-timeout: 30000
+   channel-timeout: 30000
+   strict-host-key-checking: false
+   default-terminal-type: xterm
+   default-cols: 80
+   default-rows: 24
+ auth:
+   admins:
+     - username: admin
+       password: password
+     - username: dev
+       password: dev123

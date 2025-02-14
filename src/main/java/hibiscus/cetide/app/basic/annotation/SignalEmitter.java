@@ -1,4 +1,4 @@
-package hibiscus.cetide.app.annotation;
+package hibiscus.cetide.app.basic.annotation;
 
 import hibiscus.cetide.app.component.signal.SignalPriority;
 

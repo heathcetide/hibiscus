@@ -35,5 +35,5 @@
     </root>
 
     <!-- 为特定的包设置日志级别 -->
-    <logger name="com.example.helper" level="DEBUG" />
+    <logger name="hibiscus.cetide.app" level="DEBUG" />
 </configuration> 

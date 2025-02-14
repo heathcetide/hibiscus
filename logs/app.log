@@ -1,0 +1,147 @@
+2025-02-14 20:40:02.839 [main] INFO  h.c.app.SpringBootHelperApplication - Starting SpringBootHelperApplication using Java 21.0.5 on LAPTOP-VLB0GC6G with PID 21964 (D:\study_file\暂存版本\正式发行版本\hibiscus\target\classes started by Lenovo in D:\study_file\暂存版本\正式发行版本\hibiscus)
+2025-02-14 20:40:02.841 [main] DEBUG h.c.app.SpringBootHelperApplication - Running with Spring Boot v2.4.5, Spring v5.3.6
+2025-02-14 20:40:02.842 [main] INFO  h.c.app.SpringBootHelperApplication - The following profiles are active: dev
+2025-02-14 20:40:03.278 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+2025-02-14 20:40:03.280 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-02-14 20:40:03.368 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 76 ms. Found 0 Redis repository interfaces.
+2025-02-14 20:40:03.748 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2025-02-14 20:40:03.753 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-02-14 20:40:03.753 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-02-14 20:40:03.753 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.45]
+2025-02-14 20:40:03.816 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-02-14 20:40:03.816 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 944 ms
+2025-02-14 20:40:04.034 [main] INFO  h.c.a.c.cache.logging.CacheLogger - CjdisServer initialized with config: hibiscus.cetide.app.component.cache.config.CacheConfig@7f3fc42f
+2025-02-14 20:40:04.034 [main] INFO  h.c.a.c.c.m.CacheMonitorService - Cache monitoring started with interval: 5 SECONDS
+2025-02-14 20:40:04.035 [main] INFO  h.c.a.c.service.HibiscusCacheManager - Created new cache instance: default
+2025-02-14 20:40:04.035 [main] INFO  h.c.a.c.service.HibiscusCacheManager - HibiscusCacheManager initialized with default cache instance
+2025-02-14 20:40:04.044 [main] INFO  h.c.a.c.cache.logging.CacheLogger - CjdisServer initialized with config: hibiscus.cetide.app.component.cache.config.CacheConfig@1f4f0fcc
+2025-02-14 20:40:04.044 [main] INFO  h.c.a.c.c.m.CacheMonitorService - Cache monitoring started with interval: 5 SECONDS
+2025-02-14 20:40:04.044 [main] INFO  h.c.a.c.service.HibiscusCacheManager - Created new cache instance: config_cache
+2025-02-14 20:40:04.045 [main] INFO  h.c.a.c.cache.logging.CacheLogger - CjdisServer initialized with config: hibiscus.cetide.app.component.cache.config.CacheConfig@631c6d11
+2025-02-14 20:40:04.045 [main] INFO  h.c.a.c.c.m.CacheMonitorService - Cache monitoring started with interval: 5 SECONDS
+2025-02-14 20:40:04.045 [main] INFO  h.c.a.c.service.HibiscusCacheManager - Created new cache instance: product_cache
+2025-02-14 20:40:04.046 [main] INFO  h.c.a.c.cache.logging.CacheLogger - CjdisServer initialized with config: hibiscus.cetide.app.component.cache.config.CacheConfig@2415e4c7
+2025-02-14 20:40:04.047 [main] INFO  h.c.a.c.c.m.CacheMonitorService - Cache monitoring started with interval: 5 SECONDS
+2025-02-14 20:40:04.047 [main] INFO  h.c.a.c.service.HibiscusCacheManager - Created new cache instance: user_cache
+2025-02-14 20:40:04.059 [main] INFO  h.c.a.c.cache.logging.CacheLogger - CjdisServer initialized with config: hibiscus.cetide.app.component.cache.config.CacheConfig@4fa86cb8
+2025-02-14 20:40:04.060 [main] INFO  h.c.a.c.cache.logging.CacheLogger - CjdisServer initialized with config: hibiscus.cetide.app.component.cache.config.CacheConfig@5c48b72c
+2025-02-14 20:40:04.061 [main] INFO  h.c.a.c.cache.logging.CacheLogger - CjdisServer initialized with config: hibiscus.cetide.app.component.cache.config.CacheConfig@5bb911c1
+2025-02-14 20:40:04.068 [main] INFO  h.c.a.c.c.m.CacheMonitorService - Cache monitoring started with interval: 5 SECONDS
+2025-02-14 20:40:04.069 [main] INFO  h.c.a.c.c.m.CacheMonitorService - Cache monitoring started with interval: 5 SECONDS
+2025-02-14 20:40:04.069 [main] INFO  h.c.a.c.c.m.CacheMonitorService - Cache monitoring started with interval: 5 SECONDS
+2025-02-14 20:40:04.070 [main] INFO  h.c.app.config.CacheMonitorEndpoint - CacheMonitorEndpoint initialized with 3 cache(s)
+2025-02-14 20:40:04.283 [main] INFO  h.c.a.c.signal.DefaultSignalManager - Signal state loaded successfully
+2025-02-14 20:40:04.283 [main] INFO  h.c.a.c.signal.DefaultSignalManager - Signal manager initialized
+2025-02-14 20:40:04.311 [main] INFO  h.c.app.core.service.UserService - 初始化管理员用户完成
+2025-02-14 20:40:04.381 [Finalizer] WARN  i.l.c.r.DefaultClientResources - io.lettuce.core.resource.DefaultClientResources was not shut down properly, shutdown() was not called before it's garbage-collected. Call shutdown() or shutdown(long,long,TimeUnit) 
+2025-02-14 20:40:04.520 [main] INFO  org.reflections.Reflections - Reflections took 74 ms to scan 1 urls, producing 20 keys and 99 values
+2025-02-14 20:40:04.522 [main] INFO  h.c.a.config.HelperAutoConfiguration -  ---------- Hibiscus Service is Starting ----------
+2025-02-14 20:40:04.593 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-02-14 20:40:04.609 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2025-02-14 20:40:04.613 [main] INFO  h.c.app.basic.aspect.SignalAspect - Initializing SignalManager...
+2025-02-14 20:40:04.614 [main] INFO  h.c.a.c.signal.DefaultSignalManager - Signal state loaded successfully
+2025-02-14 20:40:04.614 [main] INFO  h.c.a.c.signal.DefaultSignalManager - Signal manager initialized
+2025-02-14 20:40:04.616 [main] INFO  h.c.app.basic.aspect.SignalAspect - Signal handlers initialized successfully
+2025-02-14 20:40:04.618 [main] INFO  h.c.app.SpringBootHelperApplication - Started SpringBootHelperApplication in 2.064 seconds (JVM running for 2.485)
+2025-02-14 20:40:06.412 [SpringContextShutdownHook] INFO  h.c.a.config.HelperAutoConfiguration -  ---------- Hibiscus Service has been stopped ----------
+2025-02-14 20:40:06.519 [SpringContextShutdownHook] INFO  h.c.a.c.c.m.CacheMonitorService - Cache monitoring stopped
+2025-02-14 20:40:06.519 [SpringContextShutdownHook] INFO  h.c.a.c.c.m.CacheMonitorService - Cache monitoring stopped
+2025-02-14 20:40:06.519 [SpringContextShutdownHook] INFO  h.c.a.c.c.m.CacheMonitorService - Cache monitoring stopped
+2025-02-14 20:40:06.520 [SpringContextShutdownHook] INFO  h.c.a.c.c.m.CacheMonitorService - Cache monitoring stopped
+2025-02-14 20:40:06.520 [SpringContextShutdownHook] INFO  h.c.a.component.cache.HibiscusCache - Cache service shutdown completed
+2025-02-14 20:40:06.520 [SpringContextShutdownHook] INFO  h.c.a.component.cache.HibiscusCache - Cache service shutdown completed
+2025-02-14 20:40:06.520 [SpringContextShutdownHook] INFO  h.c.a.component.cache.HibiscusCache - Cache service shutdown completed
+2025-02-14 20:40:06.520 [SpringContextShutdownHook] INFO  h.c.a.component.cache.HibiscusCache - Cache service shutdown completed
+2025-02-14 20:40:06.520 [SpringContextShutdownHook] INFO  h.c.a.c.service.HibiscusCacheManager - HibiscusCacheManager shut down
+2025-02-14 20:42:55.877 [main] INFO  h.c.app.SpringBootHelperApplication - Starting SpringBootHelperApplication using Java 21.0.5 on LAPTOP-VLB0GC6G with PID 9008 (C:\Users\Lenovo\Documents\GitHub\hibiscus\target\classes started by Lenovo in C:\Users\Lenovo\Documents\GitHub\hibiscus)
+2025-02-14 20:42:55.879 [main] DEBUG h.c.app.SpringBootHelperApplication - Running with Spring Boot v2.4.5, Spring v5.3.6
+2025-02-14 20:42:55.879 [main] INFO  h.c.app.SpringBootHelperApplication - The following profiles are active: dev
+2025-02-14 20:42:56.385 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+2025-02-14 20:42:56.388 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-02-14 20:42:56.451 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 55 ms. Found 0 Redis repository interfaces.
+2025-02-14 20:42:56.863 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2025-02-14 20:42:56.869 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-02-14 20:42:56.869 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-02-14 20:42:56.869 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.45]
+2025-02-14 20:42:56.935 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-02-14 20:42:56.936 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1029 ms
+2025-02-14 20:42:57.164 [main] INFO  h.c.a.c.cache.logging.CacheLogger - CjdisServer initialized with config: hibiscus.cetide.app.component.cache.config.CacheConfig@7f3fc42f
+2025-02-14 20:42:57.164 [main] INFO  h.c.a.c.c.m.CacheMonitorService - Cache monitoring started with interval: 5 SECONDS
+2025-02-14 20:42:57.165 [main] INFO  h.c.a.c.service.HibiscusCacheManager - Created new cache instance: default
+2025-02-14 20:42:57.166 [main] INFO  h.c.a.c.service.HibiscusCacheManager - HibiscusCacheManager initialized with default cache instance
+2025-02-14 20:42:57.174 [main] INFO  h.c.a.c.cache.logging.CacheLogger - CjdisServer initialized with config: hibiscus.cetide.app.component.cache.config.CacheConfig@3ca14cf4
+2025-02-14 20:42:57.175 [main] INFO  h.c.a.c.c.m.CacheMonitorService - Cache monitoring started with interval: 5 SECONDS
+2025-02-14 20:42:57.175 [main] INFO  h.c.a.c.service.HibiscusCacheManager - Created new cache instance: config_cache
+2025-02-14 20:42:57.177 [main] INFO  h.c.a.c.cache.logging.CacheLogger - CjdisServer initialized with config: hibiscus.cetide.app.component.cache.config.CacheConfig@59096b66
+2025-02-14 20:42:57.178 [main] INFO  h.c.a.c.c.m.CacheMonitorService - Cache monitoring started with interval: 5 SECONDS
+2025-02-14 20:42:57.178 [main] INFO  h.c.a.c.service.HibiscusCacheManager - Created new cache instance: product_cache
+2025-02-14 20:42:57.179 [main] INFO  h.c.a.c.cache.logging.CacheLogger - CjdisServer initialized with config: hibiscus.cetide.app.component.cache.config.CacheConfig@510689af
+2025-02-14 20:42:57.180 [main] INFO  h.c.a.c.c.m.CacheMonitorService - Cache monitoring started with interval: 5 SECONDS
+2025-02-14 20:42:57.180 [main] INFO  h.c.a.c.service.HibiscusCacheManager - Created new cache instance: user_cache
+2025-02-14 20:42:57.191 [main] INFO  h.c.a.c.cache.logging.CacheLogger - CjdisServer initialized with config: hibiscus.cetide.app.component.cache.config.CacheConfig@cbd40c1
+2025-02-14 20:42:57.192 [main] INFO  h.c.a.c.cache.logging.CacheLogger - CjdisServer initialized with config: hibiscus.cetide.app.component.cache.config.CacheConfig@1142d377
+2025-02-14 20:42:57.193 [main] INFO  h.c.a.c.cache.logging.CacheLogger - CjdisServer initialized with config: hibiscus.cetide.app.component.cache.config.CacheConfig@66e827a8
+2025-02-14 20:42:57.198 [main] INFO  h.c.a.c.c.m.CacheMonitorService - Cache monitoring started with interval: 5 SECONDS
+2025-02-14 20:42:57.198 [main] INFO  h.c.a.c.c.m.CacheMonitorService - Cache monitoring started with interval: 5 SECONDS
+2025-02-14 20:42:57.198 [main] INFO  h.c.a.c.c.m.CacheMonitorService - Cache monitoring started with interval: 5 SECONDS
+2025-02-14 20:42:57.200 [main] INFO  h.c.app.config.CacheMonitorEndpoint - CacheMonitorEndpoint initialized with 3 cache(s)
+2025-02-14 20:42:57.445 [main] INFO  h.c.a.c.signal.DefaultSignalManager - Signal state loaded successfully
+2025-02-14 20:42:57.445 [main] INFO  h.c.a.c.signal.DefaultSignalManager - Signal manager initialized
+2025-02-14 20:42:57.472 [main] INFO  h.c.app.core.service.UserService - 初始化管理员用户完成
+2025-02-14 20:42:57.702 [main] INFO  org.reflections.Reflections - Reflections took 92 ms to scan 1 urls, producing 20 keys and 99 values
+2025-02-14 20:42:57.774 [main] INFO  h.c.a.config.HelperAutoConfiguration -  ---------- Hibiscus Service is Starting ----------
+2025-02-14 20:42:57.847 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-02-14 20:42:57.861 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2025-02-14 20:42:57.866 [main] INFO  h.c.app.basic.aspect.SignalAspect - Initializing SignalManager...
+2025-02-14 20:42:57.867 [main] INFO  h.c.a.c.signal.DefaultSignalManager - Signal state loaded successfully
+2025-02-14 20:42:57.867 [main] INFO  h.c.a.c.signal.DefaultSignalManager - Signal manager initialized
+2025-02-14 20:42:57.869 [main] INFO  h.c.app.basic.aspect.SignalAspect - Signal handlers initialized successfully
+2025-02-14 20:42:57.871 [main] INFO  h.c.app.SpringBootHelperApplication - Started SpringBootHelperApplication in 2.307 seconds (JVM running for 2.766)
+2025-02-14 20:43:05.996 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-02-14 20:43:05.997 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-02-14 20:43:05.999 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2025-02-14 20:43:06.031 [http-nio-8080-exec-1] DEBUG h.c.a.b.interceptor.AuthInterceptor - 处理请求: /api/hibiscus/code/backstage
+2025-02-14 20:43:06.035 [http-nio-8080-exec-1] DEBUG h.c.a.c.s.HibiscusPerformanceAnalyzer - Recorded API call: path=/api/hibiscus/code/backstage, duration=2ms, status=302
+2025-02-14 20:43:06.035 [http-nio-8080-exec-1] DEBUG h.c.a.b.i.PerformanceInterceptor - Request completed: path=/api/hibiscus/code/backstage, duration=2ms, status=302
+2025-02-14 20:43:06.489 [http-nio-8080-exec-3] DEBUG h.c.a.c.s.HibiscusPerformanceAnalyzer - Recorded API call: path=/api/hibiscus/auth/login, duration=438ms, status=200
+2025-02-14 20:43:06.490 [http-nio-8080-exec-3] DEBUG h.c.a.b.i.PerformanceInterceptor - Request completed: path=/api/hibiscus/auth/login, duration=438ms, status=200
+2025-02-14 20:43:11.382 [http-nio-8080-exec-2] INFO  h.c.a.c.service.impl.AuthServiceImpl - 登录成功: username=admin
+2025-02-14 20:43:11.414 [http-nio-8080-exec-2] DEBUG h.c.a.c.s.HibiscusPerformanceAnalyzer - Recorded API call: path=/api/hibiscus/auth/login, duration=230ms, status=200
+2025-02-14 20:43:11.414 [http-nio-8080-exec-2] DEBUG h.c.a.b.i.PerformanceInterceptor - Request completed: path=/api/hibiscus/auth/login, duration=230ms, status=200
+2025-02-14 20:43:11.423 [http-nio-8080-exec-4] DEBUG h.c.a.b.interceptor.AuthInterceptor - 处理请求: /api/hibiscus/code/backstage
+2025-02-14 20:43:11.550 [http-nio-8080-exec-4] DEBUG h.c.a.c.s.HibiscusPerformanceAnalyzer - Recorded API call: path=/api/hibiscus/code/backstage, duration=126ms, status=200
+2025-02-14 20:43:11.551 [http-nio-8080-exec-4] DEBUG h.c.a.b.i.PerformanceInterceptor - Request completed: path=/api/hibiscus/code/backstage, duration=126ms, status=200
+2025-02-14 20:43:11.624 [http-nio-8080-exec-6] DEBUG h.c.a.b.interceptor.AuthInterceptor - 处理请求: /api/hibiscus/database/check-connection
+2025-02-14 20:43:11.647 [http-nio-8080-exec-6] INFO  h.c.a.c.s.HibiscusDatabaseAdminService - Successfully parsed database config:
+2025-02-14 20:43:11.648 [http-nio-8080-exec-6] INFO  h.c.a.c.s.HibiscusDatabaseAdminService - URL: jdbc:mysql://localhost:3306/game_db
+2025-02-14 20:43:11.648 [http-nio-8080-exec-6] INFO  h.c.a.c.s.HibiscusDatabaseAdminService - Host: localhost
+2025-02-14 20:43:11.649 [http-nio-8080-exec-6] INFO  h.c.a.c.s.HibiscusDatabaseAdminService - Port: 3306
+2025-02-14 20:43:11.650 [http-nio-8080-exec-6] INFO  h.c.a.c.s.HibiscusDatabaseAdminService - Database: game_db
+2025-02-14 20:43:11.650 [http-nio-8080-exec-6] INFO  h.c.a.c.s.HibiscusDatabaseAdminService - Username: root
+2025-02-14 20:43:12.435 [http-nio-8080-exec-6] DEBUG h.c.a.c.s.HibiscusPerformanceAnalyzer - Recorded API call: path=/api/hibiscus/database/check-connection, duration=811ms, status=200
+2025-02-14 20:43:12.435 [http-nio-8080-exec-6] DEBUG h.c.a.b.i.PerformanceInterceptor - Request completed: path=/api/hibiscus/database/check-connection, duration=811ms, status=200
+2025-02-14 20:43:12.919 [http-nio-8080-exec-5] DEBUG h.c.a.b.interceptor.AuthInterceptor - 处理请求: /api/hibiscus/redis/connection-info
+2025-02-14 20:43:12.925 [http-nio-8080-exec-5] DEBUG h.c.a.c.s.HibiscusPerformanceAnalyzer - Recorded API call: path=/api/hibiscus/redis/connection-info, duration=5ms, status=200
+2025-02-14 20:43:12.925 [http-nio-8080-exec-5] DEBUG h.c.a.b.i.PerformanceInterceptor - Request completed: path=/api/hibiscus/redis/connection-info, duration=5ms, status=200
+2025-02-14 20:43:16.198 [http-nio-8080-exec-7] DEBUG h.c.a.b.interceptor.AuthInterceptor - 处理请求: /api/hibiscus/redis/connect
+2025-02-14 20:43:16.956 [http-nio-8080-exec-7] DEBUG h.c.a.c.s.HibiscusPerformanceAnalyzer - Recorded API call: path=/api/hibiscus/redis/connect, duration=758ms, status=200
+2025-02-14 20:43:16.956 [http-nio-8080-exec-7] DEBUG h.c.a.b.i.PerformanceInterceptor - Request completed: path=/api/hibiscus/redis/connect, duration=758ms, status=200
+2025-02-14 20:43:16.960 [http-nio-8080-exec-9] DEBUG h.c.a.b.interceptor.AuthInterceptor - 处理请求: /api/hibiscus/redis/connection-info
+2025-02-14 20:43:16.960 [http-nio-8080-exec-8] DEBUG h.c.a.b.interceptor.AuthInterceptor - 处理请求: /api/hibiscus/redis/keys
+2025-02-14 20:43:16.968 [http-nio-8080-exec-9] DEBUG h.c.a.c.s.HibiscusPerformanceAnalyzer - Recorded API call: path=/api/hibiscus/redis/connection-info, duration=8ms, status=200
+2025-02-14 20:43:16.969 [http-nio-8080-exec-9] DEBUG h.c.a.b.i.PerformanceInterceptor - Request completed: path=/api/hibiscus/redis/connection-info, duration=8ms, status=200
+2025-02-14 20:43:17.318 [http-nio-8080-exec-10] DEBUG h.c.a.b.interceptor.AuthInterceptor - 处理请求: /api/hibiscus/redis/keys
+2025-02-14 20:43:17.327 [http-nio-8080-exec-8] DEBUG h.c.a.c.s.HibiscusPerformanceAnalyzer - Recorded API call: path=/api/hibiscus/redis/keys, duration=367ms, status=200
+2025-02-14 20:43:17.327 [http-nio-8080-exec-8] DEBUG h.c.a.b.i.PerformanceInterceptor - Request completed: path=/api/hibiscus/redis/keys, duration=367ms, status=200
+2025-02-14 20:43:17.377 [Finalizer] WARN  i.l.c.r.DefaultClientResources - io.lettuce.core.resource.DefaultClientResources was not shut down properly, shutdown() was not called before it's garbage-collected. Call shutdown() or shutdown(long,long,TimeUnit) 
+2025-02-14 20:43:17.501 [http-nio-8080-exec-10] DEBUG h.c.a.c.s.HibiscusPerformanceAnalyzer - Recorded API call: path=/api/hibiscus/redis/keys, duration=183ms, status=200
+2025-02-14 20:43:17.501 [http-nio-8080-exec-10] DEBUG h.c.a.b.i.PerformanceInterceptor - Request completed: path=/api/hibiscus/redis/keys, duration=183ms, status=200
+2025-02-14 20:43:26.098 [http-nio-8080-exec-1] DEBUG h.c.a.b.interceptor.AuthInterceptor - 处理请求: /api/hibiscus/redis/key/abtest%3Ahealth%3A05163ba7-b22a-4fca-9f9e-8c3d2e6710cb
+2025-02-14 20:43:26.110 [http-nio-8080-exec-1] DEBUG h.c.a.c.s.HibiscusPerformanceAnalyzer - Recorded API call: path=/api/hibiscus/redis/key/abtest%3Ahealth%3A05163ba7-b22a-4fca-9f9e-8c3d2e6710cb, duration=12ms, status=200
+2025-02-14 20:43:26.110 [http-nio-8080-exec-1] DEBUG h.c.a.b.i.PerformanceInterceptor - Request completed: path=/api/hibiscus/redis/key/abtest%3Ahealth%3A05163ba7-b22a-4fca-9f9e-8c3d2e6710cb, duration=12ms, status=200
+2025-02-14 20:43:43.292 [http-nio-8080-exec-3] DEBUG h.c.a.b.interceptor.AuthInterceptor - 处理请求: /api/hibiscus/redis/connection-info
+2025-02-14 20:43:43.299 [http-nio-8080-exec-3] DEBUG h.c.a.c.s.HibiscusPerformanceAnalyzer - Recorded API call: path=/api/hibiscus/redis/connection-info, duration=6ms, status=200
+2025-02-14 20:43:43.299 [http-nio-8080-exec-3] DEBUG h.c.a.b.i.PerformanceInterceptor - Request completed: path=/api/hibiscus/redis/connection-info, duration=6ms, status=200
+2025-02-14 20:43:43.308 [http-nio-8080-exec-2] DEBUG h.c.a.b.interceptor.AuthInterceptor - 处理请求: /api/hibiscus/redis/keys
+2025-02-14 20:43:43.355 [http-nio-8080-exec-2] DEBUG h.c.a.c.s.HibiscusPerformanceAnalyzer - Recorded API call: path=/api/hibiscus/redis/keys, duration=47ms, status=200
+2025-02-14 20:43:43.355 [http-nio-8080-exec-2] DEBUG h.c.a.b.i.PerformanceInterceptor - Request completed: path=/api/hibiscus/redis/keys, duration=47ms, status=200

@@ -1168,8 +1168,6 @@ public class HibiscusCache<K, V> {
             }
             return size;
         }
-
-        // 对于其他类型，返回一个基础估算值
         return 40; // 默认对象头大小
     }
 }

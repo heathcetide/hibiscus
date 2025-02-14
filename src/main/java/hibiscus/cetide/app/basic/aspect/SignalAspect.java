@@ -1,7 +1,6 @@
 package hibiscus.cetide.app.basic.aspect;
 
-import hibiscus.cetide.app.annotation.SignalEmitter;
-
+import hibiscus.cetide.app.basic.annotation.SignalEmitter;
 import hibiscus.cetide.app.basic.annotation.SignalHandler;
 import hibiscus.cetide.app.component.signal.SignalContext;
 import hibiscus.cetide.app.component.signal.SignalManager;

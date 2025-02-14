@@ -4,8 +4,199 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>hibiscus - api - test</title>
+    <style>
+        body {
+            height: 100vh;
+            overflow: hidden;
+            background: #f8f9fa;
+        }
+
+        .main-container {
+            height: calc(100vh - 2rem);
+            display: flex;
+        }
+
+        #api-sidebar {
+            width: 300px;
+            height: 100%;
+            overflow-y: auto;
+            background: #2d3748;
+            padding: 1rem;
+        }
+
+        .content-area {
+            flex: 1;
+            height: 100%;
+            overflow-y: auto;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .request-section {
+            flex: 1;
+            min-height: 50%;
+            overflow-y: auto;
+        }
+
+        .response-section {
+            height: 40%;
+            min-height: 300px;
+            margin-top: 1rem;
+        }
+
+        .tab-panel {
+            border: 1px solid #e2e8f0;
+            border-radius: 0.5rem;
+            margin-top: 0.5rem;
+            background: white;
+        }
+
+        .tab-buttons {
+            display: flex;
+            border-bottom: 1px solid #e2e8f0;
+            background: #f8fafc;
+            border-radius: 0.5rem 0.5rem 0 0;
+        }
+
+        .tab-button {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            background: none;
+            cursor: pointer;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .tab-button.active {
+            color: #3b82f6;
+            border-bottom: 2px solid #3b82f6;
+        }
+
+        .tab-content {
+            padding: 1rem;
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .method-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 0.25rem;
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+
+        .method-get { background: #93c5fd; color: #1e40af; }
+        .method-post { background: #86efac; color: #166534; }
+        .method-put { background: #fcd34d; color: #92400e; }
+        .method-delete { background: #fca5a5; color: #991b1b; }
+
+        .editor-container {
+            height: 200px;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.375rem;
+        }
+
+        .response-editor {
+            height: 100%;
+        }
+
+        /* API列表样式 */
+        .api-group {
+            margin-bottom: 1rem;
+            border-radius: 0.5rem;
+            overflow: hidden;
+        }
+
+        .api-group-header {
+            padding: 0.75rem;
+            background: #4a5568;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .api-methods {
+            background: #1a202c;
+            transition: max-height 0.3s ease-out;
+            overflow: hidden;
+        }
+
+        .api-method-item {
+            padding: 0.5rem;
+            margin: 0.25rem 0;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .api-method-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .api-method-item.active {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .method-badge {
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-weight: 500;
+            font-size: 0.875rem;
+            margin-right: 0.5rem;
+        }
+
+        .method-get { background: #93c5fd; color: #1e40af; }
+        .method-post { background: #86efac; color: #166534; }
+        .method-put { background: #fcd34d; color: #92400e; }
+        .method-delete { background: #fca5a5; color: #991b1b; }
+
+        #api-search {
+            transition: all 0.3s ease;
+        }
+
+        #api-search:focus {
+            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+        }
+
+        .api-method-item {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem;
+            gap: 0.5rem;
+            transition: all 0.2s ease;
+        }
+
+        .api-method-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .api-method-item .text-sm {
+            margin-left: auto;
+            opacity: 0.7;
+        }
+
+        mark {
+            padding: 0 2px;
+            border-radius: 2px;
+        }
+
+        .api-group-header svg {
+            transition: transform 0.3s ease;
+        }
+
+        .api-group-header:hover {
+            background: #4a5568;
+        }
+    </style>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link href="/css/interface.css" rel="stylesheet">
+<!--    <link href="/css/interface.css" rel="stylesheet">-->
 </head>
 <body>
     <div class="main-container">
@@ -207,8 +398,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/monaco-editor@0.33.0/min/vs/loader.js"></script>
-
-    <!-- 这里是您的JavaScript代码，保持原有逻辑不变，只需调整UI相关的部分 -->
     <script th:inline="javascript">
         // 获取后端注入的baseURL
         const baseURL = /*[[${baseURL}]]*/ 'http://localhost:8080';

@@ -11,8 +11,8 @@ import java.util.Collections;
 import java.util.stream.Collectors;
 
 public class AdaptiveStorage<K, V> {
-    private static final int SMALL_THRESHOLD = 100_000;    // 10万条数据的阈值
-    private static final int MEDIUM_THRESHOLD = 1_000_000; // 100万条数据的阈值
+    private static final int SMALL_THRESHOLD = 100_000;
+    private static final int MEDIUM_THRESHOLD = 1_000_000;
     
     private volatile StorageType currentType;
     private final AtomicInteger size = new AtomicInteger(0);
@@ -79,7 +79,6 @@ public class AdaptiveStorage<K, V> {
     
     private void upgradeToMedium() {
         mediumStorage = new ShardedStorage<>(Runtime.getRuntime().availableProcessors() * 2);
-        // 迁移数据
         smallStorage.forEach(mediumStorage::put);
         smallStorage = null; // 释放内存
         currentType = StorageType.MEDIUM;
@@ -87,7 +86,6 @@ public class AdaptiveStorage<K, V> {
     
     private void upgradeToLarge() {
         offHeapStorage = new OffHeapStorage<>(calculateCapacity());
-        // 迁移数据
         mediumStorage.forEach((k, v) -> offHeapStorage.put(k, serializer.serialize(v)));
         mediumStorage = null; // 释放内存
         currentType = StorageType.LARGE;

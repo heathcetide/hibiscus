@@ -27,25 +27,25 @@ public class HibiscusApiTestAspect {
     
     @Autowired
     private ApplicationContext applicationContext;
-    
+
     @PostConstruct
     public void init() {
-        RequestMappingHandlerMapping mapping = applicationContext.getBean(RequestMappingHandlerMapping.class);
+        RequestMappingHandlerMapping mapping = applicationContext.getBean("requestMappingHandlerMapping", RequestMappingHandlerMapping.class);
         Map<RequestMappingInfo, HandlerMethod> methodMap = mapping.getHandlerMethods();
-        
+
         methodMap.forEach((info, method) -> {
             Method targetMethod = method.getMethod();
             ApiTest apiTest = targetMethod.getAnnotation(ApiTest.class);
             if (apiTest != null) {
                 String path = getPath(targetMethod);
                 String httpMethod = getHttpMethod(targetMethod);
-                
+
                 API_REGISTRY.put(path, new ApiInfo(
-                    apiTest.value(),
-                    apiTest.description(),
-                    httpMethod,
-                    path,
-                    targetMethod.getParameterTypes()
+                        apiTest.value(),
+                        apiTest.description(),
+                        httpMethod,
+                        path,
+                        targetMethod.getParameterTypes()
                 ));
             }
         });
