@@ -27,9 +27,6 @@ public class HibiscusRedisService {
     @Autowired
     private RedisTemplate<String, Object> redisTemplate;
 
-    @Autowired
-    private ObjectMapper objectMapper;
-
     private static Logger log = LoggerFactory.getLogger(HibiscusRedisService.class);
 
     private volatile boolean isConnected = false;
@@ -64,8 +61,17 @@ public class HibiscusRedisService {
     public void connect(String host, int port, String password, int database) {
         try {
             redisConfig.updateRedisConnection(host, port, password, database);
+            // 重新连接并测试连接是否可用
+            try {
+                redisTemplate.getConnectionFactory().getConnection().ping();  // 测试连接
+                isConnected = true;  // 连接成功
+            } catch (Exception e) {
+                isConnected = false;
+                throw new RuntimeException("Redis连接失败: " + e.getMessage(), e);
+            }
+
             // 测试连接
-            redisTemplate.getConnectionFactory().getConnection().ping();
+            Objects.requireNonNull(redisTemplate.getConnectionFactory()).getConnection().ping();
             isConnected = true;
             
             // 更新配置

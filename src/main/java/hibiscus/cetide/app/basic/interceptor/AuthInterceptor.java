@@ -62,7 +62,7 @@ public class AuthInterceptor implements HandlerInterceptor {
                 token = bearerToken.substring(7);
             }
         }
-
+        log.info("token: {}", token);
         if (token != null && authService.validateToken(token)) {
             return true;
         }

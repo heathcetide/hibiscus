@@ -6,7 +6,7 @@
 
     <groupId>io.github.heathcetide</groupId>
     <artifactId>cetide.hibiscus.demo</artifactId>
-    <version>1.0.6</version>
+    <version>1.0.9</version>
 
     <properties>
         <java.version>17</java.version>
@@ -123,6 +123,11 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>io.lettuce</groupId>
+            <artifactId>lettuce-core</artifactId>
         </dependency>
 
         <!-- SSH相关依赖 -->

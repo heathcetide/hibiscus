@@ -8,16 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
-
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
-
 
 @Configuration
 @EnableAspectJAutoProxy
 @EnableConfigurationProperties(AppConfigProperties.class)
 public class HelperAutoConfiguration {
-    
+
     @Autowired
     private ClassScanner classScanner;
 
